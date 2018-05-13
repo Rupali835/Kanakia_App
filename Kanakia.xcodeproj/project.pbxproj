@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE43777620A8B06300C3B14E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43777520A8B06300C3B14E /* AppDelegate.swift */; };
+		CE43777820A8B06300C3B14E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43777720A8B06300C3B14E /* ViewController.swift */; };
+		CE43777B20A8B06300C3B14E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE43777920A8B06300C3B14E /* Main.storyboard */; };
+		CE43777E20A8B06300C3B14E /* Kanakia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE43777C20A8B06300C3B14E /* Kanakia.xcdatamodeld */; };
+		CE43778020A8B06300C3B14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE43777F20A8B06300C3B14E /* Assets.xcassets */; };
+		CE43778320A8B06300C3B14E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */; };
+		CE43778E20A8B06300C3B14E /* KanakiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43778D20A8B06300C3B14E /* KanakiaTests.swift */; };
+		CE43779920A8B06400C3B14E /* KanakiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43779820A8B06400C3B14E /* KanakiaUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE43778A20A8B06300C3B14E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE43776A20A8B06300C3B14E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43777120A8B06300C3B14E;
+			remoteInfo = Kanakia;
+		};
+		CE43779520A8B06400C3B14E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE43776A20A8B06300C3B14E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43777120A8B06300C3B14E;
+			remoteInfo = Kanakia;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CE43777220A8B06300C3B14E /* Kanakia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kanakia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE43777520A8B06300C3B14E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CE43777720A8B06300C3B14E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE43777A20A8B06300C3B14E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE43777D20A8B06300C3B14E /* Kanakia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kanakia.xcdatamodel; sourceTree = "<group>"; };
+		CE43777F20A8B06300C3B14E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE43778220A8B06300C3B14E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE43778420A8B06300C3B14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE43778920A8B06300C3B14E /* KanakiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KanakiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE43778D20A8B06300C3B14E /* KanakiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanakiaTests.swift; sourceTree = "<group>"; };
+		CE43778F20A8B06300C3B14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE43779420A8B06400C3B14E /* KanakiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KanakiaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE43779820A8B06400C3B14E /* KanakiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanakiaUITests.swift; sourceTree = "<group>"; };
+		CE43779A20A8B06400C3B14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE43776F20A8B06300C3B14E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43778620A8B06300C3B14E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43779120A8B06400C3B14E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE43776920A8B06300C3B14E = {
+			isa = PBXGroup;
+			children = (
+				CE43777420A8B06300C3B14E /* Kanakia */,
+				CE43778C20A8B06300C3B14E /* KanakiaTests */,
+				CE43779720A8B06400C3B14E /* KanakiaUITests */,
+				CE43777320A8B06300C3B14E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE43777320A8B06300C3B14E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE43777220A8B06300C3B14E /* Kanakia.app */,
+				CE43778920A8B06300C3B14E /* KanakiaTests.xctest */,
+				CE43779420A8B06400C3B14E /* KanakiaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE43777420A8B06300C3B14E /* Kanakia */ = {
+			isa = PBXGroup;
+			children = (
+				CE43777520A8B06300C3B14E /* AppDelegate.swift */,
+				CE43777720A8B06300C3B14E /* ViewController.swift */,
+				CE43777920A8B06300C3B14E /* Main.storyboard */,
+				CE43777F20A8B06300C3B14E /* Assets.xcassets */,
+				CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */,
+				CE43778420A8B06300C3B14E /* Info.plist */,
+				CE43777C20A8B06300C3B14E /* Kanakia.xcdatamodeld */,
+			);
+			path = Kanakia;
+			sourceTree = "<group>";
+		};
+		CE43778C20A8B06300C3B14E /* KanakiaTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE43778D20A8B06300C3B14E /* KanakiaTests.swift */,
+				CE43778F20A8B06300C3B14E /* Info.plist */,
+			);
+			path = KanakiaTests;
+			sourceTree = "<group>";
+		};
+		CE43779720A8B06400C3B14E /* KanakiaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE43779820A8B06400C3B14E /* KanakiaUITests.swift */,
+				CE43779A20A8B06400C3B14E /* Info.plist */,
+			);
+			path = KanakiaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE43777120A8B06300C3B14E /* Kanakia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE43779D20A8B06400C3B14E /* Build configuration list for PBXNativeTarget "Kanakia" */;
+			buildPhases = (
+				CE43776E20A8B06300C3B14E /* Sources */,
+				CE43776F20A8B06300C3B14E /* Frameworks */,
+				CE43777020A8B06300C3B14E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Kanakia;
+			productName = Kanakia;
+			productReference = CE43777220A8B06300C3B14E /* Kanakia.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE43778820A8B06300C3B14E /* KanakiaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE4377A020A8B06400C3B14E /* Build configuration list for PBXNativeTarget "KanakiaTests" */;
+			buildPhases = (
+				CE43778520A8B06300C3B14E /* Sources */,
+				CE43778620A8B06300C3B14E /* Frameworks */,
+				CE43778720A8B06300C3B14E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE43778B20A8B06300C3B14E /* PBXTargetDependency */,
+			);
+			name = KanakiaTests;
+			productName = KanakiaTests;
+			productReference = CE43778920A8B06300C3B14E /* KanakiaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CE43779320A8B06400C3B14E /* KanakiaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE4377A320A8B06400C3B14E /* Build configuration list for PBXNativeTarget "KanakiaUITests" */;
+			buildPhases = (
+				CE43779020A8B06400C3B14E /* Sources */,
+				CE43779120A8B06400C3B14E /* Frameworks */,
+				CE43779220A8B06400C3B14E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE43779620A8B06400C3B14E /* PBXTargetDependency */,
+			);
+			name = KanakiaUITests;
+			productName = KanakiaUITests;
+			productReference = CE43779420A8B06400C3B14E /* KanakiaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE43776A20A8B06300C3B14E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = user;
+				TargetAttributes = {
+					CE43777120A8B06300C3B14E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					CE43778820A8B06300C3B14E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CE43777120A8B06300C3B14E;
+					};
+					CE43779320A8B06400C3B14E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CE43777120A8B06300C3B14E;
+					};
+				};
+			};
+			buildConfigurationList = CE43776D20A8B06300C3B14E /* Build configuration list for PBXProject "Kanakia" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE43776920A8B06300C3B14E;
+			productRefGroup = CE43777320A8B06300C3B14E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE43777120A8B06300C3B14E /* Kanakia */,
+				CE43778820A8B06300C3B14E /* KanakiaTests */,
+				CE43779320A8B06400C3B14E /* KanakiaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE43777020A8B06300C3B14E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43778320A8B06300C3B14E /* LaunchScreen.storyboard in Resources */,
+				CE43778020A8B06300C3B14E /* Assets.xcassets in Resources */,
+				CE43777B20A8B06300C3B14E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43778720A8B06300C3B14E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43779220A8B06400C3B14E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE43776E20A8B06300C3B14E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43777820A8B06300C3B14E /* ViewController.swift in Sources */,
+				CE43777620A8B06300C3B14E /* AppDelegate.swift in Sources */,
+				CE43777E20A8B06300C3B14E /* Kanakia.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43778520A8B06300C3B14E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43778E20A8B06300C3B14E /* KanakiaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43779020A8B06400C3B14E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43779920A8B06400C3B14E /* KanakiaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE43778B20A8B06300C3B14E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43777120A8B06300C3B14E /* Kanakia */;
+			targetProxy = CE43778A20A8B06300C3B14E /* PBXContainerItemProxy */;
+		};
+		CE43779620A8B06400C3B14E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43777120A8B06300C3B14E /* Kanakia */;
+			targetProxy = CE43779520A8B06400C3B14E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE43777920A8B06300C3B14E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE43777A20A8B06300C3B14E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE43778220A8B06300C3B14E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE43779B20A8B06400C3B14E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CE43779C20A8B06400C3B14E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE43779E20A8B06400C3B14E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 879PB75HQ7;
+				INFOPLIST_FILE = Kanakia/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaminfo.cricketTeam.Kanakia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE43779F20A8B06400C3B14E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 879PB75HQ7;
+				INFOPLIST_FILE = Kanakia/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaminfo.cricketTeam.Kanakia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CE4377A120A8B06400C3B14E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 879PB75HQ7;
+				INFOPLIST_FILE = KanakiaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaminfo.cricketTeam.KanakiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kanakia.app/Kanakia";
+			};
+			name = Debug;
+		};
+		CE4377A220A8B06400C3B14E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 879PB75HQ7;
+				INFOPLIST_FILE = KanakiaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaminfo.cricketTeam.KanakiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kanakia.app/Kanakia";
+			};
+			name = Release;
+		};
+		CE4377A420A8B06400C3B14E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 879PB75HQ7;
+				INFOPLIST_FILE = KanakiaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaminfo.cricketTeam.KanakiaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Kanakia;
+			};
+			name = Debug;
+		};
+		CE4377A520A8B06400C3B14E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 879PB75HQ7;
+				INFOPLIST_FILE = KanakiaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaminfo.cricketTeam.KanakiaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Kanakia;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE43776D20A8B06300C3B14E /* Build configuration list for PBXProject "Kanakia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE43779B20A8B06400C3B14E /* Debug */,
+				CE43779C20A8B06400C3B14E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE43779D20A8B06400C3B14E /* Build configuration list for PBXNativeTarget "Kanakia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE43779E20A8B06400C3B14E /* Debug */,
+				CE43779F20A8B06400C3B14E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE4377A020A8B06400C3B14E /* Build configuration list for PBXNativeTarget "KanakiaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE4377A120A8B06400C3B14E /* Debug */,
+				CE4377A220A8B06400C3B14E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE4377A320A8B06400C3B14E /* Build configuration list for PBXNativeTarget "KanakiaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE4377A420A8B06400C3B14E /* Debug */,
+				CE4377A520A8B06400C3B14E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE43777C20A8B06300C3B14E /* Kanakia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE43777D20A8B06300C3B14E /* Kanakia.xcdatamodel */,
+			);
+			currentVersion = CE43777D20A8B06300C3B14E /* Kanakia.xcdatamodel */;
+			path = Kanakia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CE43776A20A8B06300C3B14E /* Project object */;
+}
