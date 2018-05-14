@@ -1,0 +1,6 @@
+framework module Pods_KanakiaUITests {
+  umbrella header "Pods-KanakiaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

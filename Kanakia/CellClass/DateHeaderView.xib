@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DateHeaderView" customModule="Kanakia_SOP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGl-XL-JAU">
+                    <rect key="frame" x="0.0" y="5" width="320" height="54"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CC-tX-kMJ">
+                            <rect key="frame" x="10" y="5" width="310" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="TIw-aa-Ium"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGV-CN-hPd">
+                            <rect key="frame" x="32" y="32" width="288" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.73836151541095896" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="7CC-tX-kMJ" firstAttribute="leading" secondItem="NGl-XL-JAU" secondAttribute="leading" constant="10" id="6Ds-hb-ufp"/>
+                        <constraint firstAttribute="bottom" secondItem="RGV-CN-hPd" secondAttribute="bottom" constant="5" id="Rbm-Cb-bem"/>
+                        <constraint firstItem="RGV-CN-hPd" firstAttribute="trailing" secondItem="7CC-tX-kMJ" secondAttribute="trailing" id="ZLA-mp-vWx"/>
+                        <constraint firstItem="RGV-CN-hPd" firstAttribute="leading" secondItem="7CC-tX-kMJ" secondAttribute="leading" constant="22" id="dXN-Jn-IXI"/>
+                        <constraint firstAttribute="trailing" secondItem="7CC-tX-kMJ" secondAttribute="trailing" id="obs-VR-FHt"/>
+                        <constraint firstItem="7CC-tX-kMJ" firstAttribute="top" secondItem="NGl-XL-JAU" secondAttribute="top" constant="5" id="uvH-xk-sjp"/>
+                        <constraint firstItem="RGV-CN-hPd" firstAttribute="top" secondItem="7CC-tX-kMJ" secondAttribute="bottom" constant="5" id="xGa-eK-UiI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="NGl-XL-JAU" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="97L-w3-TG7"/>
+                <constraint firstItem="NGl-XL-JAU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MPT-lV-zXa"/>
+                <constraint firstItem="NGl-XL-JAU" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-6" id="QyA-xG-T31"/>
+                <constraint firstItem="NGl-XL-JAU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="VVr-CH-OY2"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="m_CountLbl" destination="RGV-CN-hPd" id="xxj-A2-Xbv"/>
+                <outlet property="m_DateLbl" destination="7CC-tX-kMJ" id="t54-B0-8iS"/>
+            </connections>
+            <point key="canvasLocation" x="-272" y="-323.5"/>
+        </view>
+    </objects>
+</document>

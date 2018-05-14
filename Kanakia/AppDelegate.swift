@@ -1,23 +1,72 @@
 //
 //  AppDelegate.swift
-//  Kanakia
+//  MMSApp
 //
-//  Created by user on 13/05/18.
+//  Created by user on 02/02/18.
 //  Copyright © 2018 user. All rights reserved.
 //
 
 import UIKit
 import CoreData
+import Firebase
+import UserNotifications
+import FirebaseInstanceID
+import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate
+{
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+       
+
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            // For iOS 10 data message (sent via FCM
+           
+            Messaging.messaging().delegate = self
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+
+        application.registerForRemoteNotifications()
+
+        FirebaseApp.configure()
+
+        
+        
+        
+        self.window!.backgroundColor = UIColor.clear
+        
+ //       UINavigationBar.appearance().barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
+        
+        UINavigationBar.appearance().barTintColor = UIColor(hex: 0x4CAF50, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+    
+        let result = UserDefaults.standard.value(forKey: "userdata")
+        if result != nil {
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+            let yourViewController: HomeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+            let navigationController = self.window?.rootViewController as! UINavigationController
+            navigationController.setViewControllers([yourViewController], animated: true)
+        }
+
+
+        
         return true
+      
+     
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -53,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "Kanakia")
+        let container = NSPersistentContainer(name: "MMSApp")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -89,5 +138,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func instance() ->  AppDelegate{
+        
+        return AppDelegate()
+    }
+    func showAlert(strTitle:String,strMessage:String)   {
+        let alert = UIAlertController(title: strTitle, message: strMessage, preferredStyle: .alert)
+        let add = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(add)
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func application(received remoteMessage: MessagingRemoteMessage) {
+        print(remoteMessage.appData)
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+//        let   tokenString = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
+//        // kDeviceToken=tokenString
+//        print("deviceToken: \(tokenString)")
+//        if let refreshedToken = FIRInstanceID.instanceID().token() {
+//            print("InstanceID token: \(refreshedToken)")
+//        }
+        if let refreshToken = InstanceID.instanceID().token()
+        {
+            print("InstanceID token: \(refreshToken)")
+            UserDefaults.standard.set(refreshToken, forKey: "data")
+        }
+        //UserDefaults.standard.set(, forKey: "data")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
 }
 

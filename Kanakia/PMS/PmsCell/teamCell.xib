@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamCell" rowHeight="54" id="oWO-4x-lSR" customClass="teamCell" customModule="Kanakia_SOP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oWO-4x-lSR" id="nlS-GM-5ea">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CV9-oN-0ps">
+                        <rect key="frame" x="5" y="5" width="310" height="49.5"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kii-Gr-pHX">
+                                <rect key="frame" x="10" y="5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WLL-mK-wzp"/>
+                                    <constraint firstAttribute="width" constant="40" id="hfA-2S-03c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNc-Wx-ceG">
+                                <rect key="frame" x="63" y="5" width="237" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KNc-Wx-ceG" firstAttribute="bottom" secondItem="Kii-Gr-pHX" secondAttribute="bottom" id="02J-y0-VcY"/>
+                            <constraint firstItem="KNc-Wx-ceG" firstAttribute="leading" secondItem="Kii-Gr-pHX" secondAttribute="trailing" constant="13" id="Lk0-yh-IPc"/>
+                            <constraint firstAttribute="trailing" secondItem="KNc-Wx-ceG" secondAttribute="trailing" constant="10" id="Sv7-Zg-0eg"/>
+                            <constraint firstItem="Kii-Gr-pHX" firstAttribute="leading" secondItem="CV9-oN-0ps" secondAttribute="leading" constant="10" id="kmn-hL-VJv"/>
+                            <constraint firstItem="KNc-Wx-ceG" firstAttribute="top" secondItem="Kii-Gr-pHX" secondAttribute="top" id="kzr-er-Cjp"/>
+                            <constraint firstItem="Kii-Gr-pHX" firstAttribute="top" secondItem="CV9-oN-0ps" secondAttribute="top" constant="5" id="pa6-c4-0ID"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="CV9-oN-0ps" secondAttribute="trailing" constant="5" id="4FG-il-MEZ"/>
+                    <constraint firstItem="CV9-oN-0ps" firstAttribute="leading" secondItem="nlS-GM-5ea" secondAttribute="leading" constant="5" id="9gU-eA-3eq"/>
+                    <constraint firstAttribute="bottom" secondItem="CV9-oN-0ps" secondAttribute="bottom" constant="5" id="PlW-RA-XBg"/>
+                    <constraint firstItem="CV9-oN-0ps" firstAttribute="top" secondItem="nlS-GM-5ea" secondAttribute="top" constant="5" id="v8q-xq-hM6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backView" destination="CV9-oN-0ps" id="3K5-Dh-nal"/>
+                <outlet property="lblEmpName" destination="KNc-Wx-ceG" id="prT-40-hJF"/>
+                <outlet property="lblFirstLetter" destination="Kii-Gr-pHX" id="1L2-Vb-262"/>
+            </connections>
+            <point key="canvasLocation" x="-1" y="84"/>
+        </tableViewCell>
+    </objects>
+</document>

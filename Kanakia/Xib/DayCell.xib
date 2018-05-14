@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DayCell" customModule="MMSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="std-6X-onL" userLabel="btnUnSelectedCheckbox" customClass="MKButton" customModule="MMSApp" customModuleProvider="target">
+                        <rect key="frame" x="5" y="10" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="JNz-ID-J9k"/>
+                            <constraint firstAttribute="width" constant="20" id="REL-8N-Icp"/>
+                        </constraints>
+                        <state key="normal" image="unchecked-checkbox"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHe-WX-M0P" userLabel="lblremainder">
+                        <rect key="frame" x="30" y="10" width="274" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pHe-WX-M0P" firstAttribute="top" secondItem="std-6X-onL" secondAttribute="top" id="1GJ-kZ-fyq"/>
+                    <constraint firstItem="std-6X-onL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="312-UF-oCH"/>
+                    <constraint firstItem="pHe-WX-M0P" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="8L4-WL-gCn"/>
+                    <constraint firstItem="std-6X-onL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Adf-nn-0zc"/>
+                    <constraint firstItem="pHe-WX-M0P" firstAttribute="leading" secondItem="std-6X-onL" secondAttribute="trailing" constant="5" id="qbR-RQ-41V"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnDayUnSelect" destination="std-6X-onL" id="4OY-JK-iXJ"/>
+                <outlet property="lblDay" destination="pHe-WX-M0P" id="d0J-60-BYa"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="unchecked-checkbox" width="1600" height="1600"/>
+    </resources>
+</document>
