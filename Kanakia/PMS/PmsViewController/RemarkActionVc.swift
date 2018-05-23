@@ -85,6 +85,12 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
                     {
                         self.view.frame.origin.y -= 60
                     }
+                    
+                case "iPhone 6S":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y -= 80
+                    }
                     break
                 default:
                     print("No Match")
@@ -137,6 +143,12 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
                     if self.view.frame.origin.y != 0
                     {
                         self.view.frame.origin.y += 60
+                    }
+                
+                case "iPhone 6S":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 80
                     }
                     break
                 default:

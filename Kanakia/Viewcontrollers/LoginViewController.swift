@@ -30,8 +30,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
     {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-    //    self.DesignTextfield(txtField: txtLoginName)
-    //    self.DesignTextfield(txtField: txtPasssword )
+   
         self.txtPasssword.delegate = self
         self.txtLoginName.delegate = self
         iconClick = true
@@ -170,7 +169,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         
         if (strUserName?.isEmpty)!{
             self.toast.isShow("Please Enter User Name!")
-         //   showAlert(strMessage: "Please Enter User Name!")
             return
         }
         if (strPassword?.isEmpty)!{

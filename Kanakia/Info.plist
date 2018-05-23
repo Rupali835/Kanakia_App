@@ -29,6 +29,10 @@
 		<key>Privacy - Photo Library Usage Description</key>
 		<string>0</string>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>string</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>string</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

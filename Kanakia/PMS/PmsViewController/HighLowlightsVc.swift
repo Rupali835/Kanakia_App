@@ -21,7 +21,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     var Kflag : String = ""
      private var toast: JYToast!
     var Msg = [AnyObject]()
-    var Lowdata = [AnyObject]()
+ //   var Lowdata = [AnyObject]()
     var cRemarkVc : RemarkActionVc!
     var fkid : String!
      var LoginUp_id : String = ""
@@ -49,7 +49,10 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.LoginUp_id = self.dict["up_id"] as! String
          tblLights.register(UINib(nibName: "ButtonCell", bundle: nil), forCellReuseIdentifier: "ButtonCell")
         
-         tblLights.register(UINib(nibName: "HighLowLightCell", bundle: nil), forCellReuseIdentifier: "HighLowLightCell")
+       
+         tblLights.register(UINib(nibName: "ActoinRemarkCell", bundle: nil), forCellReuseIdentifier: "ActoinRemarkCell")
+        
+      //  tblLights.register(UINib(nibName:), forCellReuseIdentifier: <#T##String#>)
         initUi()
        getDataFromAPI(getHighLowLights: "getHighlights")
      
@@ -222,20 +225,24 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         
         Alamofire.request(achiveURL, method: .post, parameters: achiveParam).responseJSON { (dataAchive) in
-     //       print(dataAchive)
+           print(dataAchive)
             let data = dataAchive.result.value as! [String: AnyObject]
             
-            self.Lowdata = data["msg"] as! [AnyObject]
-            if (self.Lowdata.count == 0)
+            if self.Kflag == "1"
             {
-                self.toast.isShow("No any highlights found")
+                self.Msg = data["msg"] as! [AnyObject]
+                if (self.Msg.count == 0)
+                {
+                    self.toast.isShow("No any highlights found")
+                }
+            }else{
+                self.Msg = data["msg"] as! [AnyObject]
+                if (self.Msg.count == 0)
+                {
+                    self.toast.isShow("No any lowlights found")
+                }
             }
             
-            self.Msg = data["msg"] as! [AnyObject]
-            if (self.Msg.count == 0)
-            {
-                self.toast.isShow("No any lowlights found")
-            }
             self.tblLights.reloadData()
             
         }
@@ -262,7 +269,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         if self.Up_id != LoginUp_id
         {
-            let cell = tblLights.dequeueReusableCell(withIdentifier: "HighLowLightCell", for: indexPath) as! HighLowLightCell
+            let cell = tblLights.dequeueReusableCell(withIdentifier: "ActoinRemarkCell", for: indexPath) as! ActoinRemarkCell
             cell.btnAccept.isHidden = false
             cell.btnReject.isHidden = false
          
@@ -273,6 +280,12 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.lblAddedBy.text = (lcDict["fkpi_added_by_name"] as! String)
             cell.lblDateTime.text = (lcDict["fkpi_added_timestamp"] as! String)
             cell.lblApprovedBy.text = (lcDict["fkpi_approved_by_name"] as! String)
+            cell.lblRemarkAction.text = (lcDict["fkpi_remark"] as! String)
+            if cell.lblRemarkAction.text == "NF"
+            {
+                cell.lblRemarkAction.text = "Not Provided"
+            }
+           
             cell.btnAccept.tag = indexPath.row
             cell.btnReject.tag = indexPath.row
             cell.btnAccept.addTarget(self, action: #selector(Accept_Click(sender:)), for: .touchUpInside)
@@ -286,6 +299,11 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
                 cell.lblPersonStatus.text = "Accepted By:"
                 cell.lblStatus.text = "Accepted"
                 cell.backView.backgroundColor = UIColor(red:0.78, green:0.90, blue:0.79, alpha:1.0)
+                
+                if cell.lblRemarkAction.text == "NF"
+                {
+                    cell.lblRemarkAction.text = "Not Provided"
+                }
                 
             }
             if (lcDict["fkpi_status"] as! String) == "2"
@@ -332,7 +350,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             else{
                 
-                let cell = tblLights.dequeueReusableCell(withIdentifier: "HighLowLightCell", for: indexPath) as! HighLowLightCell
+                let cell = tblLights.dequeueReusableCell(withIdentifier: "ActoinRemarkCell", for: indexPath) as! ActoinRemarkCell
                 
                 cell.btnAccept.isHidden = true
                 cell.btnReject.isHidden = true
@@ -356,16 +374,20 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
                 if (lcDict["fkpi_status"] as! String) == "1"
                 {
-                    
+                     cell.lblRemarkAction.text = (lcDict["fkpi_remark"] as! String)
                     cell.btnAccept.isHidden = true
                     cell.btnReject.isHidden = true
                     cell.lblPersonStatus.text = "Accepted By:"
                     cell.lblStatus.text = "Accepted"
                     cell.backView.backgroundColor = UIColor(red:0.78, green:0.90, blue:0.79, alpha:1.0)
+                    if cell.lblRemarkAction.text == "NF"
+                    {
+                        cell.lblRemarkAction.text = "Not Provided"
+                    }
                 }
                 if (lcDict["fkpi_status"] as! String) == "2"
                 {
-                    
+                    cell.lblRemarkAction.text = (lcDict["fkpi_remark"] as! String)
                     cell.btnAccept.isHidden = true
                     cell.btnReject.isHidden = true
                     cell.lblPersonStatus.text = "Rejected By:"
@@ -464,7 +486,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
        let index = sender.tag
         print("index=", index)
         
-        let lcDict = self.Lowdata[index]
+        let lcDict = self.Msg[index]
         self.fkid = lcDict["fkpi_id"] as! String
         self.cRemarkVc.view.frame = self.view.bounds
         
@@ -489,21 +511,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBAction func btnSend_onClicked(_ sender: Any)
     {
         view.endEditing(true)
-        
-        let alert = UIAlertController(title: "Alert", message: "Are you sure to send this Highlight or Lowlight?", preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            
-          self.addLights()
-        }
-        let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel){
-            UIAlertAction in
-            self.txtLights.text = ""
-        }
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        self.addLights()
     }
     
    
@@ -521,11 +529,17 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.toast.isShow("Please enter a text")
             self.valid = false
         }else{
+            
+            let alert = UIAlertController(title: "Alert", message: "Are you sure to send this Highlight or Lowlight?", preferredStyle: UIAlertControllerStyle.actionSheet)
+            
+            let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
+                UIAlertAction in
+                
             let addAchiveUrl = "http://kanishkagroups.com/sop/pms/index.php/API/addHighlightLowlight"
             let addParameter : [String: Any] =
                 [        "up_id" : self.Up_id,
                          "kpi_id" : self.Kpi_id,
-                         "fkpi_name" : txtLights.text,
+                         "fkpi_name" : self.txtLights.text,
                          "fkpi_flag" : self.Kflag,
                          "fkpi_status" : Tpa_Status,
                          "fkpi_added_by" : self.LoginUp_id
@@ -537,7 +551,15 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.btnSegment_OnClick(self.segmentView)
             }
         }
-       
+            
+            let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel){
+                UIAlertAction in
+                self.txtLights.text = ""
+            }
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func didSelected()

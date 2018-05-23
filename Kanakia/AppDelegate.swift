@@ -42,10 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         application.registerForRemoteNotifications()
 
         FirebaseApp.configure()
-
-        
-        
-        
         self.window!.backgroundColor = UIColor.clear
         
  //       UINavigationBar.appearance().barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)

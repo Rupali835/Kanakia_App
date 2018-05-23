@@ -38,6 +38,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tblFeedback.delegate   = self
         tblFeedback.dataSource = self
         tblFeedback.separatorStyle = .none
+        
         tblFeedback.register(UINib(nibName: "ButtonCell", bundle: nil), forCellReuseIdentifier: "ButtonCell")
         tblFeedback.register(UINib(nibName: "HighLowLightCell", bundle: nil), forCellReuseIdentifier: "HighLowLightCell")
         

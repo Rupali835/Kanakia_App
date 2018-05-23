@@ -58,12 +58,12 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
         
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField)
+    private func textFieldDidBeginEditing(_ textField: UITextField)
     {
         activeField = textField
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField){
+     private func textFieldDidEndEditing(_ textField: UITextField){
         activeField = nil
     }
     
@@ -220,7 +220,7 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
         for lcAttachment in CDBAttachmentArr
         {
             print("fileName= \(lcAttachment.fileName)")
-            print("fileSizeStr = \(lcAttachment.fileSizeStr)")
+            print("fileSizeStr = \(String(describing: lcAttachment.fileSizeStr))")
            
             print("Count= \(self.DBAttachmentArr.count)")
             //if self.DBAttachmentArr.count < 3
@@ -317,7 +317,7 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
             multipartFormData: { multipartFormData in
 
                 multipartFormData.append(lcURL,
-                                         withName: "document",
+                                         withName: "document",  /// images0/1/2
                                          fileName: lcFileName!,
                                          mimeType: "pdf/text")
                 

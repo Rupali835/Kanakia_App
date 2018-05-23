@@ -83,7 +83,8 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
        getKpi()
     }
     
-    func getRandomColor() -> UIColor{
+    func getRandomColor() -> UIColor
+    {
         //Generate between 0 to 1
         let red:CGFloat = CGFloat(drand48())
         let green:CGFloat = CGFloat(drand48())

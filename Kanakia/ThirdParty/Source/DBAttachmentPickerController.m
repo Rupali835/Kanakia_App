@@ -229,7 +229,8 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
     [self.initialViewController presentViewController:viewController animated:YES completion:nil];
 }
 
-- (void)otherAppsButtonDidSelect {
+- (void)otherAppsButtonDidSelect
+{
     NSMutableArray *documentMediaTypes = [NSMutableArray arrayWithCapacity:10];
     if (self.mediaType & DBAttachmentMediaTypeImage) {
         [documentMediaTypes addObject:(NSString *)kUTTypeImage];

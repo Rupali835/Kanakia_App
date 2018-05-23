@@ -32,10 +32,7 @@ class FileDocumentVc: UIViewController,UIDocumentInteractionControllerDelegate,U
         self.tableView.delegate = self
         self.resRemark.layer.borderColor = UIColor.purple.cgColor
         self.resMom.layer.borderColor = UIColor.purple.cgColor
-        //self.FileNameLbl.isUserInteractionEnabled = true
-        //self.FileNameLbl.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(OnfileNameClick)))
-        
-        // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {

@@ -66,7 +66,8 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
    NSDictionary *resDict = [userDefaults objectForKey:@"userdata"];

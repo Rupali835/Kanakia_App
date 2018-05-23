@@ -9,31 +9,49 @@
 import UIKit
 import Alamofire
 
-class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
+class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, didSelectedDelegateEmpCell
 {
+    
+   
+    
 
+    @IBOutlet weak var seachBar: UISearchBar!
     @IBOutlet weak var Mytbl: UITableView!
     
     var Up_id : String = ""
     var empData = [AnyObject]()
     private var toast: JYToast!
+     var filtered = NSArray()
+    var searchActive = Bool(false)
+    var DataArr = NSArray()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-     //   self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
+   
         let dict  = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
         self.Up_id = dict["up_id"] as! String
-        
+        seachBar.delegate = self
         Mytbl.dataSource = self
         Mytbl.delegate = self
+        
         getEmpList()
         initUi()
         self.Mytbl.separatorStyle = .none
         
-        // Do any additional setup after loading the view.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+        
     }
 
+    @objc func dismissKeyboard()
+    {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
@@ -47,6 +65,45 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         toast = JYToast()
     }
     
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        
+        let predicate = NSPredicate(format: "user_name CONTAINS[c]  %@", searchText)
+        
+        self.filtered = self.DataArr.filter { predicate.evaluate(with: $0) } as NSArray
+        
+        print("names = ,\(self.filtered)")
+        if(filtered.count == 0)
+        {
+            searchActive = false
+            
+        } else {
+            searchActive = true
+            
+        }
+        
+        self.Mytbl.reloadData()
+        
+    }
+
+    
     func getEmpList()
     {
         let empUrl = "http://kanishkagroups.com/sop/pms/index.php/API/getMyTeam"
@@ -58,6 +115,8 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             print(EmpResp)
             let data = EmpResp.result.value as! [String: AnyObject]
             self.empData = data["msg"] as! [AnyObject]
+            self.DataArr = self.empData.map ({ $0 }) as NSArray
+            print(self.DataArr)
             print("empData", self.empData)
            
             if self.empData.count == 0
@@ -65,6 +124,7 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.toast.isShow("No any team members found")
             }
              self.Mytbl.reloadData()
+            
             
         }
     }
@@ -79,25 +139,42 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchActive
+        {
+            return self.filtered.count
+        }
+        
         return self.empData.count
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "employeeCell", for: indexPath) as! employeeCell
         
+        var lcDict: [String: AnyObject]!
+        
         cell.contentView.layer.cornerRadius = 8
         cell.contentView.layer.masksToBounds = true
+        
         self.designCell(cView: cell.backView)
         
-        let lcName = self.empData[indexPath.row]
-        let lcUserName = lcName["user_name"] as! String
+        if searchActive
+        {
+            lcDict = self.filtered[indexPath.row] as! [String: AnyObject]
+        }else{
+            lcDict = self.empData[indexPath.row] as! [String: AnyObject]
+        }
+        
+        let lcUserName = lcDict["user_name"] as! String
         let firstLetter = lcUserName.first!
         
-        cell.LblEmpName.text = (lcName["user_name"] as! String)
+
+        cell.LblEmpName.text = (lcDict["user_name"] as! String)
+        
         cell.LblFirstLetter.text = String(describing: firstLetter)
         cell.LblFirstLetter.backgroundColor = getRandomColor()
-       
+       cell.delegate = self
         return cell
     }
     
@@ -107,9 +184,25 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        var checkNm = Bool(true)
+       
+    }
+    
+    func didSelectedRow(cell: employeeCell)
+    {
+        var lcEmpData: [String: AnyObject]!
+        let checkNm = Bool(true)
         
-        let lcEmpData = self.empData[indexPath.row]
+        guard let indexPath = self.Mytbl.indexPath(for: cell) else { return }
+        print("SelectedIndex=", indexPath.row)
+
+        if searchActive
+        {
+            lcEmpData = self.filtered[indexPath.row] as! [String : AnyObject]
+        }else{
+            lcEmpData = self.empData[indexPath.row] as! [String : AnyObject]
+        }
+        
+      
         let lcId = lcEmpData["up_id"] as! String
         let lcName = lcEmpData["user_name"] as? String
         
@@ -118,15 +211,16 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         Fvc.setupData(cId: lcId)
         Fvc.Check = checkNm
         navigationController?.pushViewController(Fvc, animated: true)
+        
+
+        
     }
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
      
     }
-    
-    
-    
-    ////// **********************  ////////////////////////
+
     
 }
 

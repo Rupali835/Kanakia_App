@@ -63,6 +63,7 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.navigationController?.navigationBar.isHidden = false
         self.tblMeeting.dataSource = self
         self.tblMeeting.delegate = self
+        
         self.tblMeeting.register(MyMeetingCell.nib, forCellReuseIdentifier: MyMeetingCell.identifier)
         
      self.tblMeeting?.register(DateHeaderView.nib, forHeaderFooterViewReuseIdentifier: DateHeaderView.identifier)

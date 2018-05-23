@@ -10,8 +10,9 @@
 		0299E3C36D8035BF421F44D1 /* Pods_KanakiaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */; };
 		1EE54A4C3FA7E62FECDA2EDE /* Pods_Kanakia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */; };
 		8C58F575E0A69FB1BB9EE8DC /* Pods_KanakiaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */; };
+		CE14C63E20ACA45100AFF955 /* ActoinRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */; };
+		CE14C63F20ACA45100AFF955 /* ActoinRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */; };
 		CE43777620A8B06300C3B14E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43777520A8B06300C3B14E /* AppDelegate.swift */; };
-		CE43777820A8B06300C3B14E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43777720A8B06300C3B14E /* ViewController.swift */; };
 		CE43777E20A8B06300C3B14E /* Kanakia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE43777C20A8B06300C3B14E /* Kanakia.xcdatamodeld */; };
 		CE43778020A8B06300C3B14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE43777F20A8B06300C3B14E /* Assets.xcassets */; };
 		CE43778320A8B06300C3B14E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */; };
@@ -197,9 +198,10 @@
 		A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kanakia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57E86AD84CCD9F8F390B758 /* Pods-Kanakia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanakia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia.release.xcconfig"; sourceTree = "<group>"; };
 		BA75E25370F603525A7B86AC /* Pods-KanakiaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActoinRemarkCell.xib; sourceTree = "<group>"; };
+		CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActoinRemarkCell.swift; sourceTree = "<group>"; };
 		CE43777220A8B06300C3B14E /* Kanakia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kanakia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43777520A8B06300C3B14E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE43777720A8B06300C3B14E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE43777D20A8B06300C3B14E /* Kanakia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kanakia.xcdatamodel; sourceTree = "<group>"; };
 		CE43777F20A8B06300C3B14E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE43778220A8B06300C3B14E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -494,7 +496,6 @@
 				CE4377AF20A8B2F000C3B14E /* Viewcontrollers */,
 				CE4377AA20A8B26700C3B14E /* Kanakia.entitlements */,
 				CE43777520A8B06300C3B14E /* AppDelegate.swift */,
-				CE43777720A8B06300C3B14E /* ViewController.swift */,
 				CE43777F20A8B06300C3B14E /* Assets.xcassets */,
 				CE4377AD20A8B2CA00C3B14E /* Main.storyboard */,
 				CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */,
@@ -561,6 +562,8 @@
 		CE4377FD20A8B34500C3B14E /* PmsCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */,
+				CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */,
 				CE4377FE20A8B34500C3B14E /* ButtonCell.swift */,
 				CE4377FF20A8B34500C3B14E /* ButtonCell.xib */,
 				CE43780020A8B34500C3B14E /* CommonCell.swift */,
@@ -1116,6 +1119,7 @@
 				CE4378F820A8B34800C3B14E /* VisitorMgmtCell.xib in Resources */,
 				CE43794220A8B34800C3B14E /* DBThumbnailPhotoCell.xib in Resources */,
 				CE4378D420A8B34800C3B14E /* CommonCell.xib in Resources */,
+				CE14C63E20ACA45100AFF955 /* ActoinRemarkCell.xib in Resources */,
 				CE4378DD20A8B34800C3B14E /* PendingHighLowCell.xib in Resources */,
 				CE43790B20A8B34800C3B14E /* ResponceCell.xib in Resources */,
 				CE4378D920A8B34800C3B14E /* KraCell.xib in Resources */,
@@ -1357,7 +1361,6 @@
 				CE43793220A8B34800C3B14E /* MKImageView.swift in Sources */,
 				CE43790220A8B34800C3B14E /* DateHeaderView.swift in Sources */,
 				CE43795F20A8BBEA00C3B14E /* Extension + UIDevice.swift in Sources */,
-				CE43777820A8B06300C3B14E /* ViewController.swift in Sources */,
 				CE43793520A8B34800C3B14E /* MKNavigationBar.swift in Sources */,
 				CE43790420A8B34800C3B14E /* DocumentCell.swift in Sources */,
 				CE4378D620A8B34800C3B14E /* HighLowLightCell.swift in Sources */,
@@ -1383,6 +1386,7 @@
 				CE4378D320A8B34800C3B14E /* CommonCell.swift in Sources */,
 				CE43777620A8B06300C3B14E /* AppDelegate.swift in Sources */,
 				CE4378E220A8B34800C3B14E /* With_TargetKpiCell.swift in Sources */,
+				CE14C63F20ACA45100AFF955 /* ActoinRemarkCell.swift in Sources */,
 				CE43777E20A8B06300C3B14E /* Kanakia.xcdatamodeld in Sources */,
 				CE4378F020A8B34800C3B14E /* PendingApprovalVc.swift in Sources */,
 				CE43792A20A8B34800C3B14E /* KBImageView.m in Sources */,
@@ -1561,7 +1565,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ashish Joshi (HUKKV4CUCD)";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1583,6 +1588,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "fb866eaf-a074-4adb-b66c-4a55393cb4dc";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1618,7 +1624,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ashish Joshi (HUKKV4CUCD)";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1633,6 +1640,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "fb866eaf-a074-4adb-b66c-4a55393cb4dc";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -1646,14 +1654,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kanakia/Kanakia.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KANAKIA SPACES REALTY PRIVATE LIMITED";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kanakia.info;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanakia.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "594abfcf-48ea-4e5f-b727-a6b5ac0e86b7";
-				PROVISIONING_PROFILE_SPECIFIER = DistributeKanakia;
+				PROVISIONING_PROFILE = "1212df45-a657-426c-b558-274df7d9cbe3";
+				PROVISIONING_PROFILE_SPECIFIER = NewDistribute;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1668,14 +1679,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kanakia/Kanakia.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KANAKIA SPACES REALTY PRIVATE LIMITED";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kanakia.info;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kanakia.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "594abfcf-48ea-4e5f-b727-a6b5ac0e86b7";
-				PROVISIONING_PROFILE_SPECIFIER = DistributeKanakia;
+				PROVISIONING_PROFILE = "1212df45-a657-426c-b558-274df7d9cbe3";
+				PROVISIONING_PROFILE_SPECIFIER = NewDistribute;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

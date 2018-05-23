@@ -53,6 +53,8 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
         }
         
     }
+    
+  
     override func viewWillAppear(_ animated: Bool)
     {
          GetPendingData()
@@ -74,10 +76,10 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.24
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowColor = UIColor.black.cgColor
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cView.layer.shadowRadius = 1
      
     }
     
@@ -147,8 +149,9 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             cell.btnReject.tag = indexPath.row
             cell.btnAccept.addTarget(self, action: #selector(Accept_Click(sender:)), for: .touchUpInside)
             cell.btnReject.addTarget(self, action: #selector(Reject_Click(sender:)), for: .touchUpInside)
-    //        cell.backView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.76, alpha:1.0)
-        return cell
+       //     cell.backView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.76, alpha:1.0)
+            
+            return cell
             
         }else if type == "3" || type == "6"
         {

@@ -1380,7 +1380,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
         {
             self.txtInvitedBy.text = self.FilteredArr[indexPath.row] as? String
        
-            for (index,lcUser) in self.cUserArr.enumerated()
+            for (_,lcUser) in self.cUserArr.enumerated()
             {
                 if lcUser.user_name == self.txtInvitedBy.text
                 {
