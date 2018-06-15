@@ -56,6 +56,8 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         txtFeedback.layer.borderWidth = 1.0
         txtFeedback.layer.borderColor = UIColor.purple.cgColor
         txtFeedback.backgroundColor = UIColor.clear
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
     
     }
     
@@ -98,10 +100,23 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8" :
                     if self.view.frame.origin.y != 0
                     {
                         self.view.frame.origin.y += 250
+                    }
+                    break
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 280
+                    }
+                    break
+                    
+                case "iPhone X":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 300
                     }
                     break
                 default:
@@ -147,10 +162,24 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8" :
                     if self.view.frame.origin.y == 0
                     {
                         self.view.frame.origin.y -= 250
+                    }
+                    break
+                    
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 280
+                    }
+                    break
+                    
+                case "iPhone X":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 300
                     }
                     break
                 default:

@@ -28,15 +28,15 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-   //      self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         self.txtTrain.delegate = self
           txtTrain.text = "Enter Training"
          index = 0
         self.TptType = "1"
         self.tblTraining.estimatedRowHeight = 80
         self.tblTraining.rowHeight = UITableViewAutomaticDimension
-//        let dict  = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
-//        self.Up_id = dict["up_id"] as! String
         
         self.dict = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
         LoginUp_id = self.dict["up_id"] as! String
@@ -103,10 +103,23 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8":
                     if self.view.frame.origin.y != 0
                     {
                         self.view.frame.origin.y += 250
+                    }
+                    break
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus", "iPhone 6S Plus" :
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 280
+                    }
+                    break
+                 
+                case "iPhone X":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 300
                     }
                     break
                 default:
@@ -146,10 +159,23 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8":
                     if self.view.frame.origin.y == 0
                     {
                         self.view.frame.origin.y -= 250
+                    }
+                    break
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus", "iPhone 6S Plus" :
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 280
+                    }
+                    break
+                    
+                case "iPhone X":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 300
                     }
                     break
                 default:

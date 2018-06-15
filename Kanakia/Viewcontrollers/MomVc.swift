@@ -44,11 +44,7 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-      //  self.txtRemark.delegate = self as! UITextViewDelegate
-      //  submitData()
-       // UploadData()
-        //     uploadPdf()
-        // Test()
+     
         self.DBAttachmentArr.removeAll(keepingCapacity: false)
        
     }
@@ -230,19 +226,6 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
             
         }
     
-        /*
-        cell.titleLabel.text = attachment.fileName;
-        cell.sizeLabel.text = attachment.fileSizeStr;
-        cell.dateLabel.text = [[NSDateFormatter localizedDateTimeFormatter] stringFromDate:attachment.creationDate];
-        
-        CGFloat scale = [UIScreen mainScreen].scale;
-        CGSize scaledThumbnailSize = CGSizeMake( 80.f * scale, 80.f * scale );
-        
-        [attachment loadThumbnailImageWithTargetSize:scaledThumbnailSize completion:^(UIImage *resultImage) {
-            cell.thumbnailImageView.image = resultImage;
-            }];
-        */
-        
             self.toast.isShow("file attached successfully")
         
         }, cancel: nil)

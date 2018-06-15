@@ -475,7 +475,6 @@ import Alamofire
             BtnRoomDropDown.isHidden = true
             Re_MeetingParam.m_location_edit = ""
             Re_MeetingParam.r_id_edit = "NF"
-           // self.R_txtRoom.becomeFirstResponder()
             
         }
     }
@@ -522,7 +521,6 @@ import Alamofire
                 {
                     if Int(lcReminder.re_id) == nIndex
                     {
-                        //let lcReminder = self.ReminderArr[nIndex!]
                         self.idArr.append(lcReminder.re_id)
                     }
                 }
@@ -1369,8 +1367,7 @@ import Alamofire
         guard let lcArrData = try? JSONSerialization.jsonObject(with: jsonData, options: []) as! [String] else {
             return ["No Found"]
         }
-        
-        //let lcArrData = ((try? JSONSerialization.jsonObject(with: jsonData, options: [])) as? [String])!
+    
         return lcArrData
     }
     

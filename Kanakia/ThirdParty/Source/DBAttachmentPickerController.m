@@ -232,7 +232,8 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
 - (void)otherAppsButtonDidSelect
 {
     NSMutableArray *documentMediaTypes = [NSMutableArray arrayWithCapacity:10];
-    if (self.mediaType & DBAttachmentMediaTypeImage) {
+    if (self.mediaType & DBAttachmentMediaTypeImage)
+    {
         [documentMediaTypes addObject:(NSString *)kUTTypeImage];
     }
     if (self.mediaType & DBAttachmentMediaTypeVideo) {
@@ -248,6 +249,7 @@ const DBAttachmentMediaType DBAttachmentMediaTypeMaskAll = DBAttachmentMediaType
           NSArray *types = @[(NSString*)kUTTypeImage,(NSString*)kUTTypeSpreadsheet,(NSString*)kUTTypePresentation,(NSString*)kUTTypeDatabase,(NSString*)kUTTypeFolder,(NSString*)kUTTypeZipArchive,(NSString*)kUTTypeVideo,(NSString *)kUTTypePDF,(NSString *)kUTTypeText,(NSString *)kUTTypeContent,(NSString *)kUTTypeItem,(NSString *)kUTTypeMessage];
         
         UIDocumentMenuViewController *viewController = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:types inMode:UIDocumentPickerModeImport];
+        
         viewController.delegate = self;
         viewController.modalPresentationStyle = UIModalPresentationFullScreen;
         

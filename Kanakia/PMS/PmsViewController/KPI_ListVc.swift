@@ -51,6 +51,7 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
 
       
     }
@@ -69,6 +70,32 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
+    func setKid(Kk_id : String, Kname: String)
+    {
+        self.K_id = Kk_id
+        self.Kpi_Name = Kname
+        
+        if Kname.contains("XCXC")
+        {
+            let word = Kname
+            if let index = word.range(of: "XCXC")?.lowerBound {
+                let substring = word[..<index]
+                self.K_id = String(substring)
+                
+            }
+            
+            if let range = word.range(of: "XCXC") {
+               let name = word[range.upperBound...]
+                self.Kpi_Name = String(name)
+              
+            }
+            
+    
+        }
+       
+        getKpi()
+    }
+    
     func setId(Kk_id: String, Up_id: String, KName: String, lcempFlag: String, lcMngrFlag: String)
     {
         self.K_id = Kk_id
@@ -77,9 +104,6 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.cEmpflg = lcempFlag
         self.cMngrflg = lcMngrFlag
         
-        print("K_id , up_id , kpiNm = \(self.K_id),\(self.Up_id),\(self.Kpi_Name)")
-        print("EmpFlag",cEmpflg)
-        print("ManagerFlag", cMngrflg)
        getKpi()
     }
     
@@ -277,10 +301,10 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowColor = UIColor.black.cgColor
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cView.layer.shadowRadius = 1
     }
     
     

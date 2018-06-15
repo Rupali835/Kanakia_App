@@ -28,6 +28,8 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
     {
         super.viewDidLoad()
 
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
        tblSearch.delegate = self
        tblSearch.dataSource = self
        searchBar.delegate = self

@@ -29,7 +29,6 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-  //       self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
         self.txtAchivement.delegate = self
         
         txtAchivement.text = "Enter Achievements"
@@ -40,7 +39,6 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.myTbl.separatorStyle = .none
         self.myTbl.estimatedRowHeight = 80
         self.myTbl.rowHeight = UITableViewAutomaticDimension
-   //     txtAchivement.text = "Add Achievement"
         txtAchivement.textColor = UIColor.lightGray
         
         self.myTbl.dataSource = self
@@ -50,6 +48,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         
          myTbl.register(UINib(nibName: "HighLowLightCell", bundle: nil), forCellReuseIdentifier: "HighLowLightCell")
       
+        setupData(cId: Up_id)
         print("Up_id", Up_id)
         
         getAchivement()
@@ -68,8 +67,15 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         txtAchivement.backgroundColor = UIColor.clear
         txtAchivement.textColor = UIColor.black
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
+       
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        getAchivement()
+    }
     func textViewDidBeginEditing(_ textView: UITextView) {
       
             txtAchivement.text = nil
@@ -117,10 +123,23 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE", "iPhone 6S","iPhone 7","iPhone 8" :
                     if self.view.frame.origin.y == 0
                     {
                         self.view.frame.origin.y -= 250
+                    }
+                    break
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
+                   if self.view.frame.origin.y == 0
+                   {
+                        self.view.frame.origin.y -= 280
+                    }
+                    break
+                    
+                case "iPhone X":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 300
                     }
                     break
                 default:
@@ -170,10 +189,23 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8" :
                     if self.view.frame.origin.y != 0
                     {
                         self.view.frame.origin.y += 250
+                    }
+                    break
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 280
+                    }
+                    break
+                   
+                case "iPhone X":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 300
                     }
                     break
                 default:
@@ -243,8 +275,8 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         cellCommonCell.btnAccept.tag = indexPath.row
         cellCommonCell.btnReject.tag = indexPath.row
         cellCommonCell.btnAccept.addTarget(self, action: #selector(Accept_Click(sender:)), for: .touchUpInside)
-        cellCommonCell.btnReject.addTarget(self, action: #selector(Reject_Click(sender:)), for: .touchUpInside)
-        
+      
+          cellCommonCell.btnReject.addTarget(self, action: #selector(Reject_Click(sender:)), for: .touchUpInside)
         if (lcDict["tpa_status"] as! String) == "1"
         {
             

@@ -73,13 +73,7 @@ class InterfaceBuilderViewController: UIViewController, FSCalendarDataSource, FS
     
     fileprivate let gregorian: NSCalendar! = NSCalendar(calendarIdentifier:NSCalendar.Identifier.gregorian)
     
-   /* fileprivate let datesWithCat = ["2015/05/05","2015/06/05","2015/07/05","2015/08/05","2015/09/05","2015/10/05","2015/11/05","2015/12/05","2016/01/06",
-    "2016/02/06","2016/03/06","2016/04/06","2016/05/06","2016/06/06","2016/07/06"]*/
-    
-    
-    // MARK:- Life cycle
-    
-    
+  
     var UserId: String!
     var responseDictArr = [AnyObject]()
     private var toast: JYToast!
@@ -142,16 +136,7 @@ class InterfaceBuilderViewController: UIViewController, FSCalendarDataSource, FS
         return self.formatter.date(from: "2018/12/31")!
     }
     
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        let day: Int! = self.gregorian.component(.day, from: date)
-//        return day % 5 == 0 ? day/5 : 0;
-//    }
-    
-//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
-//        let day: Int! = self.gregorian.component(.day, from: date)
-//        return [13,24].contains(day) ? UIImage(named: "icon_cat") : nil
-//    }
-    
+
     // MARK:- FSCalendarDelegate
 
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
@@ -234,6 +219,7 @@ class InterfaceBuilderViewController: UIViewController, FSCalendarDataSource, FS
     {
         self.UserId = cUserId
     }
+    
     func featchDataFromAPI(sDate: String)
     {
         let cParams:[String:String] = [
@@ -309,7 +295,6 @@ class InterfaceBuilderViewController: UIViewController, FSCalendarDataSource, FS
     
     func SetTimeFormat(lcTime: String) -> String
     {
-        //let dateString = "8:22"
         print("Time=", lcTime)
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"

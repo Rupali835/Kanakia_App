@@ -26,6 +26,9 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         self.txtRemark.delegate = self
         self.txtActionPlan.delegate = self
         self.txtRemark.layer.borderWidth = 1.0

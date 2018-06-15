@@ -126,8 +126,6 @@ class FileDocumentVc: UIViewController,UIDocumentInteractionControllerDelegate,U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-           // let lcFilePath = self.path + lcAttachment
-            // let lcfilePath = "http://www.kanishkagroups.com/sop/upload_mom/swift_tutorial%202.pdf"
        let lcFileName = self.DocumentArr[indexPath.row] as! String
         let lcFilePath = self.path + "\(lcFileName)"
         print("lcFilePath =",lcFilePath)

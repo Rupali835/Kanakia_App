@@ -18,7 +18,6 @@
 		CE43778320A8B06300C3B14E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */; };
 		CE43778E20A8B06300C3B14E /* KanakiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43778D20A8B06300C3B14E /* KanakiaTests.swift */; };
 		CE43779920A8B06400C3B14E /* KanakiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43779820A8B06400C3B14E /* KanakiaUITests.swift */; };
-		CE4377AC20A8B29500C3B14E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE4377AB20A8B29500C3B14E /* GoogleService-Info.plist */; };
 		CE4377AE20A8B2CA00C3B14E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4377AD20A8B2CA00C3B14E /* Main.storyboard */; };
 		CE4377C020A8B2F100C3B14E /* AddMeetingVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4377B020A8B2F000C3B14E /* AddMeetingVc.swift */; };
 		CE4377C120A8B2F100C3B14E /* CalendarConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4377B120A8B2F000C3B14E /* CalendarConfigViewController.swift */; };
@@ -170,6 +169,7 @@
 		CE43796020A8BBEA00C3B14E /* MMSDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43795420A8BBE900C3B14E /* MMSDetails.swift */; };
 		CE43796120A8BBEA00C3B14E /* SPKeyBoardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43795520A8BBE900C3B14E /* SPKeyBoardAvoiding.swift */; };
 		CE43796220A8BBEA00C3B14E /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43795720A8BBE900C3B14E /* StringValidation.swift */; };
+		CE61C6DD20C6744F005B8468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,7 +214,6 @@
 		CE43779A20A8B06400C3B14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4377A620A8B08B00C3B14E /* Kanakia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kanakia-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE4377AA20A8B26700C3B14E /* Kanakia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kanakia.entitlements; sourceTree = "<group>"; };
-		CE4377AB20A8B29500C3B14E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE4377AD20A8B2CA00C3B14E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE4377B020A8B2F000C3B14E /* AddMeetingVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMeetingVc.swift; sourceTree = "<group>"; };
 		CE4377B120A8B2F000C3B14E /* CalendarConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarConfigViewController.swift; sourceTree = "<group>"; };
@@ -420,6 +419,7 @@
 		CE43795420A8BBE900C3B14E /* MMSDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSDetails.swift; sourceTree = "<group>"; };
 		CE43795520A8BBE900C3B14E /* SPKeyBoardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPKeyBoardAvoiding.swift; sourceTree = "<group>"; };
 		CE43795720A8BBE900C3B14E /* StringValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidation.swift; sourceTree = "<group>"; };
+		CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D25BF72F95C3022EEB0CA529 /* Pods-KanakiaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -500,9 +500,9 @@
 				CE4377AD20A8B2CA00C3B14E /* Main.storyboard */,
 				CE43778120A8B06300C3B14E /* LaunchScreen.storyboard */,
 				CE43778420A8B06300C3B14E /* Info.plist */,
+				CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */,
 				CE43777C20A8B06300C3B14E /* Kanakia.xcdatamodeld */,
 				CE4377A620A8B08B00C3B14E /* Kanakia-Bridging-Header.h */,
-				CE4377AB20A8B29500C3B14E /* GoogleService-Info.plist */,
 			);
 			path = Kanakia;
 			sourceTree = "<group>";
@@ -1052,6 +1052,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 					CE43778820A8B06300C3B14E = {
@@ -1102,7 +1105,6 @@
 			files = (
 				CE43778320A8B06300C3B14E /* LaunchScreen.storyboard in Resources */,
 				CE43794B20A8B34800C3B14E /* DBAttachmentPickerController.strings in Resources */,
-				CE4377AC20A8B29500C3B14E /* GoogleService-Info.plist in Resources */,
 				CE4378E120A8B34800C3B14E /* teamCell.xib in Resources */,
 				CE4378FB20A8B34800C3B14E /* DataCell.xib in Resources */,
 				CE43790820A8B34800C3B14E /* MyMeetingCell.xib in Resources */,
@@ -1119,6 +1121,7 @@
 				CE4378F820A8B34800C3B14E /* VisitorMgmtCell.xib in Resources */,
 				CE43794220A8B34800C3B14E /* DBThumbnailPhotoCell.xib in Resources */,
 				CE4378D420A8B34800C3B14E /* CommonCell.xib in Resources */,
+				CE61C6DD20C6744F005B8468 /* GoogleService-Info.plist in Resources */,
 				CE14C63E20ACA45100AFF955 /* ActoinRemarkCell.xib in Resources */,
 				CE4378DD20A8B34800C3B14E /* PendingHighLowCell.xib in Resources */,
 				CE43790B20A8B34800C3B14E /* ResponceCell.xib in Resources */,
@@ -1661,10 +1664,10 @@
 				INFOPLIST_FILE = Kanakia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kanakia.kworld;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1212df45-a657-426c-b558-274df7d9cbe3";
-				PROVISIONING_PROFILE_SPECIFIER = NewDistribute;
+				PROVISIONING_PROFILE = "4ae187c3-7825-474c-b0ce-35eaa2a7f2ef";
+				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1686,10 +1689,10 @@
 				INFOPLIST_FILE = Kanakia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kanakia.kworld;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1212df45-a657-426c-b558-274df7d9cbe3";
-				PROVISIONING_PROFILE_SPECIFIER = NewDistribute;
+				PROVISIONING_PROFILE = "4ae187c3-7825-474c-b0ce-35eaa2a7f2ef";
+				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

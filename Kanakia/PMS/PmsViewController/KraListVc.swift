@@ -48,8 +48,9 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-  //       self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
-         self.lblKraMsg.isHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
+        self.lblKraMsg.isHidden = true
         self.HideControl(bStatus: true)
         tblKra.delegate = self
         tblKra.dataSource = self
@@ -263,6 +264,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
        let lcDict  = self.Msg[indexPath.row]
         self.K_id = lcDict["k_id"] as! String
         self.K_name = lcDict["k_name"] as! String
+        self.Kpi_Vc.setKid(Kk_id: self.K_id, Kname: self.K_name)
         self.Kpi_Vc.setId(Kk_id: self.K_id, Up_id: self.Up_id, KName: self.K_name, lcempFlag: self.empFlag, lcMngrFlag: self.MngrFlag)
     
   
@@ -308,7 +310,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     
         let Param : [String: Any] =
     [        "up_id" : self.Up_id,
-    "manager_up_id" : self.LoginUp_id
+             "manager_up_id" : self.LoginUp_id
     ]
     
         print(Param)

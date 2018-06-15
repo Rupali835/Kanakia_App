@@ -17,17 +17,14 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     var SortData = [ProfileViewModelItem]()
    
     var resMeetArr : [Any]!
-    //var Meetingdata : [AnyObject]?
     var resDict1 = [String : Any]()
     var SortedDict: [String : Any]?
     var strUserId:String = ""
-   // var MeetArr = [[String AnyObject]]()
     var NumberOfRows : Int!
     var meetingsArr = [MeetingDetails]()
     var convertedArray: [Date] = []
     
     var DataArr = [AnyObject]()
-    //var items = [ProfileViewModelItem]()
     
      fileprivate let viewModel = ProfileViewModel()
    
@@ -41,14 +38,13 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         self.tblMeeting.separatorStyle = .none
         self.navigationItem.title = "Seven Days Calendar"
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
 
 
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let stringDate: String = formatter.string(from: Date())
-        print(stringDate)
         let lastDate = Calendar.current.date(byAdding: .day, value: 7, to: Date())
-     //   print(lastDate as Any)
         let sevenday :String = formatter.string(from: lastDate!)
         print(sevenday)
         
@@ -84,7 +80,7 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
             self.resDict1 = (data!["data"] as? [String : Any])!
             
            let SortedDict = self.resDict1.sorted(by: { $0.0 < $1.0 })
-        print("sorteddict =\(SortedDict)")
+        
             
             for (KeyValue,_) in SortedDict
             {
@@ -131,17 +127,6 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-//        let item = items[section]
-//        guard item.isCollapsible else {
-//            return item.rowCount
-//        }
-        
-//        if item.isCollapsed {
-//            return 0
-//        } else {
-//            return item.rowCount
-//        }
-        
         let item = items[section]
         guard item.isCollapsed else {
             return 0
@@ -150,8 +135,8 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         return item.rowCount
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         //let cProfileViewModel = ProfileViewModel()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
        let item = items[indexPath.section]
        
         switch item.type
@@ -202,7 +187,6 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         if let lcDateheaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: DateHeaderView.identifier) as? DateHeaderView {
-            //let cProfileViewModel = ProfileViewModel()
             let item = items[section]
            
             
@@ -261,7 +245,6 @@ class ProfileViewModel: NSObject
     
     func setData(cMeetingArr: [MeetingDetails])->[ProfileViewModelItem]
     {
-        //let meetingDetail = MyMeetingsVc()
         
         if !cMeetingArr.isEmpty
         {

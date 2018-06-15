@@ -159,9 +159,7 @@
         NSLog(@"%@",currentDate);
         NSLog(@"%@",currentTime);
     [dateFormatter1 setDateFormat:@"HH:mm:ss"];
-        // NSString * currentday = [dateFormatter stringFromDate:[NSDate date]];
-        //NSDate * todayDate = [dateFormatter1 dateFromString:currentday];
-        //NSDate * meetingDate = [dateFormatter1 dateFromString:startNewCell.selectedDateLbl.text];
+    
         NSString * meeting = [NSString stringWithFormat:@"%@ %@",startNewCell.selectedDateLbl.text,startNewCell.startTimeLbl.text];
         NSDate * startTime = [dateFormatter dateFromString:meeting];
     
@@ -173,8 +171,7 @@
     NSLog(@"%@",newbook.startTimeLbl.text);
     NSLog(@"%@",currentTime);
     
-        //  if ([meetingDate compare:todayDate] == NSOrderedSame)
-        //{
+    
         if ([self stringFromTimeInterval:timeInterval]==YES) {
             NSString *post =[NSString stringWithFormat:@"user_id=%@&status=1&m_id=%@",_strUserId,self.m_idStr];
             NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
@@ -191,11 +188,7 @@
     
                 NSError *error1;
                 NSDictionary *dictRes1 = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error1];
-                //                    NSArray *filteredData = [_myBookingsRes filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(m_id contains[c] %@)", _m_idStr]];
-                //                    [_myBookingsRes removeObject:[filteredData objectAtIndex:0]];
-                //                    [_myBookingsRes removeObjectAtIndex:deleteBtn.tag -200];
-                //
-                //                    [self reloadMyBookings];
+              
                 NSString *str = [dictRes1 objectForKey:@"msg"];
     
                 if ([str isEqualToString:@"Meeting Started Successfully"]) {
@@ -213,75 +206,16 @@
                 [self.myBookingsTb reloadData];
             }];
             [dataTask resume];
-            //        }
-            //    else
-            //        {
-            //            //[self showAlertMessage:@"You Cannot Able To Start Meeting, Your Current Time Is Lessthan Start Time"];
-            //        }
-            //    }else
-            //    {
-            //        [self showAlertMessage:@"You Cannot Able To Start Meeting, Your Current Date Lessthan Booked Date"];
-            //    }
+           
         }
         else{
             [self showAlertMessage:@"You cannot able to start meeting"];
         }
     }
-    //    }
-
-    
 
 
-    
-//   if ([startNewCell.selectedDateLbl.text compare:currentDate] == NSOrderedSame)
-//   {
-////        if ([startNewCell.startTimeLbl.text compare:currentTime] == NSOrderedAscending) {
-//               NSString *post =[NSString stringWithFormat:@"user_id=%@&status=1&m_id=%@",_strUserId, self.m_idStr];
-//                NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//                NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
-//                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//                [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://kanishkagroups.com/sop/android/updateMeetingStatusMrms.php"]]];
-//                [request setHTTPMethod:@"POST"];
-//                [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//                [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//                [request setHTTPBody:postData];
-//                NSURLSession *session = [NSURLSession sharedSession];
-//                NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//                    NSString *stringResponse = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//
-//                    NSError *error1;
-//                    NSDictionary *dictRes1 = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error1];
-//
-//                    NSString *str = [dictRes1 objectForKey:@"msg"];
-//                    if ([str isEqualToString:@"Meeting Started Successfully"]) {
-//                        [self showAlertMessage:@"Meeting Started Successfully"];
-//                    }else
-//                    {
-//
-//                    }
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [startNewCell.startMeetBtn setHidden:YES];
-//                        [startNewCell.editMeetBtn setHidden:YES];
-//                        [startNewCell.deleteMeetBtn setHidden:YES];
-//                        [startNewCell.endMeetBtn setHidden:NO];
-//                    });
-//                }];
-//                [dataTask resume];
-//        //}
-////        else
-////        {
-////            [self showAlertMessage:@"You Cannot Start Meeting"];
-////        }
-//    }
-//       else
-//    {
-//        [self showAlertMessage:@"You Cannot Able To Start Meeting, Your Current Date Lessthan Booked Date"];
-//    }
-//
-//}
 -(void)endMeeting:(id)sender
 {
-    //[self showStartMeetingAlert:@"Are you Sure You Want To End Meeting"];
     
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -299,8 +233,8 @@
     NSIndexPath *myIP = [NSIndexPath indexPathForRow:(stopBtn.tag -1000) inSection:0];
     NewmyBookingsCell *startNewCell = [_myBookingsTb cellForRowAtIndexPath:myIP];
  self.m_idStr = [[_myBookingsRes objectAtIndex:stopBtn.tag -1000] objectForKey:@"m_id"];
-    //[self showStartMeetingAlert:@"Are you Sure You Want To End Meeting"];
-    NSString *post =[NSString stringWithFormat:@"user_id=%@&status=2&m_id=%@",_strUserId,self.m_idStr];
+
+            NSString *post =[NSString stringWithFormat:@"user_id=%@&status=2&m_id=%@",_strUserId,self.m_idStr];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -336,63 +270,8 @@
     
     
 
-//    UIButton *stopBtn = (UIButton *)sender;
-//
-//    NSIndexPath *myIP = [NSIndexPath indexPathForRow:(stopBtn.tag -1000) inSection:0];
-//    NewmyBookingsCell *startNewCell = [_myBookingsTb cellForRowAtIndexPath:myIP];
-//    self.m_idStr = [[_myBookingsRes objectAtIndex:stopBtn.tag -1000] objectForKey:@"m_id"];
-//
-//
-//    NSString *post =[NSString stringWithFormat:@"user_id=%@&status=2&m_id=%@",_strUserId,self.m_idStr];
-//        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://kanishkagroups.com/sop/android/updateMeetingStatusMrms.php"]]];
-//        [request setHTTPMethod:@"POST"];
-//        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//        [request setHTTPBody:postData];
-//        NSURLSession *session = [NSURLSession sharedSession];
-//        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            NSString *stringResponse = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//
-//            NSError *error1;
-//            NSDictionary *dictEndRes  = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error1];
-//            NSString *strEndRes = [dictEndRes objectForKey:@"msg"];
-//
-//            //[self showAlertMessage:(NSString *)strEndRes];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//            UIAlertController * alert = [UIAlertController
-//            alertControllerWithTitle:@"Alert" message:strEndRes
-//            preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *noButton = [UIAlertAction actionWithTitle:@"Cancel"
-//            style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [startNewCell.startMeetBtn setHidden:YES];
-//                        [startNewCell.endMeetBtn setHidden:NO];
-//                        [startNewCell.deleteMeetBtn setHidden:YES];
-//                        [startNewCell.editMeetBtn setHidden:YES];
-//                    });
-//                }];
-//                UIAlertAction *oKButton = [UIAlertAction actionWithTitle:@"Ok"
-//                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-//
-//
-//
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [startNewCell.startMeetBtn setHidden:YES];
-//                        [startNewCell.endMeetBtn setHidden:YES];
-//                        [startNewCell.deleteMeetBtn setHidden:YES];
-//                        [startNewCell.editMeetBtn setHidden:YES];
-//                    });
-//                                           }];
-//                [alert addAction:noButton];
-//                [alert addAction:oKButton];
-//                [self presentViewController:alert animated:YES completion:nil];
-//            });
-//
-//    }];
-//        [dataTask resume];
+
+
 }
 -(void)editMeeting:(id)sender
 {
@@ -425,14 +304,6 @@
         [alert addAction:oKButton];
         [self presentViewController:alert animated:YES completion:nil];
     });
-    
-    
-    
-    
-    
-    
-    
-    
     
    
     }

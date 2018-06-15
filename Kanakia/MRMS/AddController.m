@@ -96,7 +96,6 @@
     tableValues.hidden=YES;
     NSLog(@"%@",_roomR_idSelected);
     
-    //[picker setMinimumDate:[NSDate date]];
     [picker setDatePickerMode:UIDatePickerModeTime];
     picker.minuteInterval=10;
     picker.hidden = YES;
@@ -155,15 +154,12 @@
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             NSString *str =[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            //NSLog(@"%@",str);
             NSError *err;
             dictionaryRes= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
-            //NSLog(@"%@",dictionaryRes);
             subArray = [dictionaryRes objectForKey:@"rooms"];
             _usersArray=[dictionaryRes objectForKey:@"user"];
             NSDictionary *userNamesDict=[[_usersArray objectAtIndex:0] objectForKey:@"user_name"];
             NSLog(@"subArray=%@",subArray);
-            // Do any additional setup after loading the view, typically from a nib.
         }];
         [task resume];
     
@@ -172,7 +168,6 @@
 
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textChangeNotification:) name:UITextFieldTextDidChangeNotification object:nil];
     
-    // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -251,7 +246,6 @@
         }
         [tableValues reloadData];
     }
-    //[searchTable reloadData];
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -296,9 +290,7 @@
 #pragma mark - datePickerActions
 -(IBAction)valueChanged:(id)sender;
 {
-    //03/05/2018
-//    formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"HH:mm:ss"];
+   
 }
 -(IBAction)donePickerButton:(id)sender
 {
@@ -331,7 +323,6 @@
     
 
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            //_toTimeLbl.text =[NSString stringWithFormat:@"%@",[formatter1 stringFromDate:picker1.date]];
             
             NSComparisonResult result = [_toTimeLbl.text compare:_fromTimeLbl.text];
             
@@ -343,12 +334,8 @@
             {
                 [self showAlertMessage:@"Both Times Are Same"];
             }
-            //picker1.hidden=YES;
         }];
-        //action;
-    //})];
     
-    //[self presentViewController:alertController  animated:YES completion:nil];
 }
 -(IBAction)donePickerToButton:(id)sender
 {
@@ -409,9 +396,7 @@
          if ([_bookForTextFld.text isEqualToString:@""]){
             [self showAlertMessage:@"Please Enter Employee Name"];
         }
-//         else if ([_remarkTextField.text isEqualToString:@""]) {
-//            [self showAlertMessage:@"Please Enter A Remark"];
-//        }
+
         
            NSString *post =[NSString stringWithFormat:@"logged_in_id=%@&m_remark=%@&m_invited_by=%@&m_with=%@&edit_m_id=%@",_strUserId, _remarkTextField.text,_addR_id,_internalR_id,edit_m_id];
             NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
@@ -452,9 +437,7 @@
         [self showAlertMessage:@"Please Enter Meeting With Internal or External People"];
     }
     
-//    else if ([_remarkTextField.text isEqualToString:@""] || [_remarkTextField.text isEqualToString:@"null"]) {
-//        [self showAlertMessage:@"Please Enter A Remark"];
-//    }
+
     else if ([buttonName isEqualToString:@"Submit"])
         
     {
@@ -512,18 +495,7 @@
 };
 }
 
-    /*
-//    MyBookingsController *bookings = (MyBookingsController *)[self.storyboard instantiateViewControllerWithIdentifier:@"MyBookingsController"];
-//    bookings.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    bookings.selectedDateStr=dateSelected1Lbl.text;
-//    bookings.myFromDateStr=fromTimeLbl.text;
-//    bookings.myToDateStr=toTimeLbl.text;
-//    bookings.myBookedStr=bookForTextFld.text;
-//
-//    //bookings.myRoomNameStr=
-//    bookings.myRemarkStr=remarkTextField.text;
-//    [self presentViewController:bookings animated:YES completion:nil];
-     */
+
 
 -(IBAction)selectMeetingWith:(id)sender
 {
@@ -557,10 +529,7 @@
         _toTimeLbl.backgroundColor = [UIColor whiteColor];
     }
 }
-//-(void)createdNameString:(NSString*)createdByname
-//{
-//    createdByname = _createdByStrForNewBook;
-//}
+
 
 
 @end

@@ -147,6 +147,13 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
                         self.view.frame.origin.y -= 60
                     }
                     break
+                    
+                case "iPhone 6 Plus":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 300
+                    }
+                    break
                 default:
                     print("No Match")
                 }
@@ -200,6 +207,14 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
                         self.view.frame.origin.y += 60
                     }
                     break
+                    
+                case "iPhone 6 Plus":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 300
+                    }
+                    break
+                    
                 default:
                     print("No Match")
                 }
@@ -263,8 +278,7 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
 
         if let cSelectedStr = self.selectedRoomStr
         {
-         //   cAddmeeting.SelectedRoomStr = cSelectedStr
-         
+   
         }
         
         cAddmeeting.selectedRoomId = self.r_id
@@ -305,7 +319,6 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-     //   firstIndex = false
         print(indexPath.item)
         let room = self.meetingRoomsArr[indexPath.item]
         self.r_id = room.r_id
@@ -403,11 +416,10 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
         {
             imgArr.append("uranus")
         }
-      //  print("ImgArr = ", imgArr.count)
     }
     
     
-     //let imgNameArr  = ["venus", "galaxy", "mars", "jupiter", "saturn", "uranus", "neptune", "sun", "moon","galaxy"]
+  
     func errorReceived(error: String) {
         showAlert(error)
     }
@@ -475,7 +487,6 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
                 "r_id" : lcrid
             ]
         self.nMeeting = 2
-        //APIManager().getMeetingDetails(params: params)
          APIManager().getMeetingDetails(params: params, nGetMeeting: self.nMeeting)
        
         }
@@ -543,26 +554,7 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
         return 120.0
     }
     
-//    func didEventSelected(_ event: SSEvent!)
-//    {
-//       
-//        print("Event : \(event.status)")
-//       
-//        if event?.meetingFlag == "1"
-//        {
-//            let lcRescduleMeetingVC = storyboard?.instantiateViewController(withIdentifier: "RescduleMeetingVC") as! RescduleMeetingVC
-//            lcRescduleMeetingVC.m_id = event.mid
-//            
-//       //     lcRescduleMeetingVC.m_cMeetingStatus = event.status
-//            
-//            lcRescduleMeetingVC.setUpData(DictData: self.JSonDict)
-//            self.navigationController?.pushViewController(lcRescduleMeetingVC, animated: true)
-//        }else
-//        {
-//            self.toast.isShow("This meeting is from MRMS")
-//        }
-//        
-//    }
+
     
     func setupPreviousMeetings(index: Int)
     {
@@ -576,21 +568,13 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
             let url = "http://kanishkagroups.com/sop/android/get_meeting_date_wise_ios.php"
 
             Alamofire.request(url, method: .post, parameters: cParams).responseJSON { (resp) in
-               // print(resp)
 
                 if let JSON = resp.result.value
                 {
 
                     let maindict = JSON as! [String: AnyObject]
                     let responseDictArr = maindict["data"] as! [AnyObject]
-                    
-                   // print("responseDictArr", responseDictArr)
-                    
-//                   for lcDict in responseDictArr
-//                   {
-//                     self.Meetingdata.append(lcDict)
-//                    }
-
+  
 
                     print("Respons", responseDictArr)
                     

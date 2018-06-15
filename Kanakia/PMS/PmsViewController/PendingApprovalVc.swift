@@ -25,7 +25,8 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
         tblPending.delegate = self
         tblPending.dataSource = self
         
-       
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         self.tblPending.separatorStyle = .none
         self.tblPending.estimatedRowHeight = 80
         self.tblPending.rowHeight = UITableViewAutomaticDimension

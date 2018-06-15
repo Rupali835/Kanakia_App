@@ -1385,7 +1385,6 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
                 if lcUser.user_name == self.txtInvitedBy.text
                 {
                     cMeetingParamList.m_invited_by = lcUser.user_id
-                    //print(cMeetingParamList.m_invited_by)
                 }
             }
             

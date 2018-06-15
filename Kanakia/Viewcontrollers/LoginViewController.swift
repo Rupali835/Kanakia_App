@@ -24,7 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
     @IBOutlet weak var movingImage: KBImageView!
     var activeField        : UITextField?
     private var toast: JYToast!
-    
+    let appDel = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad()
     {
@@ -35,9 +36,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         self.txtLoginName.delegate = self
         iconClick = true
         initUi()
+       
         
-    //    self.Token =  UserDefaults.standard.value(forKey: "data") as! String
-   //     print("Token = ", self.Token) as Any
+        
+       //self.Token =  UserDefaults.standard.value(forKey: "data") as! String
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 
@@ -45,6 +48,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         
     }
     
+
     private func initUi() {
         toast = JYToast()
     }
@@ -146,7 +150,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
     
    @IBAction func btnLoginClicked(_ sender: Any)
    {
-        let reachabilityManager = NetworkReachabilityManager()
+    
+    
+     let reachabilityManager = NetworkReachabilityManager()
     
        
          let isNetworkReachable = reachabilityManager?.isReachable
@@ -173,19 +179,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         }
         if (strPassword?.isEmpty)!{
             self.toast.isShow("Please Enter Password!")
-         //   showAlert(strMessage: "Please Enter Password!")
             return
         }
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let FcmToken = appDelegate.FCMToken
+        
         let params:[String:String] = [
             "emp_id": strUserName!,
             "password": strPassword!,
-   //         "fcm_token": self.Token,
+            "fcm_token": FcmToken,
              "type" : "ios"
        ]
         
         print(params)
+        
         let url = "http://kanishkagroups.com/sop/android/login.php"
         
+//     if self.Token == "NF"
+//        {
+//            appDel.application(<#T##application: UIApplication##UIApplication#>, didRegisterForRemoteNotificationsWithDeviceToken: <#T##Data#>)
+//
+//        }
         Alamofire.request(url, method: .post, parameters: params).responseJSON { (resp) in
             print(resp)
             
@@ -206,7 +222,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
                 }else
                 {
                     self.toast.isShow("Please Enter the Correct Password")
-                  //  self.showAlert(strMessage: "Please Enter the Correct Password")
                 }
             
             }
@@ -214,17 +229,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         }
     }
     
-//    func DesignTextfield(txtField : MKTextField)
-//    {
-//        txtField.delegate         = self
-//        txtField.layer.borderColor             = UIColor.clear.cgColor
-//        txtField.floatingLabelBottomMargin     = 4
-//        txtField.floatingPlaceholderEnabled    = true
-//        txtField.bottomBorderWidth             = 1
-//        txtField.bottomBorderEnabled           = true
-//        txtField.tintColor = UIColor.blue
-//        txtField.minimumFontSize = 20.0
-//    }
 
     func viewWillDisappear(animated: Bool)
     {

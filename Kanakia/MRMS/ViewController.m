@@ -78,11 +78,7 @@
     
     _tempIndex = [[NSIndexPath alloc] initWithIndex: 0];
     
-//    let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
-//    strUserId = userDict["user_id"] as! String
-//    print("User_ id =", strUserId) venus.png
-    
-   // self.itemsArray= @[@"galaxy.png",@"uranus.png",@"venus.png",@"mars.png",@"jupiter.png",@"saturn.png",@"neptune.png"];
+
 
     NSDateFormatter *currentDate = [[NSDateFormatter alloc]init];
     [currentDate setDateFormat:@"YYYY-MM-dd"];
@@ -91,7 +87,6 @@
     
     _indexpathArray = [[NSMutableArray alloc]init];
     
-//    [_indexpathArray addObject: _tempIndex];
 
     self.resMutableArr = [NSMutableArray array];
     self.rIDMutableArr = [[NSMutableArray alloc]init];
@@ -99,27 +94,7 @@
     tableData.hidden=NO;
     
     
-//    UIBarButtonItem *right1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(moveToAddControllerViewC)];
-//    UIBarButtonItem *right2 = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"calendar-sq.png"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToMyBookings)];
-//    NSArray *rightButtons = @[right1,right2];
-//    self.navigationItem.rightBarButtonItems = rightButtons;
-    
-    
-    
-    
-//    NSString *urlStr = [NSString stringWithFormat:@"http://www.kanishkagroups.com/sop/android/getDetailsMrms.php"];
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        NSString *str =[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//        NSError *err;
-//        dictionaryRes= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
-//        subArray = [dictionaryRes objectForKey:@"rooms"];
-//        NSLog(@"subArray=%@",subArray);
-    
-        
-    
+
         NSString *post =[NSString stringWithFormat:@"user_id=%@",_strUserId];
     NSLog(@"%@",_strUserId);
     
@@ -217,13 +192,8 @@
 {
     
     _firstIndex = false;
-    //using for reload indexpath
     _indexReload = indexPath;
-
     
-    //NSLog(@"%@",cell2);
-     //[self.selectMeet setTitle:cell2.textLabel.text forState:UIControlStateNormal];
-     //[self.selectMeet setTitle:cell2..text forState:UIControlStateNormal];
     if ([_indexpathArray containsObject:indexPath]) {
         [_indexpathArray removeObject:indexPath];
         self.selectedRoom.text= @"";
@@ -235,53 +205,7 @@
         [_indexpathArray addObject:indexPath];
         
         [self callFunc:indexPath];
-        
-//        self.r_id = [[_subArray objectAtIndex:indexPath.item]objectForKey:@"r_id"];
-//        self.r_name=[[_subArray objectAtIndex:indexPath.item]objectForKey:@"r_name"];
-//        self.selectedRoom.text= self.r_name;
-//        NSLog(@"%@",_r_id);
-//        NSLog(@"%@",_r_name);
-//        if ([_r_id isEqualToString:@""]) {
-//            [self showAlertMessage:@"Please Select Room"];
-//        }else if ([_selectLabel.text isEqualToString:@""])
-//        {
-//            [self showAlertMessage:@"Please Select Date"];
-//        }
-//        NSString *dateString = self.selectLabel.text;
-//        NSString *post =[NSString stringWithFormat:@"r_id=%@&date=%@",self.r_id,dateString];
-//        NSLog(@"%@&%@",_r_id,_selectLabel.text);
-//        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//        NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.kanishkagroups.com/sop/android/getMeetingDetailsMrms.php"]]];
-//        [request setHTTPMethod:@"POST"];
-//        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//        [request setHTTPBody:postData];
-//        NSURLSession *session = [NSURLSession sharedSession];
-//        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//            NSString *stringResponse = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//
-//            NSError *error1;
-//            self.arrayResMRMS = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error1];
-//            if (self.arrayResMRMS.count==0) {
-//                [self showAlertMessage:@"no meetings Found"];
-//            }
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                if ([[NSThread currentThread] isMainThread]){
-//                    [tableData reloadData];
-//                    NSLog(@"In main thread--completion handler");
-//                }
-//                else{
-//                    NSLog(@"Not in main thread--completion handler");
-//                }
-//            });
-//            NSLog(@"dictionaryRes %@",self.arrayResMRMS);
-//            //NSLog(@"%@",self.dataArray);
-//        }];
-//        //[tableData reloadData];
-//        [dataTask resume];
- 
+    
     }
     [_collectionImg reloadData];
 
@@ -333,22 +257,10 @@
             }
         });
         NSLog(@"dictionaryRes %@",self.arrayResMRMS);
-        //NSLog(@"%@",self.dataArray);
     }];
-    //[tableData reloadData];
     [dataTask resume];
     
 }
-/*
-//- (IBAction)selectMeetingRoom:(id)sender {
-//    if (tableData.hidden==YES) {
-//        tableData.hidden=NO;
-//    }else
-//    {
-//        tableData.hidden=YES;
-//    }
-//}
-*/
 
 
  //Sample Practice
@@ -374,17 +286,7 @@
     [toolbar sizeToFit];
     [self.view addSubview:toolbar];
     
-    
-    
-    
-    
-    
-   // testing 27-03-2018
-//    if ([_r_id isEqualToString:@""]) {
-//        [self showAlertMessage:@"Please Select Room"];
-//    }else if ([_selectLabel.text isEqualToString:@""]){
-//        [self showAlertMessage:@"Please Select Date"];
-//    }
+   
 }
 -(void) dueDateChanged:(UIDatePicker *)sender {
     
@@ -442,55 +344,7 @@
 }
 -(IBAction)submitButton:(id)sender
 {
-  /* get indexpath for tableview and
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:tableData];
-    NSIndexPath *indexPath = [tableData indexPathForRowAtPoint:buttonPosition];
-    NSDictionary *dictionary1 = [self.dataArray objectAtIndex:indexPath.row];
-    NSString *post =[NSString stringWithFormat:@"vd_id=%@&status=3",dictionary1[@"vd_id"]];
-    */
-//    if ([_r_id isEqualToString:@""]) {
-//        [self showAlertMessage:@"Please Select Room"];
-//    }else if ([_selectLabel.text isEqualToString:@""])
-//    {
-//        [self showAlertMessage:@"Please Select Date"];
-//    }
-//    _picker11.hidden=YES;
-//    NSString *dateString = self.selectLabel.text;
-//    NSString *post =[NSString stringWithFormat:@"r_id=%@&date=%@",self.r_id,dateString];
-//    NSLog(@"%@&%@",_r_id,_selectLabel.text);
-//    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//    NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.kanishkagroups.com/sop/android/getMeetingDetailsMrms.php"]]];
-//    [request setHTTPMethod:@"POST"];
-//    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPBody:postData];
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        NSString *stringResponse = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//
-//        NSError *error1;
-//        self.arrayResMRMS = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error1];
-//        if (self.arrayResMRMS.count==0) {
-//            [self showAlertMessage:@"no meetings Found"];
-//        }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if ([[NSThread currentThread] isMainThread]){
-//                [tableData reloadData];
-//                NSLog(@"In main thread--completion handler");
-//            }
-//            else{
-//                NSLog(@"Not in main thread--completion handler");
-//            }
-//        });
-//        NSLog(@"dictionaryRes %@",self.arrayResMRMS);
-//        //NSLog(@"%@",self.dataArray);
-//    }];
-//    //[tableData reloadData];
-//    [dataTask resume];
-//
-//    submitButton.hidden=YES;
+ 
 }
 - (void)showAlertMessage:(NSString*)alertMessage
 {
@@ -529,12 +383,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
    
-//    if (self.r_id == nil){
-//          [self showAlertMessage:@"Please Select Room"];
-//       
-//        return;
-//        
-//    } else
+
         if ([segue.identifier isEqualToString:@"AddVC"])  {
         AddController *send = segue.destinationViewController;
         send.dateString= self.selectLabel.text;
@@ -557,7 +406,6 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 -(void)appendImg:(NSString *)string
 {
@@ -595,43 +443,6 @@
     NSLog(@"%lu", (unsigned long)_imageArr.count);
   
 }
-//func AppendImg(cName : String)
-//{
-//    if cName == "Other"
-//    {
-//        imgArr.append("other")
-//
-//    }else if cName == "Sun" {
-//        imgArr.append("sun")
-//
-//    }else if cName == "Moon"
-//    {
-//        imgArr.append("moon")
-//
-//    }else if cName == "Venus" {
-//        imgArr.append("venus")
-//    }
-//    else if cName == "Galaxy" {
-//        imgArr.append("galaxy")
-//
-//    }else if cName == "Mars"
-//    {
-//        imgArr.append("mars")
-//
-//    }else if cName == "Jupiter" {
-//        imgArr.append("jupiter")
-//
-//    }else if cName == "Saturn"
-//    {
-//        imgArr.append("saturn")
-//
-//    }else if cName == "Neptune" {
-//        imgArr.append("neptune")
-//    }
-//    else if cName == "Uranus"
-//    {
-//        imgArr.append("uranus")
-//    }
-//    print("ImgArr = ", imgArr.count)
-//}
+
+
 @end

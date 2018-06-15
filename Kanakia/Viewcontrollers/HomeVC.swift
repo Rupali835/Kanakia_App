@@ -148,7 +148,8 @@ class HomeVC: UIViewController, UITextFieldDelegate
             UIAlertAction in
             
             let logoutUrl = "http://kanishkagroups.com/sop/android/logout.php"
-            let param = ["user_id" : self.strUserId]
+            let param = ["user_id" : self.strUserId,
+                         "type" : "ios"]
             print("Logout user_id =",self.strUserId)
             Alamofire.request(logoutUrl, method: .post, parameters: param).responseString { (resp) in
                 print(resp)
@@ -173,17 +174,17 @@ class HomeVC: UIViewController, UITextFieldDelegate
         if user_active == "1"
         {
             UserDefaults.standard.removeObject(forKey: "userdata")
-    
+
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let navigationController = appDelegate.window?.rootViewController as! UINavigationController
             navigationController.setViewControllers([loginVC], animated: true)
-            
+
         }else{
-            
+
         }
-        
+
     }
     
     func RechableCheck()
@@ -292,10 +293,10 @@ class HomeVC: UIViewController, UITextFieldDelegate
             let Msg = data["msg"] as! [String: Any]
 
             UserDefaults.standard.set(Msg, forKey: "msg")
+            
             self.Up_id = Msg["up_id"] as! String
             self.upType = Msg["up_type"] as! String
-            print("Up_id", self.Up_id)
-            print("UP_type", self.upType)
+            
 
         }
 

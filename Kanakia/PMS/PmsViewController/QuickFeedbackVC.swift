@@ -65,6 +65,8 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         initUi()
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         self.txtTraining.delegate = self
         self.txtFeedback.delegate = self
         self.txtFeedback.text = "Enter a Quick feedback here"

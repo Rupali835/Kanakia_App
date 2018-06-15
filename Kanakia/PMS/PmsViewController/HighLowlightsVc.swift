@@ -52,7 +52,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
        
          tblLights.register(UINib(nibName: "ActoinRemarkCell", bundle: nil), forCellReuseIdentifier: "ActoinRemarkCell")
         
-      //  tblLights.register(UINib(nibName:), forCellReuseIdentifier: <#T##String#>)
+     
         initUi()
        getDataFromAPI(getHighLowLights: "getHighlights")
      
@@ -65,6 +65,8 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -111,10 +113,23 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                    case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8":
                     if self.view.frame.origin.y != 0
                     {
-                        self.view.frame.origin.y += 250
+                    self.view.frame.origin.y += 250
+                    }
+                    break
+                    case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
+                    if self.view.frame.origin.y != 0
+                    {
+                    self.view.frame.origin.y += 280
+                    }
+                    break
+                    
+                case "iPhone X":
+                    if self.view.frame.origin.y != 0
+                    {
+                        self.view.frame.origin.y += 300
                     }
                     break
                 default:
@@ -154,16 +169,28 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
                 
                 switch UIDevice().type.rawValue
                 {
-                case "iPhone 5S","iPhone SE", "iPhone 6S":
+                case "iPhone 5S","iPhone SE", "iPhone 6S","iPhone 7","iPhone 8":
                     if self.view.frame.origin.y == 0
                     {
                         self.view.frame.origin.y -= 250
                     }
                     break
+                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 280
+                    }
+                    break
+                    
+                case "iPhone X":
+                    if self.view.frame.origin.y == 0
+                    {
+                        self.view.frame.origin.y -= 300
+                    }
+                    break
                 default:
                     print("No Match")
                 }
-                
             }
         }
     }
@@ -252,10 +279,10 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowColor = UIColor.black.cgColor
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cView.layer.shadowRadius = 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

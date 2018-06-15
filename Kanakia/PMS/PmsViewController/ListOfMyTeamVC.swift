@@ -29,7 +29,8 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         super.viewDidLoad()
         
-   
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         let dict  = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
         self.Up_id = dict["up_id"] as! String
         seachBar.delegate = self
@@ -167,11 +168,9 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         
         let lcUserName = lcDict["user_name"] as! String
-        let firstLetter = lcUserName.first!
-        
-
         cell.LblEmpName.text = (lcDict["user_name"] as! String)
         
+          let firstLetter = lcUserName.first!
         cell.LblFirstLetter.text = String(describing: firstLetter)
         cell.LblFirstLetter.backgroundColor = getRandomColor()
        cell.delegate = self

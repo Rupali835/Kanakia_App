@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>522391606234-ect0irkomme0il3t5t91a892abs5dgmb.apps.googleusercontent.com</string>
+	<string>708048030563-fdmh8m60ij8rs1k06970mh9hce4llasl.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.522391606234-ect0irkomme0il3t5t91a892abs5dgmb</string>
+	<string>com.googleusercontent.apps.708048030563-fdmh8m60ij8rs1k06970mh9hce4llasl</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDismtj-8JZi94_zuJGJcBgvChfnDIqJ2w</string>
+	<string>AIzaSyA8RXBHMSAQPPItlrG0bwnTgdC2UovDtok</string>
 	<key>GCM_SENDER_ID</key>
-	<string>522391606234</string>
+	<string>708048030563</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kanakia.info</string>
+	<string>com.ksoftpl.kworld</string>
 	<key>PROJECT_ID</key>
-	<string>kanakia-5d03e</string>
+	<string>sop-mms</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kanakia-5d03e.appspot.com</string>
+	<string>sop-mms.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:522391606234:ios:6b78a62bbda7b00b</string>
+	<string>1:708048030563:ios:578aa2363cc45df2</string>
 	<key>DATABASE_URL</key>
-	<string>https://kanakia-5d03e.firebaseio.com</string>
+	<string>https://sop-mms.firebaseio.com</string>
 </dict>
 </plist>

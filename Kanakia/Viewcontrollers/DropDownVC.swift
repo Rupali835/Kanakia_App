@@ -64,7 +64,6 @@ class DropDownVC: UIViewController,UITableViewDelegate,UITableViewDataSource,Mod
         self.tblView.register(ReminderCell.nib, forCellReuseIdentifier: ReminderCell.identifier)
         self.tblView.register(DayCell.nib, forCellReuseIdentifier: DayCell.identifier)
         
-      //  self.meetingRoomsArr.insert(rooms, at: 0)
         
         let cMeetwith1 = MeetWith()
         cMeetwith1.m_With = "Internal Person"

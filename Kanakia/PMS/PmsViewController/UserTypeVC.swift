@@ -32,7 +32,7 @@ class UserTypeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-   //      self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
        strUserName = userDict["user_emp_id"] as! String
     
