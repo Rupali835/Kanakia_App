@@ -36,17 +36,21 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var btnAchive: UIButton!
     @IBOutlet weak var btnKra: UIButton!
     
+    var strUserNm : String = ""
     var cAddTraining : AddTrainingMdVc!
     var searchActive = Bool(false)
     var filtered = NSArray()
     var DataArr = NSArray()
+    var ManagerDataArr = NSArray()
     var Up_id: String = ""
+    var Up_type : String = ""
     var Msg = [AnyObject]()
     var UserId : String!
     var valid = Bool(true)
      private var toast: JYToast!
     var Check = Bool(true)
     var Tpt_Type : String!
+    var cFeedback : FeedBackForAnyVC!
     
     func HiddenControl(bStatus: Bool)
     {
@@ -65,6 +69,10 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         initUi()
         
+      //  searchBar.backgroundColor = UIColor.purple
+        let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
+        strUserNm = userDict["user_name"] as! String
+
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
         self.txtTraining.delegate = self
@@ -81,7 +89,8 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
        tblSearch.separatorStyle = .none
        print("Valid", valid)
         self.tblSearch.register(UINib(nibName: "teamCell", bundle: nil), forCellReuseIdentifier: "teamCell")
-        getAllUserMd()
+//        getAllUserMd()
+//        getManagerUserData()
         getPendingCount()
         txtFeedback.layer.cornerRadius = 5
         txtFeedback.layer.borderWidth = 1.0
@@ -103,6 +112,10 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.dropShadow(cView: TeamView)
         
         view.addGestureRecognizer(tap)
+        
+        
+        let button1 = UIBarButtonItem(image: UIImage(named: "MSG"), style: .plain, target: self, action: #selector(btnChat_Click))
+        self.navigationItem.rightBarButtonItem  = button1
         
     }
 
@@ -130,11 +143,14 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func awakeFromNib()
     {
         self.cAddTraining = self.storyboard?.instantiateViewController(withIdentifier: "AddTrainingMdVc") as! AddTrainingMdVc
+        self.cFeedback = self.storyboard?.instantiateViewController(withIdentifier: "FeedBackForAnyVC") as! FeedBackForAnyVC
     }
     
-    func setupData(cId: String)
+    func setupData(cId: String, cUpType: String)
     {
         self.Up_id = cId
+        self.Up_type = cUpType
+        print("UpType", self.Up_type)
     }
     
     override func didReceiveMemoryWarning() {
@@ -156,11 +172,13 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func dropShadow(cView : UIView) {
-        cView.layer.masksToBounds = false
-        cView.layer.shadowColor = UIColor.black.cgColor
+    
         cView.layer.shadowOpacity = 0.7
-        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        cView.layer.shadowRadius = 1
+        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        cView.layer.shadowRadius = 4.0
+        cView.layer.shadowColor = UIColor.gray.cgColor
+        cView.backgroundColor = UIColor.white
+
     }
     
     func getRandomColor() -> UIColor{
@@ -194,7 +212,33 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
     }
+    
 
+    func getManagerUserData()
+        {
+        let getMdUrl = "http://kanishkagroups.com/sop/pms/index.php/API/getFullTeamForManager"
+        let param : [String: Any] = ["up_id" : self.Up_id]
+        print("UserParam id :", param)
+    
+        Alamofire.request(getMdUrl, method: .post, parameters: param).responseJSON { (dataAchive) in
+    
+        self.Msg = dataAchive.result.value as! [AnyObject]
+            
+            let myDict = ["up_id" : self.Up_id, "user_name" : self.strUserNm]
+            self.Msg.append(myDict as AnyObject)
+            
+        self.ManagerDataArr = self.Msg.map ({ $0 }) as NSArray
+        print(self.ManagerDataArr)
+    
+        if self.Msg.count == 0
+        {
+            self.toast.isShow("No data found")
+        }
+            self.tblSearch.reloadData()
+    
+        }
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true;
     }
@@ -214,23 +258,73 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
         
-        let predicate = NSPredicate(format: "user_name CONTAINS[c]  %@", searchText)
-        
-        self.filtered = self.DataArr.filter { predicate.evaluate(with: $0) } as NSArray
-        
-        print("names = ,\(self.filtered)")
-        if(filtered.count == 0)
+        if self.Up_type == "1"
         {
-            searchActive = false
-            self.tblSearch.isHidden = true
-            //self.HiddenControl(bStatus: false)
-        
-        } else {
-            searchActive = true
-            self.tblSearch.isHidden = false
-            //self.HiddenControl(bStatus: true)
+            getAllUserMd()
+            let predicate = NSPredicate(format: "user_name CONTAINS[c]  %@", searchText)
+            
+            self.filtered = self.DataArr.filter { predicate.evaluate(with: $0) } as NSArray
+            
+            print("names = ,\(self.filtered)")
+            if(filtered.count == 0)
+            {
+                searchActive = false
+                self.tblSearch.isHidden = true
+                //self.HiddenControl(bStatus: false)
+                
+            } else {
+                searchActive = true
+                self.tblSearch.isHidden = false
+                //self.HiddenControl(bStatus: true)
+            }
+            self.tblSearch.reloadData()
         }
-        self.tblSearch.reloadData()
+        
+        if self.Up_type == "2"
+        {
+            getAllUserMd()
+            let predicate = NSPredicate(format: "user_name CONTAINS[c]  %@", searchText)
+            
+            self.filtered = self.DataArr.filter { predicate.evaluate(with: $0) } as NSArray
+            
+            print("names = ,\(self.filtered)")
+            if(filtered.count == 0)
+            {
+                searchActive = false
+                self.tblSearch.isHidden = true
+                //self.HiddenControl(bStatus: false)
+                
+            } else {
+                searchActive = true
+                self.tblSearch.isHidden = false
+                //self.HiddenControl(bStatus: true)
+            }
+            self.tblSearch.reloadData()
+        }
+        
+        
+        if self.Up_type == "3"
+        {
+            getManagerUserData()
+            let predicate = NSPredicate(format: "user_name CONTAINS[c]  %@", searchText)
+            
+            self.filtered = self.ManagerDataArr.filter { predicate.evaluate(with: $0) } as NSArray
+            
+            print("names = ,\(self.filtered)")
+            if(filtered.count == 0)
+            {
+                searchActive = false
+                self.tblSearch.isHidden = true
+                //self.HiddenControl(bStatus: false)
+                
+            } else {
+                searchActive = true
+                self.tblSearch.isHidden = false
+                //self.HiddenControl(bStatus: true)
+            }
+            self.tblSearch.reloadData()
+        }
+       
         
     }
     
@@ -470,10 +564,7 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     }
     
             }
-
-        
-       
-        
+ 
     }
     
     func getPendingCount()
@@ -484,12 +575,22 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         Alamofire.request(countUrl, method: .post, parameters: param).responseJSON { (resp) in
             print(resp)
             let number = resp.result.value as! Int
-            print("Count", number)
-            self.lblPendingCount.text = "(" + "\(number)" + ")"
+            if number == 0
+            {
+                self.lblPendingCount.text = "0"
+            }else{
+                print("Count", number)
+                self.lblPendingCount.text = "(" + "\(number)" + ")"          }
             
         }
     }
 
     
+    @IBAction func btnChat_Click(_ sender: Any)
+    {
+        self.cFeedback.view.frame = self.view.frame
+        self.view.addSubview(self.cFeedback.view)
+        self.cFeedback.view.clipsToBounds = true
+    }
     
 }

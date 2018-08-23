@@ -35,6 +35,9 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.backBarButtonItem?.title = ""
+
         self.txtLights.delegate = self
         self.txtLights.text = "Enter Highlights"
          self.SegmentIndex = 0

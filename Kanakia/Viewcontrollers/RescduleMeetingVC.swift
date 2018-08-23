@@ -184,6 +184,7 @@ import Alamofire
         if m_cMeetingStatus == 0
         {
             self.BtnsView.isHidden = true
+            self.BtnsView.backgroundColor = UIColor.yellow
             
         }else
         {
@@ -593,7 +594,17 @@ import Alamofire
         self.R_Groups.text = self.GetConcatString(cNameArr: self.groupNameArr)
         
         
-        self.R_agenda.text = self.singleMeeting[nIndex]["m_agenda"] as? String
+        let render = self.singleMeeting[nIndex]["m_agenda"] as? String
+        
+        
+        let str = render?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        
+        
+        let Str = str?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        
+        let str1 = Str?.replacingOccurrences(of: "\n", with: "\n", options: .regularExpression, range: nil)
+
+        self.R_agenda.text = str1
         
         
         let M_type = self.singleMeeting[nIndex]["m_type"] as? String
@@ -969,7 +980,7 @@ import Alamofire
     {
         
         datepicker.datePickerMode = .time
-        datepicker.minuteInterval = 10
+        datepicker.minuteInterval = 5
         toolBar.sizeToFit()
         let barBtnItem = UIBarButtonItem(barButtonSystemItem: .done,  target: nil, action: #selector(doneBtnPresses))
         toolBar.setItems([barBtnItem], animated: false)
@@ -1010,7 +1021,7 @@ import Alamofire
     func createEndTimePicker()
     {
         datepicker.datePickerMode = .time
-        datepicker.minuteInterval = 10
+        datepicker.minuteInterval = 5
         toolBar.sizeToFit()
         let barBtnItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(DoneBtnPresses))
         toolBar.setItems([barBtnItem], animated: false)

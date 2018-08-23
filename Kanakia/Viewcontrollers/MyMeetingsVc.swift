@@ -26,7 +26,7 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     var DataArr = [AnyObject]()
     
-     fileprivate let viewModel = ProfileViewModel()
+    fileprivate let viewModel = ProfileViewModel()
    
     override func viewWillAppear(_ animated: Bool)
     {

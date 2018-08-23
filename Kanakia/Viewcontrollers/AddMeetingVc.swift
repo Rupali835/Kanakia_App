@@ -642,7 +642,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     {
         
         datepicker.datePickerMode = .time
-        datepicker.minuteInterval = 10
+        datepicker.minuteInterval = 5
         toolBar.sizeToFit()
         let barBtnItem = UIBarButtonItem(barButtonSystemItem: .done,  target: nil, action: #selector(doneBtnPresses))
         toolBar.setItems([barBtnItem], animated: false)
@@ -682,7 +682,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     func createEndTimePicker()
     {
         datepicker.datePickerMode = .time
-        datepicker.minuteInterval = 10
+        datepicker.minuteInterval = 5
         toolBar.sizeToFit()
         let barBtnItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(DoneBtnPresses))
         toolBar.setItems([barBtnItem], animated: false)

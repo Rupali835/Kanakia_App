@@ -30,7 +30,10 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         self.txtAchivement.delegate = self
-        
+        txtAchivement.isScrollEnabled = false
+
+        self.navigationItem.backBarButtonItem?.title = ""
+
         txtAchivement.text = "Enter Achievements"
         txtAchivement.textColor = UIColor.gray
         self.dict = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
@@ -49,7 +52,6 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
          myTbl.register(UINib(nibName: "HighLowLightCell", bundle: nil), forCellReuseIdentifier: "HighLowLightCell")
       
         setupData(cId: Up_id)
-        print("Up_id", Up_id)
         
         getAchivement()
         initUi()
@@ -150,6 +152,22 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
+    func textViewDidChange(_ textView: UITextView)
+    {
+        print(txtAchivement.text)
+        
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let EstimateSize = txtAchivement.sizeThatFits(size)
+        txtAchivement.constraints.forEach { (constraint) in
+            if constraint.firstAttribute == .height
+            {
+                constraint.constant = EstimateSize.height
+            }
+        }
+    }
+    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
@@ -227,10 +245,11 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowColor = UIColor.black.cgColor
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cView.layer.shadowRadius = 1
+        cView.backgroundColor = UIColor.white
     }
     
     override func didReceiveMemoryWarning() {

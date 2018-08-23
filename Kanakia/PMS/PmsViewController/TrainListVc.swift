@@ -31,6 +31,9 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
+        self.navigationItem.backBarButtonItem?.title = ""
+
+        self.navigationItem.title = "Training Needs"
         self.txtTrain.delegate = self
           txtTrain.text = "Enter Training"
          index = 0
@@ -240,10 +243,11 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowColor = UIColor.black.cgColor
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cView.layer.shadowRadius = 1
+        cView.backgroundColor = UIColor.white
     }
     
     func setupData(cId: String)

@@ -46,19 +46,40 @@ class DateHeaderView: UITableViewHeaderFooterView {
                 return
             }
             
+            let dateStr = item.sectionTitle
             if item.rowCount == 0
             {
-                self.m_DateLbl?.text = item.sectionTitle
+                //let dateStr = item.sectionTitle
+                self.m_DateLbl?.text = dateFormate(dateStr: dateStr)
                 self.m_CountLbl.text = "No Meeting"
             }
             else{
-                self.m_DateLbl?.text = item.sectionTitle
+                self.m_DateLbl?.text = dateFormate(dateStr: dateStr)
                 self.m_CountLbl.text = "\(item.rowCount) Meetings"
             }
-            
-         //   self.m_DateLbl?.text = item.sectionTitle
-          //  self.m_CountLbl.text = "Number of Meeting :  \(item.rowCount)"
+        
         }
     }
+    
+  func dateFormate(dateStr: String)-> String?
+  {
+    let dateFormatterGet = DateFormatter()
+    dateFormatterGet.dateFormat = "yyyy-MM-dd"
+    
+    let dateFormatterPrint = DateFormatter()
+    dateFormatterPrint.dateFormat = "dd MMM yyyy (EEEE)"//"MMM dd,yyyy"
+    
+    if let date = dateFormatterGet.date(from: dateStr)
+    {
+        print(dateFormatterPrint.string(from: date))
+        let dateStr = dateFormatterPrint.string(from: date)
+        return dateStr
+    }
+    else {
+        print("There was an error decoding the string")
+    }
+    
+    return nil
+  }
     
 }

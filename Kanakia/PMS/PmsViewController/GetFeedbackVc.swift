@@ -25,6 +25,9 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
         
     //     self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
+        
+        self.navigationItem.backBarButtonItem?.title = ""
+
         self.txtFeedback.delegate = self
         txtFeedback.text = "Enter Feedback"
         self.tblFeedback.estimatedRowHeight = 80
@@ -200,10 +203,12 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowColor = UIColor.black.cgColor
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cView.layer.shadowRadius = 1
+        cView.backgroundColor = UIColor.white
+
     }
     
     private func initUi() {
@@ -391,16 +396,50 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     @objc func Accept_Click(sender:UIButton)
     {
-        let index = sender.tag
-        print("index=", index)
-        self.GetApprovedRejectFeedback(nIndex: index, nStatus: 1)
         
+        let alert = UIAlertController(title: "Alert", message: "Are you sure to accept this?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            
+            let index = sender.tag
+            print("index=", index)
+            self.GetApprovedRejectFeedback(nIndex: index, nStatus: 1)
+            //  self.toast.isShow("Successfully Accepted")
+        }
+        
+        let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+       
     }
     @objc func Reject_Click(sender:UIButton)
     {
-        let index = sender.tag
-        print("index=", index)
-        self.GetApprovedRejectFeedback(nIndex: index,nStatus: 2)
+        
+        let alert = UIAlertController(title: "Alert", message: "Are you sure to reject this?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            let index = sender.tag
+            print("index=", index)
+            self.GetApprovedRejectFeedback(nIndex: index,nStatus: 2)
+        }
+        
+        let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+       
     }
 
    

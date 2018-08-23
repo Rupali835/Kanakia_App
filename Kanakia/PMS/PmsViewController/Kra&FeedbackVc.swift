@@ -19,12 +19,15 @@ class Kra_FeedbackVc: UIViewController {
     var EmpNm : String?
     var Up_id: String!
     var Check = Bool(true)
+    var cFeedback : FeedBackForAnyVC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-
+        
+       // self.navigationItem.backBarButtonItem?.title = "Back"
+        
         self.mainView.backgroundColor =  UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
         self.designCell(cView: Fvc)
@@ -32,6 +35,8 @@ class Kra_FeedbackVc: UIViewController {
         self.designCell(cView: Tvc)
         self.designCell(cView: forVc)
         setupData(cId: self.Up_id)
+        
+        self.navigationItem.backBarButtonItem?.title = ""
         
         if Check
         {
@@ -42,11 +47,28 @@ class Kra_FeedbackVc: UIViewController {
              self.navigationItem.title = ""
         }
     
+        let button1 = UIBarButtonItem(image: UIImage(named: "MSG"), style: .plain, target: self, action: #selector(btnChat_Click))
+        self.navigationItem.rightBarButtonItem  = button1
+
     }
 
+    override func awakeFromNib()
+    {
+        self.cFeedback = self.storyboard?.instantiateViewController(withIdentifier: "FeedBackForAnyVC") as! FeedBackForAnyVC
+    }
+    
+    @objc func btnChat_Click()
+    {
+        self.cFeedback.view.frame = self.view.frame
+        self.cFeedback.setId(Id: self.Up_id)
+        self.view.addSubview(self.cFeedback.view)
+        self.cFeedback.view.clipsToBounds = true
+    }
+    
     func setEmpName(cNm: String)
     {
         self.EmpNm = cNm
+        self.navigationItem.title = cNm
     }
     
     func setupData(cId: String)
@@ -61,11 +83,11 @@ class Kra_FeedbackVc: UIViewController {
     
     func designCell(cView : UIView)
     {
-        cView.layer.masksToBounds = false
+        cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowRadius = 4.0
+        cView.layer.shadowColor = UIColor.gray.cgColor
+        cView.backgroundColor = UIColor.white
     }
     
     @IBAction func Achivement_BtnClick(_ sender: Any)

@@ -37,7 +37,7 @@ class DynamicPmsVc: UIViewController {
     @IBAction func btnQuickFeedback(_ sender: Any)
     {
        let addEmp = storyboard?.instantiateViewController(withIdentifier: "QuickFeedbackVC") as! QuickFeedbackVC
-        addEmp.setupData(cId: self.Up_id)
+    //    addEmp.setupData(cId: self.Up_id, cUpType: <#String#>)
         navigationController?.pushViewController(addEmp, animated: true)
     }
     

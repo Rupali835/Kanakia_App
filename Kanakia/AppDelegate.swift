@@ -20,11 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     
     var window: UIWindow?
     var FCMToken: String = ""
+    var NotificationCnt = Int(0)
+    var categoryIdentifier : String = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         FirebaseApp.configure()
-        
+        NotificationCnt = 0
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -80,20 +82,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication)
+    {
+          NotificationCnt += 1
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         
-        UIApplication.shared.applicationIconBadgeNumber = 0
+       UIApplication.shared.applicationIconBadgeNumber = 0
+        NotificationCnt = 0
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         
         UIApplication.shared.applicationIconBadgeNumber = 0
+        NotificationCnt = 0
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
@@ -187,23 +193,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         let upType = lcUserDefaults["up_type"] as! String
         
         guard
+
+            let cat = (userInfo[AnyHashable("category")] as? String),
+            
             let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
+            
             let alert = aps["alert"] as? NSDictionary,
             let body = alert["body"] as? String,
             let title = alert["title"] as? String,
             let subtitle = alert["subtitle"] as? String,
             let sound = aps["sound"] as? String
+            
+     //       self.categoryIdentifier = cat
             else {
                 // handle any error here
                 return
         }
-        
+            print("Category", self.categoryIdentifier)
         switch title
         {
         case "New Meeting", "Today's Meeting" :
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "MyMeetingsVc") as! MyMeetingsVc
-                navigationController.pushViewController(vc, animated: true);      break
+                navigationController.pushViewController(vc, animated: true);
+                break
 
         case  "New Other Achievements", "Other Achievements Approved", "Other Achievements Rejected"  :
               let storyboard = UIStoryboard(name: "Pms", bundle: nil)
@@ -319,9 +332,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         {
             print("InstanceID token: \(refreshToken)")
             UserDefaults.standard.set(refreshToken, forKey: "data")
-            
-            
-          
         }
         
     }
@@ -349,7 +359,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             print("Permission granted: \(granted)")
             
             guard granted else { return }
-            self.getNotificationSettings()
+            
+        let AcceptAction = UNNotificationAction(identifier: "viewActionIdentifier", title: "Reject", options: [])
+            
+            let CategoryIdentifier = UNNotificationCategory(identifier: self.categoryIdentifier, actions: [AcceptAction],
+                intentIdentifiers: [], options: [])
+           
+            UNUserNotificationCenter.current().setNotificationCategories([CategoryIdentifier])
+            
+               self.getNotificationSettings()
         }
     }
 
@@ -359,6 +377,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         // Print full message.
         print("message recived")
+        NotificationCnt += 1
+        UIApplication.shared.applicationIconBadgeNumber = NotificationCnt
         print(userInfo)
 
         completionHandler(UIBackgroundFetchResult.newData)

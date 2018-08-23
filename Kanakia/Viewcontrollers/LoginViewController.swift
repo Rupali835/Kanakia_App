@@ -267,5 +267,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         self.txtPasssword.resignFirstResponder()
     }
     
+    @IBAction func btnForgetPassword_Click(_ sender: Any)
+    {
+        guard let url = URL(string: "http://kanishkagroups.com/sop/fpass.php")
+            else{
+                    return
+                }
+             UIApplication.shared.open(url, options: [:], completionHandler: {(status) in })
+    }
     
 }

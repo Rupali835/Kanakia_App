@@ -81,11 +81,11 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
     
     func designCell(cView : UIView)
     {
-        cView.layer.masksToBounds = false
+        cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowRadius = 4.0
+        cView.layer.shadowColor = UIColor.gray.cgColor
+        cView.backgroundColor = UIColor.white
     }
     
 

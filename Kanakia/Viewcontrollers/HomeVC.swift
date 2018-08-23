@@ -217,7 +217,7 @@ class HomeVC: UIViewController, UITextFieldDelegate
                 if self.upType == "1"
                 {
                     let pmsMvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: QuickFeedbackVC.storyboardID) as! QuickFeedbackVC
-                    pmsMvc.setupData(cId: self.Up_id)
+                    pmsMvc.setupData(cId: self.Up_id, cUpType: self.upType)
                     navigationController?.pushViewController(pmsMvc, animated: true)
                     
                 }
@@ -225,7 +225,7 @@ class HomeVC: UIViewController, UITextFieldDelegate
                 if self.upType == "2"
                 {
                     let pmsMvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: QuickFeedbackVC.storyboardID) as! QuickFeedbackVC
-                    pmsMvc.setupData(cId: self.Up_id)
+                    pmsMvc.setupData(cId: self.Up_id, cUpType: self.upType)
                     navigationController?.pushViewController(pmsMvc, animated: true)
                     
                 }
@@ -233,8 +233,8 @@ class HomeVC: UIViewController, UITextFieldDelegate
                 
                 if self.upType == "3"
                 {
-                let pmsCvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: UserTypeVC.storyboardID) as! UserTypeVC
-                pmsCvc.setupData(cId: self.Up_id)
+                let pmsCvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: QuickFeedbackVC.storyboardID) as! QuickFeedbackVC
+                    pmsCvc.setupData(cId: self.Up_id, cUpType: self.upType)
                 navigationController?.pushViewController(pmsCvc, animated: true)
                     
                 }

@@ -441,6 +441,7 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
     func createDatePicker()
     {
         _ = Date()
+        
         datepicker.datePickerMode = .date
         toolBar.sizeToFit()
         let barBtnItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePresses))
@@ -452,7 +453,6 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
     
     @objc func donePresses()
     {
-       
        
        let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

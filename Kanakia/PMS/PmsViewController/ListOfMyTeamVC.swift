@@ -12,9 +12,6 @@ import Alamofire
 class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, didSelectedDelegateEmpCell
 {
     
-   
-    
-
     @IBOutlet weak var seachBar: UISearchBar!
     @IBOutlet weak var Mytbl: UITableView!
     
@@ -55,11 +52,11 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func designCell(cView : UIView)
     {
-        cView.layer.masksToBounds = false
+        cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowRadius = 4.0
+        cView.layer.shadowColor = UIColor.gray.cgColor
+        cView.backgroundColor = UIColor.white
     }
     
     private func initUi() {
@@ -136,7 +133,7 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         let green:CGFloat = CGFloat(drand48())
         let blue:CGFloat = CGFloat(drand48())
         
-        return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
+        return UIColor(red:red, green: green, blue: blue, alpha: 0.7)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,10 +207,8 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         Fvc.setupData(cId: lcId)
         Fvc.Check = checkNm
         navigationController?.pushViewController(Fvc, animated: true)
-        
-
-        
     }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

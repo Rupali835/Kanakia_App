@@ -12,6 +12,7 @@
 		8C58F575E0A69FB1BB9EE8DC /* Pods_KanakiaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */; };
 		CE14C63E20ACA45100AFF955 /* ActoinRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */; };
 		CE14C63F20ACA45100AFF955 /* ActoinRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */; };
+		CE1AF9AF2103A50800A57B15 /* FeedBackForAnyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AF9AE2103A50800A57B15 /* FeedBackForAnyVC.swift */; };
 		CE43777620A8B06300C3B14E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43777520A8B06300C3B14E /* AppDelegate.swift */; };
 		CE43777E20A8B06300C3B14E /* Kanakia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE43777C20A8B06300C3B14E /* Kanakia.xcdatamodeld */; };
 		CE43778020A8B06300C3B14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE43777F20A8B06300C3B14E /* Assets.xcassets */; };
@@ -170,6 +171,7 @@
 		CE43796120A8BBEA00C3B14E /* SPKeyBoardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43795520A8BBE900C3B14E /* SPKeyBoardAvoiding.swift */; };
 		CE43796220A8BBEA00C3B14E /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43795720A8BBE900C3B14E /* StringValidation.swift */; };
 		CE61C6DD20C6744F005B8468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */; };
+		CE6DCE3D20E0C74300B51536 /* ManagerLoginFirstVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCE3C20E0C74300B51536 /* ManagerLoginFirstVc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +202,7 @@
 		BA75E25370F603525A7B86AC /* Pods-KanakiaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActoinRemarkCell.xib; sourceTree = "<group>"; };
 		CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActoinRemarkCell.swift; sourceTree = "<group>"; };
+		CE1AF9AE2103A50800A57B15 /* FeedBackForAnyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackForAnyVC.swift; sourceTree = "<group>"; };
 		CE43777220A8B06300C3B14E /* Kanakia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kanakia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43777520A8B06300C3B14E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE43777D20A8B06300C3B14E /* Kanakia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kanakia.xcdatamodel; sourceTree = "<group>"; };
@@ -420,6 +423,7 @@
 		CE43795520A8BBE900C3B14E /* SPKeyBoardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPKeyBoardAvoiding.swift; sourceTree = "<group>"; };
 		CE43795720A8BBE900C3B14E /* StringValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidation.swift; sourceTree = "<group>"; };
 		CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE6DCE3C20E0C74300B51536 /* ManagerLoginFirstVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLoginFirstVc.swift; sourceTree = "<group>"; };
 		D25BF72F95C3022EEB0CA529 /* Pods-KanakiaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -607,6 +611,8 @@
 				CE43782020A8B34500C3B14E /* RemarkActionVc.swift */,
 				CE43782120A8B34500C3B14E /* TrainListVc.swift */,
 				CE43782220A8B34500C3B14E /* UserTypeVC.swift */,
+				CE6DCE3C20E0C74300B51536 /* ManagerLoginFirstVc.swift */,
+				CE1AF9AE2103A50800A57B15 /* FeedBackForAnyVC.swift */,
 			);
 			path = PmsViewController;
 			sourceTree = "<group>";
@@ -1445,6 +1451,7 @@
 				CE43794420A8B34800C3B14E /* DBAssetGroupsViewController.m in Sources */,
 				CE4378E820A8B34800C3B14E /* DynamicPmsVc.swift in Sources */,
 				CE4378D820A8B34800C3B14E /* KraCell.swift in Sources */,
+				CE6DCE3D20E0C74300B51536 /* ManagerLoginFirstVc.swift in Sources */,
 				CE4378E020A8B34800C3B14E /* teamCell.swift in Sources */,
 				CE43792B20A8B34800C3B14E /* MKActivityIndicator.swift in Sources */,
 				CE4378FC20A8B34800C3B14E /* DayCell.swift in Sources */,
@@ -1456,6 +1463,7 @@
 				CE43792520A8B34800C3B14E /* FSCalendarStickyHeader.m in Sources */,
 				CE43793F20A8B34800C3B14E /* DBAssetGroupCell.m in Sources */,
 				CE43793B20A8B34800C3B14E /* MKTextField.swift in Sources */,
+				CE1AF9AF2103A50800A57B15 /* FeedBackForAnyVC.swift in Sources */,
 				CE4377CC20A8B2F100C3B14E /* MyMeetingsVc.swift in Sources */,
 				CE43796120A8BBEA00C3B14E /* SPKeyBoardAvoiding.swift in Sources */,
 				CE4378F320A8B34800C3B14E /* TrainListVc.swift in Sources */,

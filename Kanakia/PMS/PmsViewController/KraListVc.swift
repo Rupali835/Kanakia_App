@@ -17,6 +17,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var AcceptByManger: UILabel!
     @IBOutlet weak var AcceptByEmp: UILabel!
  
+    @IBOutlet weak var btnRejectKra: UIButton!
     @IBOutlet weak var btnAcceptKra: UIButton!
   
     @IBOutlet weak var backView: UIView!
@@ -49,7 +50,10 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-
+       self.navigationItem.backBarButtonItem?.title = ""
+        
+        
+        
         self.lblKraMsg.isHidden = true
         self.HideControl(bStatus: true)
         tblKra.delegate = self
@@ -71,7 +75,8 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
 
-    func dropShadow(cView : UIView) {
+    func dropShadow(cView : UIView)
+    {
         cView.layer.masksToBounds = false
         cView.layer.shadowColor = UIColor.black.cgColor
         cView.layer.shadowOpacity = 0.7
@@ -93,7 +98,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         if bStatus
         {
           self.EmpNm = cNm
-          self.navigationItem.title = cNm
+          self.navigationItem.title =  "KRA's"
         }else {
             self.navigationItem.title = ""
         }
@@ -106,11 +111,11 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func designCell(cView : UIView)
     {
-        cView.layer.masksToBounds = false
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowColor = UIColor.lightGray.cgColor
-        cView.layer.shadowOpacity = 0.23
-        cView.layer.shadowRadius = 4
+        cView.layer.shadowOpacity = 0.7
+        cView.layer.shadowOffset = CGSize(width: -1, height: -1)
+        cView.layer.shadowRadius = 4.0
+        cView.layer.shadowColor = UIColor.gray.cgColor
+        cView.backgroundColor = UIColor.white
     }
     
     private func initUi() {
@@ -164,6 +169,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
                 self.AcceptByEmp.isHidden = false
                 self.AcceptByEmp.text = "Pending KRA acceptance from \(self.EmpNm)"
                 self.btnAcceptKra.isHidden = true
+                self.btnRejectKra.isHidden = true
                 
             }else{
                 self.btnAcceptKra.setTitle("I Accept My Kra", for: .normal)
@@ -178,12 +184,14 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
                 if self.Up_id != self.LoginUp_id
                 {
+                    self.btnRejectKra.isHidden = true
                    self.btnAcceptKra.isHidden = false
                 self.btnAcceptKra.setTitle("I Accept His KRA & KPI", for: .normal)
                    self.SetManagerData()
                     
                 }else{
                     self.btnAcceptKra.isHidden = true
+                    self.btnRejectKra.isHidden = false
                     self.setData()
                 }
                 
@@ -194,6 +202,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
                 if self.Up_id != self.LoginUp_id
                 {
                     self.btnAcceptKra.isHidden = true
+                    self.btnRejectKra.isHidden = true
                     self.SetManagerData()
                 }else{
                     self.btnAcceptKra.isHidden = false
@@ -202,6 +211,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
             if ((self.empFlag == "1") && ( self.MngrFlag == "1"))
             {
                 self.btnAcceptKra.isHidden = true
+                self.btnRejectKra.isHidden = true
                 if (self.Up_id != self.LoginUp_id)
                 {
                    self.SetManagerAcceptedData()
@@ -286,7 +296,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
             }else
              {
-               self.AcceptKRAEmp()
+                self.AcceptKRAEmp(url: "http://kanishkagroups.com/sop/pms/index.php/API/acceptKRAEmp")
              }
             
         }
@@ -318,7 +328,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         
             print(addResp)
             self.btnAcceptKra.isHidden = true
-           self.getKraList()
+            self.getKraList()
     }
 }
     
@@ -332,9 +342,11 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.AcceptByMngerDate.isHidden = true
     }
     
-    func AcceptKRAEmp()
+    func AcceptKRAEmp(url : String)
     {
-            let acceptKra = "http://kanishkagroups.com/sop/pms/index.php/API/acceptKRAEmp"
+          //  let acceptKra = "http://kanishkagroups.com/sop/pms/index.php/API/acceptKRAEmp"
+        
+        let acceptKra = url
             
             let addParameter : [String: Any] =
                 [        "up_id" : self.Up_id  ]
@@ -342,6 +354,7 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
             Alamofire.request(acceptKra, method: .post, parameters: addParameter).responseJSON { (addResp) in
                 print(addResp)
                 self.btnAcceptKra.isHidden = true
+                self.btnRejectKra.isHidden = true
                 self.getKraList()
                 
             }
@@ -363,6 +376,34 @@ class KraListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    @IBAction func btnRejectKra_OnClick(_ sender: Any)
+    {
+        
+        let alert = UIAlertController(title: "Dynamic PMS", message: "Are you sure you want to Reject KRA and KPI?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            if (self.Up_id != self.LoginUp_id)
+            {
+                self.AcceptManagerKRA()
+                
+            }else
+            {
+                self.AcceptKRAEmp(url: "http://kanishkagroups.com/sop/pms/index.php/API/rejectKRAEmp")
+            }
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
 }
     

@@ -283,7 +283,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1za-wX-irP">
-                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                                <rect key="frame" x="141.5" y="265.5" width="37" height="37"/>
                                 <color key="color" red="0.27505738219999998" green="0.49971335410000001" blue="1" alpha="0.81868043660000001" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -424,10 +424,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXU-xC-wES">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qO6-jF-7GG">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="514"/>
+                                        <rect key="frame" x="0.0" y="10" width="320" height="494"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableView>
                                 </subviews>
@@ -3032,13 +3032,13 @@
                                 </connections>
                             </imageView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpE-t4-aYq">
-                                <rect key="frame" x="10" y="224" width="300" height="210"/>
+                                <rect key="frame" x="15" y="224" width="290" height="240"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="veD-vl-vVZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="210"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="290" height="240"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r85-z3-fN1">
-                                            <rect key="frame" x="30" y="70" width="240" height="30"/>
+                                            <rect key="frame" x="30" y="70" width="230" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="aka-K6-UKr"/>
                                             </constraints>
@@ -3046,16 +3046,15 @@
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert"/>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvA-Jx-S3m">
-                                            <rect key="frame" x="30" y="110" width="240" height="30"/>
+                                            <rect key="frame" x="30" y="110" width="230" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="fvd-3G-f66"/>
                                             </constraints>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coM-47-FX2">
-                                            <rect key="frame" x="105" y="170" width="90" height="30"/>
+                                            <rect key="frame" x="100" y="200" width="90" height="30"/>
                                             <color key="backgroundColor" red="0.094117647060000004" green="0.70980392160000005" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="GPn-3G-9fy"/>
@@ -3069,7 +3068,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      My Kanakia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03u-p9-okY">
-                                            <rect key="frame" x="10" y="20" width="290" height="21"/>
+                                            <rect key="frame" x="10" y="20" width="280" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="aKG-lV-ecr"/>
                                             </constraints>
@@ -3078,7 +3077,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5R9-d4-YHo">
-                                            <rect key="frame" x="245" y="113" width="25" height="25"/>
+                                            <rect key="frame" x="235" y="113" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="SuK-H6-rLm"/>
                                                 <constraint firstAttribute="width" constant="25" id="bDU-Gv-JFy"/>
@@ -3099,6 +3098,22 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHc-Dp-obN" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
+                                            <rect key="frame" x="70" y="155" width="150" height="30"/>
+                                            <state key="normal" title="Forgot Password">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnForgetPassword_Click:" destination="wcM-JE-jlW" eventType="touchUpInside" id="rx3-46-ZUZ"/>
+                                            </connections>
+                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h67-0M-sTP">
+                                            <rect key="frame" x="80" y="182" width="130" height="1"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="Z7F-xY-XpH"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="5R9-d4-YHo" firstAttribute="top" secondItem="r85-z3-fN1" secondAttribute="bottom" constant="13" id="4me-5r-bWS"/>
@@ -3107,21 +3122,28 @@
                                         <constraint firstItem="iAc-TI-gvH" firstAttribute="top" secondItem="03u-p9-okY" secondAttribute="top" id="Gqr-Ww-f5y"/>
                                         <constraint firstItem="kvA-Jx-S3m" firstAttribute="width" secondItem="r85-z3-fN1" secondAttribute="width" id="ILC-og-BbM"/>
                                         <constraint firstAttribute="trailing" secondItem="5R9-d4-YHo" secondAttribute="trailing" constant="30" id="Ivj-rP-6cg"/>
+                                        <constraint firstItem="h67-0M-sTP" firstAttribute="leading" secondItem="veD-vl-vVZ" secondAttribute="leading" constant="80" id="N9K-QR-LxW"/>
                                         <constraint firstItem="r85-z3-fN1" firstAttribute="top" secondItem="veD-vl-vVZ" secondAttribute="top" constant="70" id="QDo-1b-rGC"/>
+                                        <constraint firstAttribute="trailing" secondItem="h67-0M-sTP" secondAttribute="trailing" constant="80" id="Qgc-UR-rCp"/>
+                                        <constraint firstItem="YHc-Dp-obN" firstAttribute="centerX" secondItem="veD-vl-vVZ" secondAttribute="centerX" id="VF1-Fe-v7U"/>
                                         <constraint firstItem="kvA-Jx-S3m" firstAttribute="top" secondItem="r85-z3-fN1" secondAttribute="bottom" constant="10" id="Xjw-b5-jGd"/>
+                                        <constraint firstAttribute="trailing" secondItem="YHc-Dp-obN" secondAttribute="trailing" constant="70" id="Z4g-Bb-SCj"/>
                                         <constraint firstItem="r85-z3-fN1" firstAttribute="leading" secondItem="veD-vl-vVZ" secondAttribute="leading" constant="30" id="cA6-bd-7d6"/>
+                                        <constraint firstItem="YHc-Dp-obN" firstAttribute="top" secondItem="kvA-Jx-S3m" secondAttribute="bottom" constant="15" id="gdh-kZ-7Up"/>
                                         <constraint firstItem="coM-47-FX2" firstAttribute="centerX" secondItem="veD-vl-vVZ" secondAttribute="centerX" id="ieO-wV-3V9"/>
                                         <constraint firstItem="03u-p9-okY" firstAttribute="leading" secondItem="iAc-TI-gvH" secondAttribute="trailing" constant="-13" id="j0f-ZD-SlA"/>
                                         <constraint firstItem="03u-p9-okY" firstAttribute="leading" secondItem="veD-vl-vVZ" secondAttribute="leading" constant="10" id="k09-wZ-uBT"/>
                                         <constraint firstItem="iAc-TI-gvH" firstAttribute="bottom" secondItem="03u-p9-okY" secondAttribute="bottom" id="k8B-fy-o2x"/>
                                         <constraint firstItem="kvA-Jx-S3m" firstAttribute="centerX" secondItem="r85-z3-fN1" secondAttribute="centerX" id="tGy-im-eNK"/>
                                         <constraint firstItem="03u-p9-okY" firstAttribute="top" secondItem="veD-vl-vVZ" secondAttribute="top" constant="20" id="viH-lG-ezq"/>
+                                        <constraint firstItem="h67-0M-sTP" firstAttribute="top" secondItem="YHc-Dp-obN" secondAttribute="bottom" constant="-3" id="wbm-Jp-W6X"/>
                                         <constraint firstAttribute="trailing" secondItem="03u-p9-okY" secondAttribute="trailing" id="wp8-3I-GL0"/>
+                                        <constraint firstItem="YHc-Dp-obN" firstAttribute="leading" secondItem="veD-vl-vVZ" secondAttribute="leading" constant="70" id="zUz-jF-Wop"/>
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="210" id="Vgk-Jm-5rw"/>
-                                    <constraint firstAttribute="width" constant="300" id="ozS-He-NXZ"/>
+                                    <constraint firstAttribute="height" constant="240" id="Vgk-Jm-5rw"/>
+                                    <constraint firstAttribute="width" constant="290" id="ozS-He-NXZ"/>
                                 </constraints>
                                 <blurEffect style="dark"/>
                                 <userDefinedRuntimeAttributes>

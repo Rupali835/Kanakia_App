@@ -13,6 +13,7 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
 {
 
     @IBOutlet weak var tblPending: UITableView!
+    
     private var toast: JYToast!
     var Up_id : String! = ""
     var Msg = [AnyObject]()
@@ -71,7 +72,6 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func designCell(cView : UIView)
@@ -81,7 +81,7 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
         cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: -1, height: 1)
         cView.layer.shadowRadius = 1
-     
+        cView.backgroundColor = UIColor.white
     }
     
     func GetPendingData()
@@ -113,7 +113,7 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
         var TrainType : String = ""
         let lcDict = Msg[indexPath.row]
         let type = lcDict["app_type"] as! String
-        if type == "1" || type == "2" || type == "5"
+        if type == "1" || type == "2" || type == "5" || type == "7"
         {
         let cell = tblPending.dequeueReusableCell(withIdentifier: "PendingAchiveCell", for: indexPath) as! PendingAchiveCell
         cell.contentView.layer.cornerRadius = 8
@@ -144,6 +144,13 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             {
                 cell.lblChangeNm.text = "Feedback"
                 cell.TrainType.text = ""
+            }
+            
+            if type == "7"
+            {
+                cell.lblChangeNm.text = "KRA Acceptance"
+                cell.TrainType.text = ""
+                cell.btnReject.isHidden = true
             }
             
             cell.btnAccept.tag = indexPath.row
@@ -343,6 +350,26 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
         }
     }
     
+    func AcceptManagerKRA(nIndex: Int)
+    {
+     
+         let lcDict = self.Msg[nIndex]
+        let acceptKra = "http://kanishkagroups.com/sop/pms/index.php/API/acceptKRAManager"
+        
+        let Param : [String: Any] =
+            [        "up_id" :  lcDict["id"] as! String,
+                     "manager_up_id" : self.Up_id
+        ]
+        
+        print(Param)
+        Alamofire.request(acceptKra, method: .post, parameters: Param).responseJSON { (addResp) in
+            
+            print(addResp)
+         
+            self.GetPendingData()
+        }
+    }
+    
     @objc func Accept_Click(sender:UIButton)
     {
         
@@ -361,6 +388,10 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             }else if type == "2"
             {
                 self.GetApprovedRejectTraining(nIndex: index, nStatus: 1)
+            }
+            else if type == "7"
+            {
+                self.AcceptManagerKRA(nIndex: index)
             }
             else
             {

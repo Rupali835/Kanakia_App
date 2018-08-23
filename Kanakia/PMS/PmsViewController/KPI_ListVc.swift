@@ -31,8 +31,11 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem?.title = ""
+        self.navigationItem.leftBarButtonItem?.title = ""
+
         self.lblKraNm.text = self.Kpi_Name
-       self.tblKpi_List.separatorStyle = .none
+        self.tblKpi_List.separatorStyle = .none
         self.tblKpi_List.estimatedRowHeight = 80
         self.tblKpi_List.rowHeight = UITableViewAutomaticDimension
         self.dict = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
@@ -42,7 +45,7 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.tblKpi_List.dataSource = self
          tblKpi_List.register(UINib(nibName: "Without_TargetKpiCell", bundle: nil), forCellReuseIdentifier: "Without_TargetKpiCell")
         
-         tblKpi_List.register(UINib(nibName: "With_TargetKpiCell", bundle: nil), forCellReuseIdentifier: "With_TargetKpiCell")
+        tblKpi_List.register(UINib(nibName: "With_TargetKpiCell", bundle: nil), forCellReuseIdentifier: "With_TargetKpiCell")
         
 //        let dict  = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
 //        self.Up_id = dict["up_id"] as! String
@@ -300,6 +303,7 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
   
     func designCell(cView : UIView)
     {
+
         cView.layer.masksToBounds = false
         cView.layer.shadowColor = UIColor.black.cgColor
         cView.layer.shadowOpacity = 0.7
