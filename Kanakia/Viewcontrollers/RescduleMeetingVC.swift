@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 
-@objc class RescduleMeetingVC: UIViewController, UITextFieldDelegate,UITextViewDelegate,SelectedStringDelegate, UITableViewDataSource, UITableViewDelegate,ModalControllerDelegate
+@objc class RescduleMeetingVC: UIViewController, UITextFieldDelegate,UITextViewDelegate,SelectedStringDelegate, UITableViewDataSource, UITableViewDelegate,ModalControllerDelegate, UIGestureRecognizerDelegate
 {
     func didSelectedDays(DaysArr: [Days], SelectedId: [String], bDaySelected: Bool)
     {
@@ -64,6 +64,7 @@ import Alamofire
     @IBOutlet weak var tblHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var lblMoveBtn: UILabel!
     
+    @IBOutlet weak var btnend: MKButton!
     private var toast: JYToast!
     var Selected_m_id : String!
     var selectedM_id : String?
@@ -184,11 +185,14 @@ import Alamofire
         if m_cMeetingStatus == 0
         {
             self.BtnsView.isHidden = true
-            self.BtnsView.backgroundColor = UIColor.yellow
+            self.OneBtnView.alpha = 1.0
+            self.btnend.setTitle("DECLINE", for: .normal)
+            self.BtnsView.backgroundColor = UIColor.red
             
         }else
         {
             self.BtnsView.isHidden = false
+            self.OneBtnView.alpha = 0.0
         }
         
         if m_Occupied == "1", m_cMeetingStatus == 1
@@ -206,6 +210,19 @@ import Alamofire
         initUi()
     }
 
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isDescendant(of: self.R_ContentView))!
+        {
+            self.view.endEditing(true)
+            return false
+        }
+        return true
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+    
     private func initUi() {
         toast = JYToast()
     }
@@ -388,8 +405,6 @@ import Alamofire
         Alamofire.request(strUrl, method: .post, parameters: pr).responseJSON { (Resp) in
             print(Resp)
         }
-        
-        
     }
     
     func dayOfWeek(cDate : Date) -> String?
@@ -1219,6 +1234,7 @@ import Alamofire
             StartMeeting()
             self.BtnsView.isHidden = true
             self.OneBtnView.alpha = 1.0
+            self.btnend.setTitle("END", for: .normal)
             self.toast.isShow("Meeting Started Successfully")
             return
         }
@@ -1231,13 +1247,35 @@ import Alamofire
         
     @IBAction func BtnEnd_Click(_ sender: Any)
     {
-        self.StatusNum = "2"
-        StartMeeting()
-        self.toast.isShow("Meeting Ended Successfully")
-        return
- 
+        if m_cMeetingStatus == 0
+        {
+           btnend.setTitle("DECLINE", for: .normal)
+           self.RejectMeeting()
+          
+            
+        }else
+        {
+            btnend.setTitle("END", for: .normal)
+            self.StatusNum = "2"
+            StartMeeting()
+            self.toast.isShow("Meeting Ended Successfully")
+            return
+            
+        }
+      
     }
 
+    func RejectMeeting()
+    {
+        let RejectUrl = "http://kanishkagroups.com/sop/android/rejectMeetingMms.php"
+        let Param : [String: Any] = ["logged_in_user_id" : strUserId,
+                                     "m_id" : self.m_id]
+        Alamofire.request(RejectUrl, method: .post, parameters: Param).responseString { (resp) in
+            print(resp)
+            self.toast.isShow("Meeting Rejected and mail is sent to USER")
+        }
+        
+    }
     
     @IBAction private func OnResheduleBtn_Click(_ sender: Any)
     {

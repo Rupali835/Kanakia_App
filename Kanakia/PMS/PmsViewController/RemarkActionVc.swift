@@ -248,4 +248,7 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
           self.view.removeFromSuperview()
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 }

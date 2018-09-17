@@ -385,12 +385,16 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
                 self.designCell(cView: cell.backView)
                 cell.lblTime.text = (lcDict["tpt_added_timestamp"] as! String)
                 cell.lblAddname.text = (lcDict["tpt_name"] as! String)
-                cell.lblAdedBy.text = (lcDict["tpt_added_by_name"] as! String)
+               let addedBy = (lcDict["tpt_added_by_name"] as! String)
+                cell.lblAdedBy.text = "Added By: \(addedBy)"
                 if (lcDict["tpt_status"] as! String) == "0"
                 {
                     cell.btnDelete.isHidden = false
-                    cell.lblStatus.text = "Pending"
+                    cell.lblStatus.text = "Status : Pending"
                 }
+                
+                cell.backView.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
+                cell.viewDelete.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
                 
                 cell.btnDelete.tag = indexPath.row
                 cell.btnDelete.addTarget(self, action: #selector(Delete_Click(sender:)), for: .touchUpInside)
@@ -550,6 +554,9 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
             }
         }
         
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 
  

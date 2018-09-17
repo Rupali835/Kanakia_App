@@ -367,13 +367,17 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.designCell(cView: cell.backView)
                 cell.lblTime.text = (lcDict["fkpi_added_timestamp"] as! String)
                 cell.lblAddname.text = (lcDict["fkpi_name"] as! String)
-                cell.lblAdedBy.text = (lcDict["fkpi_added_by_name"] as! String)
+                
+                let addedBy = (lcDict["fkpi_added_by_name"] as! String)
+                cell.lblAdedBy.text = "Added By: \(addedBy)"
                 if (lcDict["fkpi_status"] as! String) == "0"
                 {
                     cell.btnDelete.isHidden = false
-                    cell.lblStatus.text = "Pending"
+                    cell.lblStatus.text = "Status : Pending"
                 }
                 
+                cell.backView.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
+                cell.viewDelete.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
                 cell.btnDelete.tag = indexPath.row
                 cell.btnDelete.addTarget(self, action: #selector(Delete_Click(sender:)), for: .touchUpInside)
                 return cell
@@ -595,5 +599,9 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     func didSelected()
     {
         self.segmentClick()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }

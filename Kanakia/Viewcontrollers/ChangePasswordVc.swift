@@ -232,5 +232,8 @@ class ChangePasswordVc: UIViewController, UITextFieldDelegate
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
         
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 
 }

@@ -4,7 +4,7 @@ import UIKit
 import Alamofire
 
 
-class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,ModalControllerDelegate
+class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,ModalControllerDelegate, UIGestureRecognizerDelegate
 {
     @IBOutlet weak var txtSubject       : UITextField!
     @IBOutlet weak var txtMeetingLabel  : UITextField!
@@ -188,6 +188,10 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
    
     private func initUi() {
         toast = JYToast()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
     
     @objc private func didtxtGroup()
@@ -879,6 +883,16 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
             self.txtStartTime.isUserInteractionEnabled = true
         }
     }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isDescendant(of: self.ContentView))!
+        {
+            self.view.endEditing(true)
+            return false
+        }
+        return true
+    }
+
     
     func ShowAlertView(sTitile: String, cMessage: String)
     {

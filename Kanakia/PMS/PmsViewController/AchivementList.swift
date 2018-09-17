@@ -364,13 +364,16 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.designCell(cView: cell.backView)
                 cell.lblTime.text = (lcDict["tpa_added_timestamp"] as! String)
                 cell.lblAddname.text = (lcDict["tpa_name"] as! String)
-                cell.lblAdedBy.text = (lcDict["tpa_added_by_name"] as! String)
+                let AddedBy = (lcDict["tpa_added_by_name"] as! String)
+                cell.lblAdedBy.text = "Added By: \(AddedBy)"
                 if (lcDict["tpa_status"] as! String) == "0"
                 {
                     cell.btnDelete.isHidden = false
-                    cell.lblStatus.text = "Pending"
+                    cell.lblStatus.text = "Status : Pending"
                 }
                
+                cell.backView.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
+                cell.viewDelete.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
                 cell.btnDelete.tag = indexPath.row
                 cell.btnDelete.addTarget(self, action: #selector(Delete_Click(sender:)), for: .touchUpInside)
                 return cell
@@ -541,6 +544,10 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        self.view.endEditing(true)
+//    }
      
     
 }

@@ -200,5 +200,8 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
         Fvc.setupData(cId: self.Up_id)
         navigationController?.pushViewController(Fvc, animated: true)
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 
 }

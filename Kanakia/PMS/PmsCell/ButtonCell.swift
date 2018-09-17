@@ -10,6 +10,7 @@ import UIKit
 
 class ButtonCell: UITableViewCell {
   
+    @IBOutlet weak var viewDelete: UIView!
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var backView: UIView!

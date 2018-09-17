@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol FeedbackCellDelegate : class {
+    func didSelectedFirstCell(_ sender: HighLowLightCell)
+}
+
+
 class HighLowLightCell: UITableViewCell {
 
     @IBOutlet weak var lblStatus: UILabel!
@@ -20,12 +25,22 @@ class HighLowLightCell: UITableViewCell {
     @IBOutlet weak var lblAddedBy: UILabel!
     @IBOutlet weak var lblDateTime: UILabel!
     @IBOutlet weak var backView: UIView!
+    
+    weak var delegate : FeedbackCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
           self.selectionStyle = .none
-        // Initialization code
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapOnView))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        self.backView.addGestureRecognizer(tapGesture)
     }
 
+    @objc func tapOnView(onView gesture: UITapGestureRecognizer)
+    {
+        delegate?.didSelectedFirstCell(self)
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

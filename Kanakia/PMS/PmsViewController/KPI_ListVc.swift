@@ -310,6 +310,9 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         cView.layer.shadowOffset = CGSize(width: -1, height: 1)
         cView.layer.shadowRadius = 1
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
     
     
 }

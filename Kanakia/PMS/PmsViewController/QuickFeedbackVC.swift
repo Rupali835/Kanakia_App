@@ -69,7 +69,6 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         initUi()
         
-      //  searchBar.backgroundColor = UIColor.purple
         let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
         strUserNm = userDict["user_name"] as! String
 
@@ -79,18 +78,16 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.txtFeedback.delegate = self
         self.txtFeedback.text = "Enter a Quick feedback here"
         self.txtTraining.text = "Enter a Training here"
-      //  self.textViewDidBeginEditing(self.txtFeedback)
         self.txtFeedback.textColor = UIColor.gray
         self.txtTraining.textColor = UIColor.gray
         tblSearch.delegate = self
         tblSearch.dataSource = self
         searchBar.delegate = self
-       self.tblSearch.isHidden = true
+        self.tblSearch.isHidden = true
        tblSearch.separatorStyle = .none
        print("Valid", valid)
         self.tblSearch.register(UINib(nibName: "teamCell", bundle: nil), forCellReuseIdentifier: "teamCell")
-//        getAllUserMd()
-//        getManagerUserData()
+
         getPendingCount()
         txtFeedback.layer.cornerRadius = 5
         txtFeedback.layer.borderWidth = 1.0
@@ -100,19 +97,14 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         txtTraining.layer.borderWidth = 1.0
         txtTraining.layer.borderColor = UIColor.purple.cgColor
         
-//        TrainingView.layer.cornerRadius = 5
-//        TrainingView.layer.borderWidth = 1.0
-//        TrainingView.layer.borderColor = UIColor.purple.cgColor
-    
         
       let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
         
-       self.dropShadow(cView: TrainingView)
+        self.dropShadow(cView: TrainingView)
         self.dropShadow(cView: PendingView)
         self.dropShadow(cView: TeamView)
         
         view.addGestureRecognizer(tap)
-        
         
         let button1 = UIBarButtonItem(image: UIImage(named: "MSG"), style: .plain, target: self, action: #selector(btnChat_Click))
         self.navigationItem.rightBarButtonItem  = button1
@@ -440,22 +432,6 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
        
     }
     
-    @IBAction func addTrainingBtn_Click(_ sender: Any)
-    {
-//        if searchBar.text == ""
-//        {
-//            self.toast.isShow("Please enter a employee name")
-//            self.valid = false
-//        }
-//        else
-//        {
-//            self.cAddTraining.view.frame = self.view.bounds
-//            self.cAddTraining.setId(nStatus: self.UserId, Tpid: self.Up_id)
-//            self.view.addSubview(self.cAddTraining.view)
-//            self.cAddTraining.view.clipsToBounds = true
-//        }
-       
-    }
     
     @IBAction func BtnMdPendingApproval(_ sender: Any)
     {
@@ -592,5 +568,7 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.view.addSubview(self.cFeedback.view)
         self.cFeedback.view.clipsToBounds = true
     }
+    
+   
     
 }

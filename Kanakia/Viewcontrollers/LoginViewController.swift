@@ -276,4 +276,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
              UIApplication.shared.open(url, options: [:], completionHandler: {(status) in })
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+    
 }

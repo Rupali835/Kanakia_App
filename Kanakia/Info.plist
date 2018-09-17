@@ -6,6 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>K-World</string>
+	<key>CFBundleDocumentTypes</key>
+	<array/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -33,10 +35,20 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>string</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Always</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Usage location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>When using an app</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>string</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

@@ -102,6 +102,7 @@ class Kra_FeedbackVc: UIViewController {
     {
         let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "GetFeedbackVc") as! GetFeedbackVc
          vc1.setupData(cId: self.Up_id)
+        vc1.checkEmp = Check
         navigationController?.pushViewController(vc1, animated: true)
     }
     

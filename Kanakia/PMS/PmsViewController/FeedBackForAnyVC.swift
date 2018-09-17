@@ -383,4 +383,8 @@ class FeedBackForAnyVC: UIViewController, UITextViewDelegate, UITableViewDelegat
         
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+    
 }

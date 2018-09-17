@@ -13,19 +13,37 @@ import Firebase
 import UserNotifications
 import FirebaseInstanceID
 import FirebaseMessaging
+import FirebaseDatabase
+import GoogleMaps
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate, CLLocationManagerDelegate
 {
     
     var window: UIWindow?
     var FCMToken: String = ""
     var NotificationCnt = Int(0)
     var categoryIdentifier : String = ""
+     var ref : DatabaseReference?
+    let googleApiKey = "AIzaSyAaRUNibWQZtpnRWBMhZatfj43X7VuL7kQ"
+    let cHome : HomeVC! = nil
+    var locationManager : CLLocationManager?
+    var distanceStatus = Bool(true)
+    var traveledDistance: Double = 0
+    var startLocation: CLLocation!
+    var lastLocation: CLLocation!
+    var PreviouseLocation : CLLocationCoordinate2D!
+    var kUserDefaults = UserDefaults.standard
+    var TotalDist : Double = 0
+    var PreviousLat : Double = 0
+    var PreviousLong : Double = 0
+   
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
+        
         NotificationCnt = 0
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -61,77 +79,207 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             navigationController.setViewControllers([yourViewController], animated: true)
         }
         
+        ref = Database.database().reference()
+        
+      
+        GMSServices.provideAPIKey(googleApiKey)
+        application.setMinimumBackgroundFetchInterval(5)
+        application.isIdleTimerDisabled = false
+        
+        locationManager?.delegate = self
         registerForPushNotifications()
-        
+        startTimer()
         return true
-        
-        
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String)
     {
         print("Firebase registration token: \(fcmToken)")
       self.FCMToken = fcmToken
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
+      
     }
     
     
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
     }
     
     func applicationDidEnterBackground(_ application: UIApplication)
     {
           NotificationCnt += 1
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+         //startTimer()
+        self.goBackground()
+
+
     }
+
+    // MARK : LOCATION TRACKING DATA
+    
+    func startTimer()
+    {
+        let timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateLocation()
+    {
+        self.setupLocationManager()
+    }
+    
+    func setupLocationManager(){
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        self.locationManager?.requestAlwaysAuthorization()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager?.startUpdatingLocation()
+        locationManager?.activityType = .fitness
+        locationManager?.startMonitoringSignificantLocationChanges()
+     //   locationManager?.distanceFilter = 10
+        
+        
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+       
+        if let result = UserDefaults.standard.value(forKey: "userdata") as? NSDictionary
+        {
+            
+            if result != nil
+            {
+                
+                let userRef = ref?.child((result["user_id"] as? String)!)
+                
+                
+                let dNamem = UIDevice.current.name
+                let dUdid = UIDevice.current.identifierForVendor?.uuidString
+                let str = dNamem + " : " + dUdid!
+                let aString = str
+                let child = userRef?.child(aString).childByAutoId()
+                
+                if distanceStatus == true
+                {
+//                    if kUserDefaults.value(forKey: "latitude") == nil
+//                    {
+                        if (PreviousLat == 0) && (PreviousLong == 0)
+                            
+                        {
+                            startLocation = locations.first
+                            PreviousLat = startLocation.coordinate.latitude
+                            PreviousLong = startLocation.coordinate.longitude
+                            child?.child("latitude").setValue(PreviousLat)
+                            child?.child("longitude").setValue(PreviousLong)
+                            traveledDistance = 0
+                            TotalDist = 0
+                            
+                            PreviouseLocation = CLLocationCoordinate2D(latitude: PreviousLat, longitude: PreviousLong)
+                           
+                        kUserDefaults.set(PreviousLat, forKey: "latitude")
+                        kUserDefaults.set(PreviousLong, forKey: "longitude")
+                            
+                            
+                        }else if let location = locations.last
+                        {
+                            let LAT = location.coordinate.latitude
+                            let LONG = location.coordinate.longitude
+                            child?.child("latitude").setValue(LAT)
+                            child?.child("longitude").setValue(LONG)
+                            
+                           
+                            let latval = kUserDefaults.value(forKey: "latitude") as? Double
+                            
+                            let longVal = kUserDefaults.value(forKey: "longitude") as? Double
+                            
+                            startLocation = CLLocation(latitude: latval!, longitude: longVal!)
+                            
+                            lastLocation = CLLocation(latitude: LAT, longitude: LONG)
+                      
+                            traveledDistance = startLocation.distance(from: lastLocation)
+                            
+                        
+                            TotalDist = TotalDist + traveledDistance
+                            
+                            kUserDefaults.set(LAT, forKey: "latitude")
+                            kUserDefaults.set(LONG, forKey: "longitude")
+                            
+                        }
+                    
+//                    }else{
+//                        return
+//                    }
+                    
+               
+                    print("Called")
+                    
+                    let currentTimeStamp = Date().toMillis()
+                child?.child("accuracy").setValue(kCLLocationAccuracyNearestTenMeters)
+                    child?.child("time").setValue(currentTimeStamp)
+                    child?.child("distance").setValue(traveledDistance)
+                    child?.child("totalDistance").setValue(TotalDist)
+                    
+                   // distanceStatus = false
+                    locationManager?.stopUpdatingLocation()
+                    
+                }
+                if (locationManager?.distanceFilter)! > Double(10)
+                {
+                    distanceStatus = true
+                    locationManager?.startUpdatingLocation()
+                }
+            
+            }else
+            {
+                print("data")
+            }
+            
+        }else{
+            return
+        }
+
+        
+    }
+    
+    
+    // Below Mehtod will print error if not able to update location.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error")
+        
+        if (error as? CLError)?.code == .denied {
+            manager.stopUpdatingLocation()
+            manager.stopMonitoringSignificantLocationChanges()
+        }
+    }
+    
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         
        UIApplication.shared.applicationIconBadgeNumber = 0
         NotificationCnt = 0
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         
         UIApplication.shared.applicationIconBadgeNumber = 0
         NotificationCnt = 0
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+       
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
+    
         self.saveContext()
+        startTimer()
     }
     
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
+       
         let container = NSPersistentContainer(name: "MMSApp")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
+               
+              
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -146,8 +294,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+               
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
@@ -194,8 +341,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         guard
 
-            let cat = (userInfo[AnyHashable("category")] as? String),
-            
+           
             let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
             
             let alert = aps["alert"] as? NSDictionary,
@@ -204,12 +350,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             let subtitle = alert["subtitle"] as? String,
             let sound = aps["sound"] as? String
             
-     //       self.categoryIdentifier = cat
+     
             else {
                 // handle any error here
                 return
         }
-            print("Category", self.categoryIdentifier)
+        
+        
+        
         switch title
         {
         case "New Meeting", "Today's Meeting" :
@@ -269,8 +417,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
               let storyboard = UIStoryboard(name: "Pms", bundle: nil)
               let vc = storyboard.instantiateViewController(withIdentifier: "GetFeedbackVc") as! GetFeedbackVc
               vc.setupData(cId: subtitle)
-           //   navigationController.title = sound
-             //   UINavigationItem.init(title: sound)
               navigationController.navigationItem.title = sound
               
               navigationController.pushViewController(vc, animated: true)
@@ -280,7 +426,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             let storyboard = UIStoryboard(name: "Pms", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TrainListVc") as! TrainListVc
             vc.setupData(cId: subtitle)
-        //    navigationController.title = sound
             navigationController.pushViewController(vc, animated: true)
             break
             
@@ -359,15 +504,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             print("Permission granted: \(granted)")
             
             guard granted else { return }
-            
-        let AcceptAction = UNNotificationAction(identifier: "viewActionIdentifier", title: "Reject", options: [])
-            
-            let CategoryIdentifier = UNNotificationCategory(identifier: self.categoryIdentifier, actions: [AcceptAction],
-                intentIdentifiers: [], options: [])
-           
-            UNUserNotificationCenter.current().setNotificationCategories([CategoryIdentifier])
-            
-               self.getNotificationSettings()
+            self.getNotificationSettings()
         }
     }
 
@@ -375,7 +512,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        // Print full message.
         print("message recived")
         NotificationCnt += 1
         UIApplication.shared.applicationIconBadgeNumber = NotificationCnt
@@ -384,6 +520,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         completionHandler(UIBackgroundFetchResult.newData)
     }
 
+    
+    func goBackground() {
+        let app = UIApplication.shared
+        var bgTask: UIBackgroundTaskIdentifier = 0
+        bgTask = app.beginBackgroundTask(expirationHandler:{
+            NSLog("Expired: %lu", bgTask)
+            app.endBackgroundTask(bgTask)
+        })
+        print("Background: %lu", bgTask)
+    }
     
 }
 

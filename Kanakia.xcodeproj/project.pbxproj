@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		0299E3C36D8035BF421F44D1 /* Pods_KanakiaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */; };
 		1EE54A4C3FA7E62FECDA2EDE /* Pods_Kanakia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */; };
+		580364F82146F71F00C2B8CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580364F72146F71F00C2B8CA /* MapKit.framework */; };
+		5850076421465A970049BA54 /* NotificationRedirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850076321465A970049BA54 /* NotificationRedirect.swift */; };
+		5850076A21467A330049BA54 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850076921467A320049BA54 /* CoreLocation.framework */; };
+		58FE47972147A17600134A8D /* UserNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47962147A17600134A8D /* UserNameVC.swift */; };
+		58FE47992147A19200134A8D /* UserDeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47982147A19200134A8D /* UserDeviceVC.swift */; };
+		58FE479B2147A1D800134A8D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE479A2147A1D800134A8D /* MapViewController.swift */; };
+		58FE47A32147A37A00134A8D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47A12147A37A00134A8D /* LocationCell.swift */; };
+		58FE47A42147A37A00134A8D /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58FE47A22147A37A00134A8D /* LocationCell.xib */; };
 		8C58F575E0A69FB1BB9EE8DC /* Pods_KanakiaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */; };
 		CE14C63E20ACA45100AFF955 /* ActoinRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */; };
 		CE14C63F20ACA45100AFF955 /* ActoinRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */; };
@@ -172,6 +180,9 @@
 		CE43796220A8BBEA00C3B14E /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43795720A8BBE900C3B14E /* StringValidation.swift */; };
 		CE61C6DD20C6744F005B8468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */; };
 		CE6DCE3D20E0C74300B51536 /* ManagerLoginFirstVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCE3C20E0C74300B51536 /* ManagerLoginFirstVc.swift */; };
+		CED81372212E88230012FBFA /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = CED81371212E88230012FBFA /* KLCPopup.m */; };
+		CED81375212EA0410012FBFA /* FeedbackRplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED81373212EA0410012FBFA /* FeedbackRplyCell.swift */; };
+		CED81376212EA0410012FBFA /* FeedbackRplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED81374212EA0410012FBFA /* FeedbackRplyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +207,14 @@
 		3E142D56DC8E2097C8056E26 /* Pods-KanakiaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C80C8B692EF9B382C86DB5C /* Pods-KanakiaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		580364F72146F71F00C2B8CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5850076321465A970049BA54 /* NotificationRedirect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRedirect.swift; sourceTree = "<group>"; };
+		5850076921467A320049BA54 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		58FE47962147A17600134A8D /* UserNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameVC.swift; sourceTree = "<group>"; };
+		58FE47982147A19200134A8D /* UserDeviceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceVC.swift; sourceTree = "<group>"; };
+		58FE479A2147A1D800134A8D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		58FE47A12147A37A00134A8D /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		58FE47A22147A37A00134A8D /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
 		638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kanakia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57E86AD84CCD9F8F390B758 /* Pods-Kanakia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanakia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia.release.xcconfig"; sourceTree = "<group>"; };
@@ -424,6 +443,10 @@
 		CE43795720A8BBE900C3B14E /* StringValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValidation.swift; sourceTree = "<group>"; };
 		CE61C6DC20C6744E005B8468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE6DCE3C20E0C74300B51536 /* ManagerLoginFirstVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLoginFirstVc.swift; sourceTree = "<group>"; };
+		CED81370212E88230012FBFA /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
+		CED81371212E88230012FBFA /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
+		CED81373212EA0410012FBFA /* FeedbackRplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRplyCell.swift; sourceTree = "<group>"; };
+		CED81374212EA0410012FBFA /* FeedbackRplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackRplyCell.xib; sourceTree = "<group>"; };
 		D25BF72F95C3022EEB0CA529 /* Pods-KanakiaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -432,6 +455,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5850076A21467A330049BA54 /* CoreLocation.framework in Frameworks */,
+				580364F82146F71F00C2B8CA /* MapKit.framework in Frameworks */,
 				1EE54A4C3FA7E62FECDA2EDE /* Pods_Kanakia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,11 +483,25 @@
 		125DE621FC2671C651E64041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				580364F72146F71F00C2B8CA /* MapKit.framework */,
+				5850076921467A320049BA54 /* CoreLocation.framework */,
 				A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */,
 				638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */,
 				55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		58FE47952147A15400134A8D /* LocationFiles */ = {
+			isa = PBXGroup;
+			children = (
+				58FE47962147A17600134A8D /* UserNameVC.swift */,
+				58FE47982147A19200134A8D /* UserDeviceVC.swift */,
+				58FE479A2147A1D800134A8D /* MapViewController.swift */,
+				58FE47A12147A37A00134A8D /* LocationCell.swift */,
+				58FE47A22147A37A00134A8D /* LocationCell.xib */,
+			);
+			path = LocationFiles;
 			sourceTree = "<group>";
 		};
 		CE43776920A8B06300C3B14E = {
@@ -490,6 +529,7 @@
 		CE43777420A8B06300C3B14E /* Kanakia */ = {
 			isa = PBXGroup;
 			children = (
+				58FE47952147A15400134A8D /* LocationFiles */,
 				CE43794E20A8BBE900C3B14E /* Models */,
 				CE43783720A8B34600C3B14E /* CellClass */,
 				CE43784420A8B34600C3B14E /* MRMS */,
@@ -548,6 +588,7 @@
 				CE4377BD20A8B2F000C3B14E /* PDFReaderVC.swift */,
 				CE4377BE20A8B2F000C3B14E /* RescduleMeetingVC.swift */,
 				CE4377BF20A8B2F000C3B14E /* test.pdf */,
+				5850076321465A970049BA54 /* NotificationRedirect.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -589,6 +630,8 @@
 				CE43781020A8B34500C3B14E /* With_TargetKpiCell.xib */,
 				CE43781120A8B34500C3B14E /* Without_TargetKpiCell.swift */,
 				CE43781220A8B34500C3B14E /* Without_TargetKpiCell.xib */,
+				CED81373212EA0410012FBFA /* FeedbackRplyCell.swift */,
+				CED81374212EA0410012FBFA /* FeedbackRplyCell.xib */,
 			);
 			path = PmsCell;
 			sourceTree = "<group>";
@@ -738,6 +781,7 @@
 		CE43785720A8B34700C3B14E /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				CED8136F212E88230012FBFA /* KLCPopup */,
 				CE43785820A8B34700C3B14E /* FSCalendar */,
 				CE43787A20A8B34700C3B14E /* JYToast.swift */,
 				CE43787B20A8B34700C3B14E /* KBImageView */,
@@ -959,6 +1003,15 @@
 			path = "String extension";
 			sourceTree = "<group>";
 		};
+		CED8136F212E88230012FBFA /* KLCPopup */ = {
+			isa = PBXGroup;
+			children = (
+				CED81370212E88230012FBFA /* KLCPopup.h */,
+				CED81371212E88230012FBFA /* KLCPopup.m */,
+			);
+			path = KLCPopup;
+			sourceTree = "<group>";
+		};
 		FBB150665DDC6551A6D18D3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1055,6 +1108,12 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Multipath = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1112,6 +1171,7 @@
 				CE43778320A8B06300C3B14E /* LaunchScreen.storyboard in Resources */,
 				CE43794B20A8B34800C3B14E /* DBAttachmentPickerController.strings in Resources */,
 				CE4378E120A8B34800C3B14E /* teamCell.xib in Resources */,
+				58FE47A42147A37A00134A8D /* LocationCell.xib in Resources */,
 				CE4378FB20A8B34800C3B14E /* DataCell.xib in Resources */,
 				CE43790820A8B34800C3B14E /* MyMeetingCell.xib in Resources */,
 				CE4378DF20A8B34800C3B14E /* PendingKpiCell.xib in Resources */,
@@ -1134,6 +1194,7 @@
 				CE4378D920A8B34800C3B14E /* KraCell.xib in Resources */,
 				CE4377CF20A8B2F100C3B14E /* test.pdf in Resources */,
 				CE43792820A8B34800C3B14E /* Info.plist in Resources */,
+				CED81376212EA0410012FBFA /* FeedbackRplyCell.xib in Resources */,
 				CE43794720A8B34800C3B14E /* DBAssetItemsViewController.xib in Resources */,
 				CE4377C720A8B2F100C3B14E /* ksplLogo.png in Resources */,
 				CE4378FD20A8B34800C3B14E /* DayCell.xib in Resources */,
@@ -1188,9 +1249,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1203,9 +1267,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1240,6 +1307,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1247,6 +1315,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1264,6 +1333,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1271,6 +1341,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1288,6 +1359,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1295,6 +1367,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1326,9 +1399,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1345,8 +1421,10 @@
 				CE43793320A8B34800C3B14E /* MKLabel.swift in Sources */,
 				CE4378D120A8B34800C3B14E /* ButtonCell.swift in Sources */,
 				CE43793D20A8B34800C3B14E /* NSIndexSet+DBLibrary.m in Sources */,
+				CED81375212EA0410012FBFA /* FeedbackRplyCell.swift in Sources */,
 				CE43793E20A8B34800C3B14E /* UIImage+DBAssetIcons.m in Sources */,
 				CE4378EF20A8B34800C3B14E /* MdLoginVc.swift in Sources */,
+				58FE47A32147A37A00134A8D /* LocationCell.swift in Sources */,
 				CE43792D20A8B34800C3B14E /* MKCardView.swift in Sources */,
 				CE43791520A8B34800C3B14E /* Storyboards.swift in Sources */,
 				CE4378F220A8B34800C3B14E /* RemarkActionVc.swift in Sources */,
@@ -1355,6 +1433,7 @@
 				CE4378E920A8B34800C3B14E /* GetFeedbackVc.swift in Sources */,
 				CE43790F20A8B34800C3B14E /* AppStoryboard.swift in Sources */,
 				CE4378E620A8B34800C3B14E /* AchivementList.swift in Sources */,
+				5850076421465A970049BA54 /* NotificationRedirect.swift in Sources */,
 				CE43791D20A8B34800C3B14E /* FSCalendarCollectionView.m in Sources */,
 				CE4377CB20A8B2F100C3B14E /* MomVc.swift in Sources */,
 				CE43792620A8B34800C3B14E /* FSCalendarTransitionCoordinator.m in Sources */,
@@ -1417,9 +1496,11 @@
 				CE43791120A8B34800C3B14E /* CollectionCell.m in Sources */,
 				CE4377C920A8B2F100C3B14E /* LunarFormatter.swift in Sources */,
 				CE43791920A8B34800C3B14E /* FSCalendar.m in Sources */,
+				CED81372212E88230012FBFA /* KLCPopup.m in Sources */,
 				CE43790720A8B34800C3B14E /* MyMeetingCell.swift in Sources */,
 				CE43793820A8B34800C3B14E /* MKSnackbar.swift in Sources */,
 				CE43795C20A8BBEA00C3B14E /* APIManager.swift in Sources */,
+				58FE47992147A19200134A8D /* UserDeviceVC.swift in Sources */,
 				CE43796220A8BBEA00C3B14E /* StringValidation.swift in Sources */,
 				CE43794820A8B34800C3B14E /* DBAssetPickerController.m in Sources */,
 				CE43796020A8BBEA00C3B14E /* MMSDetails.swift in Sources */,
@@ -1432,10 +1513,12 @@
 				CE4377CE20A8B2F100C3B14E /* RescduleMeetingVC.swift in Sources */,
 				CE43791220A8B34800C3B14E /* MyBookingsCell.m in Sources */,
 				CE4378E720A8B34800C3B14E /* AddTrainingMdVc.swift in Sources */,
+				58FE47972147A17600134A8D /* UserNameVC.swift in Sources */,
 				CE43792920A8B34800C3B14E /* JYToast.swift in Sources */,
 				CE43794120A8B34800C3B14E /* DBThumbnailPhotoCell.m in Sources */,
 				CE4378F720A8B34800C3B14E /* VisitorMgmtCell.swift in Sources */,
 				CE43791620A8B34800C3B14E /* SubCatagoryModel.m in Sources */,
+				58FE479B2147A1D800134A8D /* MapViewController.swift in Sources */,
 				CE43791B20A8B34800C3B14E /* FSCalendarCalculator.m in Sources */,
 				CE4377CA20A8B2F100C3B14E /* MeetingRoomVc.swift in Sources */,
 				CE43791E20A8B34800C3B14E /* FSCalendarCollectionViewLayout.m in Sources */,
@@ -1665,8 +1748,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kanakia/Kanakia.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: KANAKIA SPACES REALTY PRIVATE LIMITED";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
@@ -1674,8 +1757,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ae187c3-7825-474c-b0ce-35eaa2a7f2ef";
-				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
+				PROVISIONING_PROFILE = "7fde6bb7-7407-4753-8588-8bc18ccb2c51";
+				PROVISIONING_PROFILE_SPECIFIER = KanakiaDeveloperCert;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1690,8 +1773,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kanakia/Kanakia.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: KANAKIA SPACES REALTY PRIVATE LIMITED";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
@@ -1699,8 +1782,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ae187c3-7825-474c-b0ce-35eaa2a7f2ef";
-				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
+				PROVISIONING_PROFILE = "7fde6bb7-7407-4753-8588-8bc18ccb2c51";
+				PROVISIONING_PROFILE_SPECIFIER = KanakiaDeveloperCert;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

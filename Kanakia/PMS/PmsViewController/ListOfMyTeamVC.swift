@@ -215,6 +215,9 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
      
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
     
 }
 

@@ -54,7 +54,7 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
     var imgArr = [String]()
     
     var DateArr = [String]()
-    //var DateArr = ["2018-04-10","2018-04-11","2018-04-12","2018-04-13","2018-04-14","2018-04-15","2018-04-16","2018-04-17","2018-04-18","2018-04-19","2018-04-20","2018-04-21"]
+    
     
     var strUserId : String = ""
 
@@ -594,5 +594,8 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
         
      }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
     
 }

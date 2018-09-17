@@ -8,6 +8,8 @@ target 'Kanakia' do
 pod 'Alamofire'
  pod 'Firebase/Core'
  pod 'Firebase/Messaging'
+pod 'Firebase/Database'
+pod 'GoogleMaps'
 
   # Pods for Kanakia
 
@@ -18,6 +20,9 @@ pod 'Alamofire'
  pod 'Alamofire'
  pod 'Firebase/Core'
  pod 'Firebase/Messaging'
+pod 'Firebase/Database'
+pod 'GoogleMaps'
+
 
   end
 
@@ -27,6 +32,8 @@ pod 'Alamofire'
  pod 'Alamofire'
  pod 'Firebase/Core'
  pod 'Firebase/Messaging'
+pod 'Firebase/Database'
+pod 'GoogleMaps'
   end
 
 end

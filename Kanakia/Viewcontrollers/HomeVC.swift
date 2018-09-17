@@ -8,6 +8,10 @@
 
 import UIKit
 import Alamofire
+import Firebase
+import FirebaseDatabase
+import GoogleMaps
+import CoreLocation
 
 enum ViewCtr :Int
 {
@@ -17,7 +21,7 @@ enum ViewCtr :Int
     case PmsVc    = 3
 }
 
-class HomeVC: UIViewController, UITextFieldDelegate
+class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
 {
     
     @IBOutlet weak var lblVms: UIButton!
@@ -48,13 +52,19 @@ class HomeVC: UIViewController, UITextFieldDelegate
     var Check = Bool(false)
     var JSonDict = [String: AnyObject]()
     var strUserName : String = ""
+    var locationManager : CLLocationManager?
+    var ref : DatabaseReference?
+    
+    var userDict = NSDictionary()
+  
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.setHidesBackButton(true, animated: false)
     
-        let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
+        userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
         strUserId = userDict["user_id"] as! String
         VmsStatus = userDict["user_vms_access"] as! String
         MrmsStatus = userDict["user_mrms_access"] as! String
@@ -94,8 +104,16 @@ class HomeVC: UIViewController, UITextFieldDelegate
         let UserDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
         strUserName = UserDict["user_emp_id"] as! String
          getUserType()
+        
+        ref = Database.database().reference()
+    
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+            startTimer()
+    }
+    
     func setupData(cId: String)
     {
         self.Up_id = cId
@@ -206,7 +224,7 @@ class HomeVC: UIViewController, UITextFieldDelegate
                     let controller = VisitorManagementVC(nibName: "VisitorManagementVC", bundle: nil) 
                     self.navigationController?.pushViewController(controller, animated: true)
                 break
-            case 2:
+              case 2:
                
                 let cVC = AppStoryboard.Mrms.instance.instantiateViewController(withIdentifier: ViewController.storyboardID) as! ViewController
                 navigationController?.pushViewController(cVC, animated: true)
@@ -316,7 +334,101 @@ class HomeVC: UIViewController, UITextFieldDelegate
         InterfaceVC.setUserId(cUserId: self.strUserId,cJSON: self.JSonDict)
         navigationController?.pushViewController(InterfaceVC, animated: true)
     }
+   
     
     
+    // MARK : LOCATION TRACKING DATA
     
+    func startTimer()
+    {
+        let timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateLocation()
+    {
+        self.setupLocationManager()
+    }
+    
+    func setupLocationManager(){
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        self.locationManager?.requestAlwaysAuthorization()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager?.startUpdatingLocation()
+      //  locationManager?.distanceFilter = 10
+      //  locationManager?.allowsBackgroundLocationUpdates = true
+     
+     //   locationManager?.pausesLocationUpdatesAutomatically = true
+        locationManager?.activityType = .fitness
+        
+        
+        
+        
+        
+    }
+    
+ /*   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+     
+        if userDict != nil
+        {
+            
+            let lastLocation: CLLocation = locations[locations.count - 1]
+            let LAT = lastLocation.coordinate.latitude
+            let LONG = lastLocation.coordinate.longitude
+            
+            let accuracy = lastLocation.horizontalAccuracy
+            
+    //        if (locationManager?.distanceFilter)! >= Double(10)
+    //        {
+                let userRef = ref?.child(strUserId)
+                // Devendra mehra
+                let dNamem = UIDevice.current.name
+                let dUdid = UIDevice.current.identifierForVendor?.uuidString
+                let str = dNamem + " : " + dUdid!
+                let aString = str
+                let newString = aString.replacingOccurrences(of: "'", with: " ", options: .literal, range: nil)
+            
+                print("Called")
+            
+                let child = userRef?.child(aString).childByAutoId()
+                let lat = child?.child("latitude").setValue(LAT)
+                let long = child?.child("longitude").setValue(LONG)
+                let acc = child?.child("accuracy").setValue(accuracy)
+                let currentTimeStamp = Date().toMillis()
+                let time = child?.child("time").setValue(currentTimeStamp)
+            
+            
+            
+      //      }
+            
+            
+        }else{
+            print("No data")
+        }
+        
+        
+    
+    }
+    
+ 
+    // Below Mehtod will print error if not able to update location.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error")
+    }
+ 
+ */
+   
+    @IBAction func btnLocation_OnClick(_ sender: Any)
+    {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "UserNameVC") as! UserNameVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+}
+extension Date {
+    func toMillis() -> Int64! {
+        return Int64(self.timeIntervalSince1970 * 1000)
+    }
 }

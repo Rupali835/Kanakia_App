@@ -9,30 +9,35 @@
 import UIKit
 import Alamofire
 
-class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate
+class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, FeedbackCellDelegate
 {
-
+   
+    @IBOutlet weak var txtReply: UITextView!
+    @IBOutlet var viewReply: UIView!
     @IBOutlet weak var txtFeedback: UITextView!
     @IBOutlet weak var tblFeedback: UITableView!
     var Up_id : String!
     var Msg = [AnyObject]()
     private var toast: JYToast!
-     var LoginUp_id : String = ""
+    var LoginUp_id : String = ""
     var dict : NSDictionary!
      var valid = Bool(true)
+     var popUp : KLCPopup!
+    var FeedbackId : String = ""
+    var changeDate = Date()
+    var index = IndexPath()
+    var checkEmp = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    //     self.navigationController?.navigationBar.barTintColor = UIColor(red:0.61, green:0.16, blue:0.69, alpha:1.0)
-        
+    
+         popUp = KLCPopup()
         self.navigationItem.backBarButtonItem?.title = ""
 
         self.txtFeedback.delegate = self
         txtFeedback.text = "Enter Feedback"
-        self.tblFeedback.estimatedRowHeight = 80
+        self.tblFeedback.estimatedRowHeight = 140
         self.tblFeedback.rowHeight = UITableViewAutomaticDimension
-
 
         self.dict = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
         LoginUp_id = self.dict["up_id"] as! String
@@ -40,12 +45,17 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.tblFeedback.separatorStyle = .none
         tblFeedback.delegate   = self
         tblFeedback.dataSource = self
+        tblFeedback.allowsSelection = true
         tblFeedback.separatorStyle = .none
+        tblFeedback.isUserInteractionEnabled = true
         
         tblFeedback.register(UINib(nibName: "ButtonCell", bundle: nil), forCellReuseIdentifier: "ButtonCell")
+        
         tblFeedback.register(UINib(nibName: "HighLowLightCell", bundle: nil), forCellReuseIdentifier: "HighLowLightCell")
         
+        tblFeedback.register(UINib(nibName: "FeedbackRplyCell", bundle: nil), forCellReuseIdentifier: "FeedbackRplyCell")
         
+       
         getFeedback()
         initUi()
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -207,8 +217,6 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: -1, height: 1)
         cView.layer.shadowRadius = 1
-        cView.backgroundColor = UIColor.white
-
     }
     
     private func initUi() {
@@ -246,6 +254,28 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
     }
 
+    func setRplyCellDate(cell: FeedbackRplyCell, lcDict: [String: AnyObject], indexPath: IndexPath)
+    {
+        cell.contentView.layer.cornerRadius = 8
+        cell.contentView.layer.masksToBounds = true
+        self.designCell(cView: cell.backView)
+        cell.backView.backgroundColor = UIColor(red:0.55, green:0.87, blue:1.00, alpha:1.0)
+        
+        cell.lblRplyStr.text = (lcDict["tpf_reply"] as! String)
+        let rplyFrom = lcDict["tpf_reply_by_name"] as! String
+        cell.lblRplyFrom.text = "Reply from : \(rplyFrom)"
+        cell.lblFeedbackStr.text = (lcDict["tpf_name"] as! String)
+        let addedBy = lcDict["tpf_added_by_name"] as! String
+        cell.lblFdbkAddedBy.text = "Added By : \(addedBy)"
+        
+        let acceptBy = lcDict["tpf_approved_by_name"] as! String
+        cell.lblfdbkAccptedBy.text = "Accepted By : \(acceptBy)"
+        cell.lblDate.text = (lcDict["tpf_approved_timestamp"] as! String)
+        
+        
+    }
+    
+    
     
     func SetCellData(cell: HighLowLightCell, lcDict: [String: AnyObject],indexPath: IndexPath)
     {
@@ -259,6 +289,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.lblLightName.text = lcDict["tpf_name"] as? String
         cell.lblAddedBy.text = (lcDict["tpf_added_by_name"] as! String)
         cell.lblDateTime.text = (lcDict["tpf_added_timestamp"] as! String)
+      
         cell.lblApprovedBy.text = (lcDict["tpf_approved_by_name"] as! String)
         
         cell.btnAccept.tag = indexPath.row
@@ -310,54 +341,74 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
          let lcDict = self.Msg[indexPath.row]
          let Tpa_St = lcDict["tpf_status"] as? String
+        self.FeedbackId = (lcDict["tpf_id"] as? String)!
+        let repltStr = lcDict["tpf_reply"] as? String
         
         if self.Up_id != LoginUp_id
         {
-        let cell = tblFeedback.dequeueReusableCell(withIdentifier: "HighLowLightCell", for: indexPath)
-            as! HighLowLightCell
-      
-             self.SetCellData(cell: cell, lcDict: lcDict as! [String : AnyObject],indexPath: indexPath)
-            
-        return cell
+            if repltStr == ""
+            {
+                let cell = tblFeedback.dequeueReusableCell(withIdentifier: "HighLowLightCell", for: indexPath) as! HighLowLightCell
+                cell.delegate = self
+                
+                self.SetCellData(cell: cell, lcDict: lcDict as! [String : AnyObject],indexPath: indexPath)
+                
+                return cell
+            }else{
+                let cell = tblFeedback.dequeueReusableCell(withIdentifier: "FeedbackRplyCell", for: indexPath) as! FeedbackRplyCell
+                self.setRplyCellDate(cell: cell, lcDict: lcDict as! [String: AnyObject], indexPath: indexPath)
+                return cell
+            }
+        
         }else
         {
             if (Tpa_St == "0")
             {
-                print("UpID =", self.Up_id)
                 let cell = tblFeedback.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath) as! ButtonCell
                 
                 let lcDict = self.Msg[indexPath.row]
+                cell.backView.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
+                cell.viewDelete.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
                 cell.btnDelete.isHidden = true
                 cell.contentView.layer.cornerRadius = 8
                 cell.contentView.layer.masksToBounds = true
                 self.designCell(cView: cell.backView)
                 cell.lblTime.text = (lcDict["tpf_added_timestamp"] as! String)
-                cell.lblAddname.text = (lcDict["tpf_name"] as! String)
-                cell.lblAdedBy.text = (lcDict["tpf_added_by_name"] as! String)
+                cell.lblAddname.text = lcDict["tpf_name"] as! String
+                let AddedBy = (lcDict["tpf_added_by_name"] as! String)
+                cell.lblAdedBy.text = "Added By: \(AddedBy)"
+                
                 if (lcDict["tpf_status"] as! String) == "0"
                 {
                     cell.btnDelete.isHidden = false
-                    cell.lblStatus.text = "Pending"
+                    cell.lblStatus.text = "Status : Pending"
                 }
                 
                 cell.btnDelete.tag = indexPath.row
                 cell.btnDelete.addTarget(self, action: #selector(Delete_Click(sender:)), for: .touchUpInside)
+ 
                 return cell
             }
             else{
                 
-               let cell = tblFeedback.dequeueReusableCell(withIdentifier: "HighLowLightCell", for: indexPath) as! HighLowLightCell
+                if repltStr == ""
+                {
+                    let cell = tblFeedback.dequeueReusableCell(withIdentifier: "HighLowLightCell", for: indexPath) as! HighLowLightCell
+                    cell.delegate = self
                 
-                self.SetCellData(cell: cell, lcDict: lcDict as! [String : AnyObject],indexPath: indexPath)
-                
-                return cell
-                
-                
-            }
-            
+                    self.SetCellData(cell: cell, lcDict: lcDict as! [String : AnyObject],indexPath: indexPath)
+   
+                    return cell
+                }else{
+                    let cell = tblFeedback.dequeueReusableCell(withIdentifier: "FeedbackRplyCell", for: indexPath) as! FeedbackRplyCell
+                    self.setRplyCellDate(cell: cell, lcDict: lcDict as! [String: AnyObject], indexPath: indexPath)
+                   return cell
+                }
+             }
         }
     }
     
+
     @objc func Delete_Click(sender: AnyObject)
     {
         let alert = UIAlertController(title: "Dynamic PMS", message: "Are you sure to delete this?", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -490,6 +541,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
             Alamofire.request(Feedbackurl, method: .post, parameters: Feedparam).responseJSON { (addResp) in
                 print(addResp)
                 self.txtFeedback.text = ""
+                self.toast.isShow("Feedback sent to manager for verification")
                 self.getFeedback()
             }
         }
@@ -515,7 +567,73 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
+   
+
+    func didSelectedFirstCell(_ sender: HighLowLightCell)
+    {
+//        var fdAddedBy : String!
+//        var upIdself : String!
+//        var rplyStr : String!
+        
+        guard let indexpath = tblFeedback.indexPath(for: sender) else {
+            return
+        }
+        
+        let lcdict = self.Msg[indexpath.row]
+        self.FeedbackId = lcdict["tpf_id"] as! String
+        let fdAddedBy = lcdict["tpf_added_by"] as! String
+        let upIdself = lcdict["up_id"] as! String
+        let rplyStr = lcdict["tpf_reply"] as! String
+        
+        if (fdAddedBy != upIdself) && (rplyStr == "") && (checkEmp == true) && (self.Up_id == LoginUp_id)
+        {
+            popUp.contentView = viewReply
+            popUp.maskType = .dimmed
+            popUp.shouldDismissOnBackgroundTouch = false
+            popUp.shouldDismissOnContentTouch = false
+            popUp.showType = .slideInFromRight
+            popUp.dismissType = .slideOutToLeft
+            popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
+        }
+    }
+
+   @IBAction func btnSubmitRply_click(_ sender: Any)
+    {
+        sendRply()
+    }
     
+    func sendRply()
+    {
+       
+        let rplyUrl = "http://kanishkagroups.com/sop/pms/index.php/API/addFeedbackReply"
+        let param  : [String: Any] =
+            [
+                "tpf_id": self.FeedbackId,
+                "tpf_reply" : txtReply.text,
+                "tpf_reply_by" : self.LoginUp_id]
+        print(param)
+        
+        Alamofire.request(rplyUrl, method: .post, parameters: param).responseJSON { (resp) in
+            print(resp)
+            let msgResp = resp.result.value as! [String: Any]
+            let Msg = msgResp["msg"] as! String
+            if Msg == "success"
+            {
+                self.popUp.dismiss(true)
+                self.toast.isShow("Reply sent.")
+            }
+        }
+      
+    }
     
+    @IBAction func btnCancleRply_click(_ sender: Any)
+    {
+        popUp.dismiss(true)
+    }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 }
+
+

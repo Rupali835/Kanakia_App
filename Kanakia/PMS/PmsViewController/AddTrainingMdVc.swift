@@ -115,4 +115,7 @@ class AddTrainingMdVc: UIViewController
        
     }
     
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        self.view.endEditing(true)
+//    }
 }

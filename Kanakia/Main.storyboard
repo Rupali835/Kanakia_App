@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ms5-7N-TDq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ms5-7N-TDq">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -12,6 +12,123 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--User NameVC-->
+        <scene sceneID="Hxe-eF-vG3">
+            <objects>
+                <viewController storyboardIdentifier="UserNameVC" id="Nwe-jF-3Zf" customClass="UserNameVC" customModule="Kanakia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qks-MW-wc4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="que-Ng-Cp6">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6rB-bi-OW1">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6rB-bi-OW1" secondAttribute="trailing" id="6HQ-Q7-Xyf"/>
+                                    <constraint firstItem="6rB-bi-OW1" firstAttribute="leading" secondItem="que-Ng-Cp6" secondAttribute="leading" id="MsV-yG-RHE"/>
+                                    <constraint firstItem="6rB-bi-OW1" firstAttribute="top" secondItem="que-Ng-Cp6" secondAttribute="top" id="YmF-pO-I6D"/>
+                                    <constraint firstAttribute="bottom" secondItem="6rB-bi-OW1" secondAttribute="bottom" id="bkC-ca-qDF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="B8r-EN-U5G" firstAttribute="trailing" secondItem="que-Ng-Cp6" secondAttribute="trailing" id="EQg-gj-N0M"/>
+                            <constraint firstItem="que-Ng-Cp6" firstAttribute="leading" secondItem="B8r-EN-U5G" secondAttribute="leading" id="HZN-JC-LYc"/>
+                            <constraint firstItem="que-Ng-Cp6" firstAttribute="top" secondItem="B8r-EN-U5G" secondAttribute="top" id="LwK-sQ-20h"/>
+                            <constraint firstItem="B8r-EN-U5G" firstAttribute="bottom" secondItem="que-Ng-Cp6" secondAttribute="bottom" id="Zxb-SZ-oOV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="B8r-EN-U5G"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tblUserName" destination="6rB-bi-OW1" id="4Jk-vQ-ZvP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GUk-Z2-0pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-131" y="-1135"/>
+        </scene>
+        <!--User DeviceVC-->
+        <scene sceneID="ZxN-fX-ncs">
+            <objects>
+                <viewController storyboardIdentifier="UserDeviceVC" id="jYw-BG-Zwk" customClass="UserDeviceVC" customModule="Kanakia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3zv-pv-tMZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3du-eJ-P07">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tjj-Xc-Lxt">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tjj-Xc-Lxt" firstAttribute="leading" secondItem="3du-eJ-P07" secondAttribute="leading" id="PaL-vc-a7G"/>
+                                    <constraint firstAttribute="bottom" secondItem="tjj-Xc-Lxt" secondAttribute="bottom" id="cIn-b3-Kjp"/>
+                                    <constraint firstAttribute="trailing" secondItem="tjj-Xc-Lxt" secondAttribute="trailing" id="cVi-4p-v7y"/>
+                                    <constraint firstItem="tjj-Xc-Lxt" firstAttribute="top" secondItem="3du-eJ-P07" secondAttribute="top" id="ykE-VE-aZX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3du-eJ-P07" firstAttribute="leading" secondItem="YUm-CP-4ZG" secondAttribute="leading" id="Iui-ah-WZ7"/>
+                            <constraint firstItem="YUm-CP-4ZG" firstAttribute="bottom" secondItem="3du-eJ-P07" secondAttribute="bottom" id="Ksl-K7-swT"/>
+                            <constraint firstItem="3du-eJ-P07" firstAttribute="top" secondItem="YUm-CP-4ZG" secondAttribute="top" id="dgX-XR-bY3"/>
+                            <constraint firstItem="YUm-CP-4ZG" firstAttribute="trailing" secondItem="3du-eJ-P07" secondAttribute="trailing" id="pAC-pC-fhz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YUm-CP-4ZG"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tblUserDevice" destination="tjj-Xc-Lxt" id="4qX-a4-Myn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FsK-jr-dVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="-1137"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="m4d-Ns-EkR">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="9iy-dW-6ob" customClass="MapViewController" customModule="Kanakia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C1e-ke-BFe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mni-Gz-NAZ" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Mni-Gz-NAZ" firstAttribute="top" secondItem="zyH-jQ-gV7" secondAttribute="top" id="2Tn-j6-Dbd"/>
+                            <constraint firstItem="zyH-jQ-gV7" firstAttribute="bottom" secondItem="Mni-Gz-NAZ" secondAttribute="bottom" id="7vz-Uh-UqL"/>
+                            <constraint firstItem="zyH-jQ-gV7" firstAttribute="trailing" secondItem="Mni-Gz-NAZ" secondAttribute="trailing" id="F3c-c2-U1p"/>
+                            <constraint firstItem="Mni-Gz-NAZ" firstAttribute="leading" secondItem="zyH-jQ-gV7" secondAttribute="leading" id="PEa-Y8-QUE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zyH-jQ-gV7"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="mapView" destination="Mni-Gz-NAZ" id="tv6-d9-X7a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2cQ-UH-IW1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1254" y="-1139"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="r5v-Ra-H6Q">
             <objects>
@@ -52,7 +169,6 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="hMz-on-MLW">
                                 <rect key="frame" x="10" y="297" width="300" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -679,6 +795,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Fel-M6-XoC">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="GpA-fw-2vZ">
+                            <connections>
+                                <action selector="btnLocation_OnClick:" destination="Koe-M6-rtD" id="Kf0-Oj-FcV"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="more" style="plain" id="v99-xc-dsb">
                                 <connections>
@@ -902,7 +1023,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Room" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="fnz-1X-I3A" customClass="MKTextField" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="470" width="284" height="45.5"/>
+                                                        <rect key="frame" x="8" y="470" width="284" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -926,7 +1047,7 @@
                                                         </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Group" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="DBV-Kv-7CJ" customClass="MKTextField" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="523.5" width="284" height="45.5"/>
+                                                        <rect key="frame" x="8" y="502" width="284" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -939,7 +1060,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Internal Users" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="2pp-p7-L1z" customClass="MKTextField" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="575" width="284" height="45.5"/>
+                                                        <rect key="frame" x="8" y="532" width="284" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -952,7 +1073,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Invited By" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ttW-js-9gh" customClass="MKTextField" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="678" width="284" height="45.5"/>
+                                                        <rect key="frame" x="8" y="592" width="284" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -965,7 +1086,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-Lf-9kQ">
-                                                        <rect key="frame" x="20" y="869.5" width="30" height="30"/>
+                                                        <rect key="frame" x="20" y="762" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="AGB-Td-JDV"/>
                                                             <constraint firstAttribute="width" constant="30" id="ZDx-ad-1hK"/>
@@ -976,7 +1097,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-2c-ZwZ" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="65" y="864.5" width="140" height="34"/>
+                                                        <rect key="frame" x="65" y="757" width="140" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="I1B-6Q-MlP"/>
                                                             <constraint firstAttribute="width" constant="140" id="dTj-eB-Sy9"/>
@@ -988,7 +1109,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AeH-y4-M77">
-                                                        <rect key="frame" x="8" y="765.5" width="284" height="96"/>
+                                                        <rect key="frame" x="8" y="658" width="284" height="96"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="96" id="1C3-M1-kDm"/>
@@ -1005,13 +1126,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agenda :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e49-MJ-5QF">
-                                                        <rect key="frame" x="8" y="738.5" width="284" height="20"/>
+                                                        <rect key="frame" x="8" y="631" width="284" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Other Users" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8kE-Dd-URE" customClass="MKTextField" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="627.5" width="284" height="45.5"/>
+                                                        <rect key="frame" x="8" y="563" width="284" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1040,7 +1161,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Su-1p-HM7">
-                                                        <rect key="frame" x="8" y="625.5" width="284" height="188"/>
+                                                        <rect key="frame" x="8" y="561" width="284" height="188"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="188" id="xaW-jA-aBP"/>
@@ -1102,7 +1223,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bac-JZ-JMP" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                                        <rect key="frame" x="260" y="533.5" width="25" height="25"/>
+                                                        <rect key="frame" x="260" y="512" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="USe-bR-OnR"/>
                                                             <constraint firstAttribute="width" constant="25" id="jXU-5R-f1P"/>
@@ -1241,13 +1362,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-5u-2lw">
-                                <rect key="frame" x="5" y="523" width="310" height="40"/>
+                                <rect key="frame" x="5" y="520" width="310" height="45"/>
                                 <subviews>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5N-tp-uKn" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                        <rect key="frame" x="3" y="0.0" width="109" height="35"/>
+                                        <rect key="frame" x="3" y="2" width="109" height="40"/>
                                         <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.82836579623287676" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="1ha-MU-8e7"/>
+                                            <constraint firstAttribute="height" constant="40" id="1ha-MU-8e7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="RESCHEDULE">
@@ -1263,7 +1384,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTy-gO-dQL" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                        <rect key="frame" x="231" y="0.0" width="76" height="35"/>
+                                        <rect key="frame" x="231" y="2" width="76" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="0.71508454623287676" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="START">
@@ -1279,7 +1400,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDl-7Q-6tr" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                        <rect key="frame" x="117" y="0.0" width="109" height="35"/>
+                                        <rect key="frame" x="117" y="2" width="109" height="40"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.72629494863013699" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="DELETE">
@@ -1303,8 +1424,8 @@
                                     <constraint firstItem="lDl-7Q-6tr" firstAttribute="bottom" secondItem="p5N-tp-uKn" secondAttribute="bottom" id="HR3-2V-0Cg"/>
                                     <constraint firstAttribute="trailing" secondItem="UTy-gO-dQL" secondAttribute="trailing" constant="3" id="JLp-Ut-RHq"/>
                                     <constraint firstItem="UTy-gO-dQL" firstAttribute="leading" secondItem="lDl-7Q-6tr" secondAttribute="trailing" constant="5" id="LcH-i2-vTR"/>
-                                    <constraint firstAttribute="bottom" secondItem="p5N-tp-uKn" secondAttribute="bottom" constant="5" id="brn-7m-STu"/>
-                                    <constraint firstAttribute="height" constant="40" id="lSu-Wc-40D"/>
+                                    <constraint firstAttribute="bottom" secondItem="p5N-tp-uKn" secondAttribute="bottom" constant="3" id="brn-7m-STu"/>
+                                    <constraint firstAttribute="height" constant="45" id="lSu-Wc-40D"/>
                                     <constraint firstItem="UTy-gO-dQL" firstAttribute="height" secondItem="lDl-7Q-6tr" secondAttribute="height" id="n8w-gT-Uw1"/>
                                     <constraint firstItem="lDl-7Q-6tr" firstAttribute="width" secondItem="fxG-5u-2lw" secondAttribute="width" multiplier="0.35" id="nkV-to-mj0"/>
                                     <constraint firstItem="p5N-tp-uKn" firstAttribute="width" secondItem="fxG-5u-2lw" secondAttribute="width" multiplier="0.35" id="rFK-m7-UER"/>
@@ -1312,10 +1433,10 @@
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzb-Xg-1vl">
-                                <rect key="frame" x="5" y="523" width="310" height="40"/>
+                                <rect key="frame" x="5" y="520" width="310" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHX-LV-OAM" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                        <rect key="frame" x="70" y="5" width="90" height="30"/>
+                                        <rect key="frame" x="70" y="5" width="90" height="37"/>
                                         <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="0.87435787671232879" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="Gt2-0S-BqM"/>
@@ -1334,7 +1455,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfW-JL-kue" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                        <rect key="frame" x="165" y="5" width="75" height="30"/>
+                                        <rect key="frame" x="165" y="5" width="75" height="37"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.93196168664383561" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="CANCEL">
@@ -1357,19 +1478,19 @@
                                     <constraint firstItem="lfW-JL-kue" firstAttribute="top" secondItem="kHX-LV-OAM" secondAttribute="top" id="Kru-Yh-fIx"/>
                                     <constraint firstItem="lfW-JL-kue" firstAttribute="leading" secondItem="kHX-LV-OAM" secondAttribute="trailing" constant="5" id="TNl-ZC-Ttv"/>
                                     <constraint firstItem="kHX-LV-OAM" firstAttribute="top" secondItem="fzb-Xg-1vl" secondAttribute="top" constant="5" id="gwz-gZ-PqZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="kHX-LV-OAM" secondAttribute="bottom" constant="5" id="nOW-Hs-awn"/>
+                                    <constraint firstAttribute="bottom" secondItem="kHX-LV-OAM" secondAttribute="bottom" constant="3" id="nOW-Hs-awn"/>
                                     <constraint firstAttribute="trailing" secondItem="lfW-JL-kue" secondAttribute="trailing" constant="70" id="pou-hk-W8H"/>
                                     <constraint firstItem="kHX-LV-OAM" firstAttribute="leading" secondItem="fzb-Xg-1vl" secondAttribute="leading" constant="70" id="z9d-yv-IuV"/>
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="est-CG-R9F">
-                                <rect key="frame" x="5" y="523" width="310" height="40"/>
+                                <rect key="frame" x="5" y="520" width="310" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnB-Co-gAl" customClass="MKButton" customModule="Kanakia" customModuleProvider="target">
-                                        <rect key="frame" x="100" y="5" width="110" height="30"/>
+                                        <rect key="frame" x="100" y="2" width="110" height="40"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.80639982876712324" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="ni7-rg-7Lw"/>
+                                            <constraint firstAttribute="height" constant="40" id="ni7-rg-7Lw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="END">
@@ -1388,7 +1509,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="GnB-Co-gAl" firstAttribute="leading" secondItem="est-CG-R9F" secondAttribute="leading" constant="100" id="4re-v5-Efr"/>
-                                    <constraint firstAttribute="bottom" secondItem="GnB-Co-gAl" secondAttribute="bottom" constant="5" id="NQa-SZ-eoq"/>
+                                    <constraint firstAttribute="bottom" secondItem="GnB-Co-gAl" secondAttribute="bottom" constant="3" id="NQa-SZ-eoq"/>
                                     <constraint firstAttribute="trailing" secondItem="GnB-Co-gAl" secondAttribute="trailing" constant="100" id="Zvk-I1-Lbp"/>
                                     <constraint firstItem="GnB-Co-gAl" firstAttribute="centerX" secondItem="est-CG-R9F" secondAttribute="centerX" id="gyf-KT-EWG"/>
                                 </constraints>
@@ -1408,7 +1529,7 @@
                             <constraint firstItem="est-CG-R9F" firstAttribute="leading" secondItem="fzb-Xg-1vl" secondAttribute="leading" id="ngK-sb-rEZ"/>
                             <constraint firstItem="fzb-Xg-1vl" firstAttribute="leading" secondItem="fxG-5u-2lw" secondAttribute="leading" id="rXz-Oh-awQ"/>
                             <constraint firstItem="8KR-7z-fg3" firstAttribute="trailing" secondItem="Xow-Wr-ZQF" secondAttribute="trailing" constant="10" id="rfJ-ng-viX"/>
-                            <constraint firstItem="8KR-7z-fg3" firstAttribute="bottom" secondItem="fxG-5u-2lw" secondAttribute="bottom" constant="5" id="vqC-Fy-wY7"/>
+                            <constraint firstItem="8KR-7z-fg3" firstAttribute="bottom" secondItem="fxG-5u-2lw" secondAttribute="bottom" constant="3" id="vqC-Fy-wY7"/>
                             <constraint firstItem="8KR-7z-fg3" firstAttribute="bottom" secondItem="Xow-Wr-ZQF" secondAttribute="bottom" constant="50" id="vxG-77-7XD"/>
                             <constraint firstItem="est-CG-R9F" firstAttribute="height" secondItem="fzb-Xg-1vl" secondAttribute="height" id="xFc-K9-S4w"/>
                         </constraints>
@@ -1477,6 +1598,7 @@
                         <outlet property="TwoBtnView" destination="fzb-Xg-1vl" id="H10-DG-Df5"/>
                         <outlet property="btnAllDayOutlet" destination="Baf-wj-2FT" id="mw0-w1-VCW"/>
                         <outlet property="btnUnCheckBox" destination="5Xc-Lf-9kQ" id="VYU-cw-ELw"/>
+                        <outlet property="btnend" destination="GnB-Co-gAl" id="X41-4P-rxv"/>
                         <outlet property="checkAllDayEvent" destination="WJd-8Q-32f" id="Xgr-6C-tLR"/>
                         <outlet property="scrollReshedule" destination="hgj-mX-5Oq" id="NzK-CP-zvN"/>
                         <outlet property="tblHeightConstraint" destination="xaW-jA-aBP" id="QJY-Oh-PmT"/>
@@ -3292,9 +3414,7 @@
                         <barButtonItem key="rightBarButtonItem" image="icon_setting" id="AN8-Il-7NE">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="X0w-qa-fRf" kind="show" identifier="Config" id="Tlt-9H-bBR">
-                                    <nil key="action"/>
-                                </segue>
+                                <segue destination="X0w-qa-fRf" kind="show" identifier="Config" id="Tlt-9H-bBR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -3489,11 +3609,11 @@
                                         <rect key="frame" x="0.0" y="718.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sy3-Q7-mrJ" id="zT9-Wa-vcn">
-                                            <rect key="frame" x="0.0" y="0.0" width="281" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sunday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bOJ-e0-u0l">
-                                                    <rect key="frame" x="15" y="0.0" width="266" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
