@@ -21,9 +21,8 @@ class UserNameVC: UIViewController, UITableViewDelegate,
     
     var ref:DatabaseReference! = nil
     var handle : DatabaseHandle!
-    var userArr : UInt!
     var keyArray = [String]()
-    var valueArr = [Any]()
+  
     var UserName : String!
     var UserDevice : String!
     

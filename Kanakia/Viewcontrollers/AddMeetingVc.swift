@@ -124,6 +124,47 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        
+        if isConnectedToNetwork()
+        {
+            let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
+            strUserId = userDict["user_id"] as! String
+            setViewDelegate()
+            AddAction()
+            SetDaysArr()
+            fetchMeetings()
+            initUi()
+        }else{
+            self.toast.isShow("No internet connection available..")
+        }
+        
+   
+ }
+   
+    func SetDaysArr()
+    {
+        self.DayArr.append(Days(sDayName: "Sunday", dayid: "1", bselected: false))
+        self.DayArr.append(Days(sDayName: "Monday", dayid: "2", bselected: false))
+        self.DayArr.append(Days(sDayName: "Tuesday", dayid: "3", bselected: false))
+        self.DayArr.append(Days(sDayName: "Wendsday", dayid: "4", bselected: false))
+        self.DayArr.append(Days(sDayName: "Thursday", dayid: "5", bselected: false))
+        self.DayArr.append(Days(sDayName: "Friday", dayid: "6", bselected: false))
+        self.DayArr.append(Days(sDayName: "Saturday", dayid: "7", bselected: false))
+    }
+    
+    func AddAction()
+    {
+    
+    self.txtMeetingLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didlblTapHeader)))
+        self.txtMeetWith.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtMeetWith)))
+        self.txtMeetType.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtMeetType)))
+        self.txtGroups.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtGroup)))
+        self.txtRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtRoom)))
+        self.txtRepeatOn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtReaptOn)))
+    }
+    
+    func setViewDelegate()
+    {
         self.txtRoom.text = self.SelectedRoomStr
         self.txtViewAgenda.delegate  = self
         self.txtDate.delegate        = self
@@ -139,17 +180,13 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
         self.txtMeetWith.delegate    = self
         self.txtMeetType.delegate    = self
         self.txtEnddate.delegate     = self
- //       self.txtRepeatOn.delegate   = self
         self.txtOtherGrp.delegate   = self
         self.txtInvitedBy.delegate  = self
         self.txtGroups.delegate     = self
         self.txtSubject.delegate    = self
         
-        
-       self.ContentViewHeightConst.constant = 1200
-       self.viewHgtEndDate.constant = 100
-       // self.txtGroups.isUserInteractionEnabled = false
-       
+        self.ContentViewHeightConst.constant = 1200
+        self.viewHgtEndDate.constant = 100
         
         AddmeetView.layer.shadowOpacity = 1.0
         AddmeetView.layer.shadowOffset  = CGSize(width: 0.0, height: 0.0)
@@ -157,35 +194,13 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
         AddmeetView.layer.shadowColor   = UIColor.white.cgColor
         AddmeetView.layer.cornerRadius  = 4
         AddmeetView.layer.masksToBounds = false
-     
-       self.ViewReocHeightConst.constant = 0
-       self.showHideControls(bStatus: true)
-       // self.ShowHideTxt(bstatus: true)
+        
+        self.ViewReocHeightConst.constant = 0
+        self.showHideControls(bStatus: true)
         self.tblViewHeightConst.constant  = 0
-       
-        
-        let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
-        strUserId = userDict["user_id"] as! String
-        
-        self.DayArr.append(Days(sDayName: "Sunday", dayid: "1", bselected: false))
-        self.DayArr.append(Days(sDayName: "Monday", dayid: "2", bselected: false))
-        self.DayArr.append(Days(sDayName: "Tuesday", dayid: "3", bselected: false))
-        self.DayArr.append(Days(sDayName: "Wendsday", dayid: "4", bselected: false))
-        self.DayArr.append(Days(sDayName: "Thursday", dayid: "5", bselected: false))
-        self.DayArr.append(Days(sDayName: "Friday", dayid: "6", bselected: false))
-        self.DayArr.append(Days(sDayName: "Saturday", dayid: "7", bselected: false))
-
-        fetchMeetings()
-       initUi()
-        
-    self.txtMeetingLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didlblTapHeader)))
-    self.txtMeetWith.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtMeetWith)))
-      self.txtMeetType.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtMeetType)))
-    self.txtGroups.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtGroup)))
-        self.txtRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtRoom)))
-    self.txtRepeatOn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didtxtReaptOn)))
- }
-   
+    }
+    
+    
     private func initUi() {
         toast = JYToast()
     }

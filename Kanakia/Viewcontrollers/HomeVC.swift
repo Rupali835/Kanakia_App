@@ -37,6 +37,9 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
     @IBOutlet weak var btnMrms: MKButton!
     @IBOutlet weak var BtnPms: UIButton!
     
+    @IBOutlet weak var btnPreviousMap: UIButton!
+    @IBOutlet weak var btnMap: UIButton!
+    
     var cChangePasswordVc : ChangePasswordVc!
     var user_active: String = ""
     var Meetingdata: [AnyObject]? = [AnyObject]()
@@ -54,64 +57,76 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
     var strUserName : String = ""
     var locationManager : CLLocationManager?
     var ref : DatabaseReference?
-    
+     private var toast: JYToast!
     var userDict = NSDictionary()
   
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.setHidesBackButton(true, animated: false)
-    
-        userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
-        strUserId = userDict["user_id"] as! String
-        VmsStatus = userDict["user_vms_access"] as! String
-        MrmsStatus = userDict["user_mrms_access"] as! String
-        MmsStatus = userDict["user_mms_access"] as! String
-        PmsStatus = userDict["user_pms_access"] as! String
-        
-        if MmsStatus == "0"
-        {
-            MmsBtn.isHidden = true
-            imgMms.isHidden = true
-            lblMms.isHidden = true
-            
-        }
-        if VmsStatus == "0"
-        {
-            btnVms.isHidden = true
-            imgVms.isHidden = true
-            lblVms.isHidden = true
-        }
-        if MrmsStatus == "0"
-        {
-            btnMrms.isHidden = true
-            imgMrms.isHidden = true
-            lblMrms.isHidden = true
-        }
-        if PmsStatus == "0"
-        {
-            BtnPms.isHidden = true
-            btnVms.isHidden = true
-            btnVms.isHidden = true
-        }
-        
-        
-        print("User_ id =", strUserId)
-        user_active = userDict["user_active"] as! String
-    
-        let UserDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
-        strUserName = UserDict["user_emp_id"] as! String
-         getUserType()
-        
         ref = Database.database().reference()
-    
+        
+        if isConnectedToNetwork()
+        {
+            self.navigationController?.navigationBar.isHidden = false
+            self.navigationItem.setHidesBackButton(true, animated: false)
+            
+            userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
+            strUserId = userDict["user_id"] as! String
+            VmsStatus = userDict["user_vms_access"] as! String
+            MrmsStatus = userDict["user_mrms_access"] as! String
+            MmsStatus = userDict["user_mms_access"] as! String
+            PmsStatus = userDict["user_pms_access"] as! String
+            
+            if MmsStatus == "0"
+            {
+                MmsBtn.isHidden = true
+                imgMms.isHidden = true
+                lblMms.isHidden = true
+                
+            }
+            if VmsStatus == "0"
+            {
+                btnVms.isHidden = true
+                imgVms.isHidden = true
+                lblVms.isHidden = true
+            }
+            if MrmsStatus == "0"
+            {
+                btnMrms.isHidden = true
+                imgMrms.isHidden = true
+                lblMrms.isHidden = true
+            }
+            if PmsStatus == "0"
+            {
+                BtnPms.isHidden = true
+                btnVms.isHidden = true
+                btnVms.isHidden = true
+            }
+            
+            
+            print("User_ id =", strUserId)
+            user_active = userDict["user_active"] as! String
+            
+            let UserDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
+            strUserName = UserDict["user_emp_id"] as! String
+            getUserType()
+            setMapBtn()
+            
+            initUi()
+            
+            
+        }else{
+              self.toast.isShow("No Internet Connection Available")
+        }
         
     }
 
+    private func initUi() {
+        toast = JYToast()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-            startTimer()
     }
     
     func setupData(cId: String)
@@ -320,6 +335,30 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
 
     }
     
+    func setMapBtn()
+    {
+        let url = "http://kanishkagroups.com/sop/liveTrack/index.php/Android/API/getUser"
+        let param : [String : Any] = ["user_id" : self.strUserId]
+        Alamofire.request(url, method: .post, parameters: param).responseJSON { (resp) in
+            print(resp)
+            
+            let json = resp.result.value as! NSDictionary
+            let userTrackAccess = json["user_liveTrack_access"] as! String
+            
+            UserDefaults.standard.set(userTrackAccess, forKey: "userTrackAccess")
+            
+            if userTrackAccess == "1"
+            {
+                self.btnMap.isHidden = false
+                self.btnPreviousMap.isHidden = false
+                
+            }else{
+                self.btnMap.isHidden = true
+                self.btnPreviousMap.isHidden = true
+            }
+        }
+    }
+    
     @IBAction func btn7_daysCalender_Click(_ sender: Any)
     {
         let vc = storyboard?.instantiateViewController(withIdentifier: "MyMeetingsVc") as! MyMeetingsVc
@@ -335,98 +374,26 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
         navigationController?.pushViewController(InterfaceVC, animated: true)
     }
    
+  
     
-    
-    // MARK : LOCATION TRACKING DATA
-    
-    func startTimer()
+    @IBAction func btnLocation_onClicked(_ sender: Any)
     {
-        let timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateLocation()
-    {
-        self.setupLocationManager()
-    }
-    
-    func setupLocationManager(){
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        self.locationManager?.requestAlwaysAuthorization()
-        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager?.startUpdatingLocation()
-      //  locationManager?.distanceFilter = 10
-      //  locationManager?.allowsBackgroundLocationUpdates = true
-     
-     //   locationManager?.pausesLocationUpdatesAutomatically = true
-        locationManager?.activityType = .fitness
-        
-        
-        
-        
-        
-    }
-    
- /*   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-     
-        if userDict != nil
-        {
-            
-            let lastLocation: CLLocation = locations[locations.count - 1]
-            let LAT = lastLocation.coordinate.latitude
-            let LONG = lastLocation.coordinate.longitude
-            
-            let accuracy = lastLocation.horizontalAccuracy
-            
-    //        if (locationManager?.distanceFilter)! >= Double(10)
-    //        {
-                let userRef = ref?.child(strUserId)
-                // Devendra mehra
-                let dNamem = UIDevice.current.name
-                let dUdid = UIDevice.current.identifierForVendor?.uuidString
-                let str = dNamem + " : " + dUdid!
-                let aString = str
-                let newString = aString.replacingOccurrences(of: "'", with: " ", options: .literal, range: nil)
-            
-                print("Called")
-            
-                let child = userRef?.child(aString).childByAutoId()
-                let lat = child?.child("latitude").setValue(LAT)
-                let long = child?.child("longitude").setValue(LONG)
-                let acc = child?.child("accuracy").setValue(accuracy)
-                let currentTimeStamp = Date().toMillis()
-                let time = child?.child("time").setValue(currentTimeStamp)
-            
-            
-            
-      //      }
-            
-            
-        }else{
-            print("No data")
-        }
-        
-        
-    
-    }
-    
- 
-    // Below Mehtod will print error if not able to update location.
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error")
-    }
- 
- */
-   
-    @IBAction func btnLocation_OnClick(_ sender: Any)
-    {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "UserNameVC") as! UserNameVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
+    @IBAction func btnPreviousMap_onClick(_ sender: Any)
+    {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "LocationByDateVC") as! LocationByDateVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
+
+
+
+
 extension Date {
     func toMillis() -> Int64! {
         return Int64(self.timeIntervalSince1970 * 1000)

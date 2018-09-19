@@ -12,6 +12,8 @@
 		580364F82146F71F00C2B8CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580364F72146F71F00C2B8CA /* MapKit.framework */; };
 		5850076421465A970049BA54 /* NotificationRedirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850076321465A970049BA54 /* NotificationRedirect.swift */; };
 		5850076A21467A330049BA54 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850076921467A320049BA54 /* CoreLocation.framework */; };
+		58CFB3092150CDC4002C6B01 /* ReachabilityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */; };
+		58CFB30B215131C7002C6B01 /* LocationByDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFB30A215131C7002C6B01 /* LocationByDateVC.swift */; };
 		58FE47972147A17600134A8D /* UserNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47962147A17600134A8D /* UserNameVC.swift */; };
 		58FE47992147A19200134A8D /* UserDeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47982147A19200134A8D /* UserDeviceVC.swift */; };
 		58FE479B2147A1D800134A8D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE479A2147A1D800134A8D /* MapViewController.swift */; };
@@ -210,6 +212,8 @@
 		580364F72146F71F00C2B8CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5850076321465A970049BA54 /* NotificationRedirect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRedirect.swift; sourceTree = "<group>"; };
 		5850076921467A320049BA54 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCheck.swift; sourceTree = "<group>"; };
+		58CFB30A215131C7002C6B01 /* LocationByDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationByDateVC.swift; sourceTree = "<group>"; };
 		58FE47962147A17600134A8D /* UserNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameVC.swift; sourceTree = "<group>"; };
 		58FE47982147A19200134A8D /* UserDeviceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceVC.swift; sourceTree = "<group>"; };
 		58FE479A2147A1D800134A8D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 				58FE479A2147A1D800134A8D /* MapViewController.swift */,
 				58FE47A12147A37A00134A8D /* LocationCell.swift */,
 				58FE47A22147A37A00134A8D /* LocationCell.xib */,
+				58CFB30A215131C7002C6B01 /* LocationByDateVC.swift */,
 			);
 			path = LocationFiles;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 		CE4377AF20A8B2F000C3B14E /* Viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */,
 				CE4377B020A8B2F000C3B14E /* AddMeetingVc.swift */,
 				CE4377B120A8B2F000C3B14E /* CalendarConfigViewController.swift */,
 				CE4377B220A8B2F000C3B14E /* ChangePasswordVc.swift */,
@@ -1517,6 +1523,7 @@
 				CE43792920A8B34800C3B14E /* JYToast.swift in Sources */,
 				CE43794120A8B34800C3B14E /* DBThumbnailPhotoCell.m in Sources */,
 				CE4378F720A8B34800C3B14E /* VisitorMgmtCell.swift in Sources */,
+				58CFB3092150CDC4002C6B01 /* ReachabilityCheck.swift in Sources */,
 				CE43791620A8B34800C3B14E /* SubCatagoryModel.m in Sources */,
 				58FE479B2147A1D800134A8D /* MapViewController.swift in Sources */,
 				CE43791B20A8B34800C3B14E /* FSCalendarCalculator.m in Sources */,
@@ -1539,6 +1546,7 @@
 				CE43792B20A8B34800C3B14E /* MKActivityIndicator.swift in Sources */,
 				CE4378FC20A8B34800C3B14E /* DayCell.swift in Sources */,
 				CE43792120A8B34800C3B14E /* FSCalendarDelegationProxy.m in Sources */,
+				58CFB30B215131C7002C6B01 /* LocationByDateVC.swift in Sources */,
 				CE43791320A8B34800C3B14E /* NewmyBookingsCell.m in Sources */,
 				CE43792020A8B34800C3B14E /* FSCalendarDelegationFactory.m in Sources */,
 				CE4378E420A8B34800C3B14E /* Without_TargetKpiCell.swift in Sources */,
@@ -1748,8 +1756,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kanakia/Kanakia.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
@@ -1757,8 +1765,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7fde6bb7-7407-4753-8588-8bc18ccb2c51";
-				PROVISIONING_PROFILE_SPECIFIER = KanakiaDeveloperCert;
+				PROVISIONING_PROFILE = "f8a0abf3-7f09-431e-93d3-280892059ec0";
+				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1773,8 +1781,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kanakia/Kanakia.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
@@ -1782,8 +1790,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7fde6bb7-7407-4753-8588-8bc18ccb2c51";
-				PROVISIONING_PROFILE_SPECIFIER = KanakiaDeveloperCert;
+				PROVISIONING_PROFILE = "f8a0abf3-7f09-431e-93d3-280892059ec0";
+				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kanakia/Kanakia-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
