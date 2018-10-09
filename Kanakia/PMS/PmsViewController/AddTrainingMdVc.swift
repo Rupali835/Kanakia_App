@@ -94,11 +94,11 @@ class AddTrainingMdVc: UIViewController
             {
                 let url = "http://kanishkagroups.com/sop/pms/index.php/API/addTraining"
                 let param : [String: Any] =
-                    [        "up_id" : self.User_id,
-                             "tpt_name" : txtAddTraining.text,
+                    [        "up_id" : self.User_id!,
+                             "tpt_name" : txtAddTraining.text!,
                              "tpt_status" : Tpa_Status,
-                             "tpt_added_by" : self.up_id,
-                             "tpt_type" : self.Tpt_Type
+                             "tpt_added_by" : self.up_id!,
+                             "tpt_type" : self.Tpt_Type!
                 ]
                 
                 print("Param =", param)

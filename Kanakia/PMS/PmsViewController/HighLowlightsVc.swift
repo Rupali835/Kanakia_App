@@ -573,14 +573,14 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
             let addParameter : [String: Any] =
                 [        "up_id" : self.Up_id,
                          "kpi_id" : self.Kpi_id,
-                         "fkpi_name" : self.txtLights.text,
+                         "fkpi_name" : self.txtLights.text!,
                          "fkpi_flag" : self.Kflag,
                          "fkpi_status" : Tpa_Status,
                          "fkpi_added_by" : self.LoginUp_id
             ]
             
             Alamofire.request(addAchiveUrl, method: .post, parameters: addParameter).responseJSON { (addResp) in
-                print(addResp)
+              
                 self.txtLights.text = ""
                 self.btnSegment_OnClick(self.segmentView)
             }

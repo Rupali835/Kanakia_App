@@ -274,7 +274,7 @@ import Alamofire
         strUserId = userDict["user_id"] as! String
         
         
-        let parameteres = [ "m_id": self.m_id] as [String: Any]
+        let parameteres = [ "m_id": self.m_id!] as [String: Any]
         print(parameteres)
         let UrlStr  = "http://www.kanishkagroups.com/sop/android/getSingleMeetingMms.php"
         
@@ -297,8 +297,8 @@ import Alamofire
         let pramtr : [String: String] =
         [
             "user_id" : strUserId,
-            "m_id" : self.m_id,
-            "status" : self.StatusNum
+            "m_id" : self.m_id!,
+            "status" : self.StatusNum!
         ]
         
          let url = "http://www.kanishkagroups.com/sop/android/updateMeetingStatusMrms.php"
@@ -404,6 +404,12 @@ import Alamofire
       let strUrl = "http://www.kanishkagroups.com/sop/android/deleteMeetMrms.php"
         Alamofire.request(strUrl, method: .post, parameters: pr).responseJSON { (Resp) in
             print(Resp)
+            
+            let json = Resp.result.value as! NSDictionary
+            let msg = json["msg"] as! String
+            self.toast.isShow(msg)
+            self.navigationController?.popViewController(animated: true)
+
         }
     }
     
@@ -1269,7 +1275,7 @@ import Alamofire
     {
         let RejectUrl = "http://kanishkagroups.com/sop/android/rejectMeetingMms.php"
         let Param : [String: Any] = ["logged_in_user_id" : strUserId,
-                                     "m_id" : self.m_id]
+                                     "m_id" : self.m_id!]
         Alamofire.request(RejectUrl, method: .post, parameters: Param).responseString { (resp) in
             print(resp)
             self.toast.isShow("Meeting Rejected and mail is sent to USER")
@@ -1380,8 +1386,7 @@ import Alamofire
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
                 UIAlertAction in
                 self.CancleMeeting()
-            self.navigationController?.popViewController(animated: true)
-
+            
         }
        
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {

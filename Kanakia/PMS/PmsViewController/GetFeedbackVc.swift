@@ -236,7 +236,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     {
         let getUrl = "http://kanishkagroups.com/sop/pms/index.php/API/getFeedback"
         let FeedbackParam : [String: Any] =
-            ["up_id" : self.Up_id,
+            ["up_id" : self.Up_id!,
              "type" : "ios"]
         
         Alamofire.request(getUrl, method: .post, parameters: FeedbackParam).responseJSON { (dataAchive) in
@@ -244,11 +244,14 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let data = dataAchive.result.value as! [String: AnyObject]
             
             self.Msg = data["msg"] as! [AnyObject]
+            
             if self.Msg.count == 0
             {
                 self.toast.isShow("No Any Feedback found")
+            }else
+            {
+                self.tblFeedback.reloadData()
             }
-            self.tblFeedback.reloadData()
             
         }
         
@@ -286,7 +289,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.btnAccept.isHidden = false
         cell.btnReject.isHidden = false
         
-        cell.lblLightName.text = lcDict["tpf_name"] as? String
+        cell.lblLightName.text = lcDict["tpf_name"] as! String
         cell.lblAddedBy.text = (lcDict["tpf_added_by_name"] as! String)
         cell.lblDateTime.text = (lcDict["tpf_added_timestamp"] as! String)
       
@@ -517,7 +520,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func addFeedback()
     {
-        let Tpa_Status : String!
+        var Tpa_Status : String = ""
         if self.Up_id == self.LoginUp_id
         {
             Tpa_Status = "0"
@@ -531,15 +534,15 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }else{
             let Feedbackurl = "http://kanishkagroups.com/sop/pms/index.php/API/addFeedback"
             let Feedparam : [String : Any] =
-                [ "up_id" : self.Up_id,
-                  "tpf_name" : txtFeedback.text,
+                [ "up_id" : self.Up_id!,
+                  "tpf_name" : txtFeedback.text!,
                   "tpf_status" : Tpa_Status,
                   "tpf_added_by" : self.LoginUp_id
-            ]
+                ]
             
             print(Feedparam)
             Alamofire.request(Feedbackurl, method: .post, parameters: Feedparam).responseJSON { (addResp) in
-                print(addResp)
+                
                 self.txtFeedback.text = ""
                 self.toast.isShow("Feedback sent to manager for verification")
                 self.getFeedback()
@@ -609,8 +612,8 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let param  : [String: Any] =
             [
                 "tpf_id": self.FeedbackId,
-                "tpf_reply" : txtReply.text,
-                "tpf_reply_by" : self.LoginUp_id]
+                "tpf_reply" : txtReply.text!,
+                "tpf_reply_by" : self.LoginUp_id ]
         print(param)
         
         Alamofire.request(rplyUrl, method: .post, parameters: param).responseJSON { (resp) in
@@ -619,8 +622,10 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let Msg = msgResp["msg"] as! String
             if Msg == "success"
             {
+                self.txtReply.text = ""
                 self.popUp.dismiss(true)
                 self.toast.isShow("Reply sent.")
+                self.getFeedback()
             }
         }
       

@@ -33,8 +33,6 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     @IBOutlet weak var grpDropDown: UIButton!
     @IBOutlet weak var meetWithDropdown: UIButton!
     @IBOutlet weak var meetTypeDropDown: MKButton!
-    //  @IBOutlet weak var txtRoomsHeightConstraint: NSLayoutConstraint!
-   
     @IBOutlet weak var txtEnddate       : UITextField!
     @IBOutlet weak var btnUnCheckBox    : UIButton!
     @IBOutlet weak var AddmeetView      : UIView!
@@ -56,7 +54,6 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     @IBOutlet weak var lblMeetingRoom: UILabel!
     @IBOutlet weak var lblReptOnDay: UIButton!
     @IBOutlet weak var lblEndDate: UILabel!
-    //   @IBOutlet weak var ViewOccHightConst: NSLayoutConstraint!
     
     var DayArr          = [Days]()
     var reidArr = [String]()
@@ -109,7 +106,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     var DictData = [String: AnyObject]()
     var DaySelectedId = [String]()
     var strUserId:String = ""
-     var formValid = Bool(true)
+    var formValid = Bool(true)
     var NameArr = [String]()
     private var toast: JYToast!
     
@@ -234,6 +231,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     {
         txtRoom.isUserInteractionEnabled = bStatus
     }
+    
     func fetchMeetings()
     {
         let urlString = "http://kanishkagroups.com/sop/android/getUserMeetingMms_IOS.php"
@@ -277,7 +275,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     }
     func ClearData()
     {
-      self.txtSubject.text = ""
+        self.txtSubject.text = ""
         self.txtDay.text = ""
         self.txtDate.text = ""
         self.txtStartTime.text = ""
@@ -310,14 +308,12 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     
    func ParamList()
     {
-        cMeetingParamList.m_other_user = txtOtherGrp.text
-        cMeetingParamList.m_subject = txtSubject.text
-        cMeetingParamList.m_day = txtDay.text
-        cMeetingParamList.m_agenda = txtViewAgenda.text
+        cMeetingParamList.m_other_user = txtOtherGrp.text!
+        cMeetingParamList.m_subject = txtSubject.text!
+        cMeetingParamList.m_day = txtDay.text!
+        cMeetingParamList.m_agenda = txtViewAgenda.text!
         cMeetingParamList.m_end_after_days = "NF"
-       // cMeetingParamList.m_week_day = NumDay
-   //     cMeetingParamList.m_week_day = txtRepeatOn.text
-        
+    
        
         if (txtEnddate.text?.isEmpty)!
         {
@@ -355,31 +351,31 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
         }
   
         let params = [
-            "m_subject"           : cMeetingParamList.m_subject,
-            "m_type"              : cMeetingParamList.m_type,
+            "m_subject"           : cMeetingParamList.m_subject!,
+            "m_type"              : cMeetingParamList.m_type!,
             "r_id"                : cMeetingParamList.r_id!,
-            "m_date"              : cMeetingParamList.m_date,
-            "m_day"               : cMeetingParamList.m_day,
-            "m_start_time"        : cMeetingParamList.m_start_time,
-            "m_end_time"          : cMeetingParamList.m_end_time,
-            "m_with"              : cMeetingParamList.m_with,
-            "m_location"          : cMeetingParamList.m_location,
-            "m_all_day_event"     : cMeetingParamList.m_all_day_event,
-            "g_id"                : cMeetingParamList.g_id,
-            "m_other_user"        : cMeetingParamList.m_other_user,
-            "m_invited_by"        : cMeetingParamList.m_invited_by,
-            "m_agenda"            : cMeetingParamList.m_agenda ,
-            "m_reminder_flag"     : cMeetingParamList.m_reminder_flag,
-            "re_id"               : cMeetingParamList.re_id,
-            "m_reoccurrence_flag" : cMeetingParamList.m_reoccurrence_flag,
-            "m_reoccurrence_type" : cMeetingParamList.m_reoccurrence_type,
-            "m_week_day"          : cMeetingParamList.m_week_day,
-            "m_week_no"           : cMeetingParamList.m_week_no,
-            "m_end_by_date"       : cMeetingParamList.m_end_by_date,
-            "m_end_after_days"    : cMeetingParamList.m_end_after_days,
-            "l_id"                : cMeetingParamList.l_id,
+            "m_date"              : cMeetingParamList.m_date!,
+            "m_day"               : cMeetingParamList.m_day!,
+            "m_start_time"        : cMeetingParamList.m_start_time!,
+            "m_end_time"          : cMeetingParamList.m_end_time!,
+            "m_with"              : cMeetingParamList.m_with!,
+            "m_location"          : cMeetingParamList.m_location!,
+            "m_all_day_event"     : cMeetingParamList.m_all_day_event!,
+            "g_id"                : cMeetingParamList.g_id!,
+            "m_other_user"        : cMeetingParamList.m_other_user!,
+            "m_invited_by"        : cMeetingParamList.m_invited_by!,
+            "m_agenda"            : cMeetingParamList.m_agenda!,
+            "m_reminder_flag"     : cMeetingParamList.m_reminder_flag!,
+            "re_id"               : cMeetingParamList.re_id!,
+            "m_reoccurrence_flag" : cMeetingParamList.m_reoccurrence_flag!,
+            "m_reoccurrence_type" : cMeetingParamList.m_reoccurrence_type!,
+            "m_week_day"          : cMeetingParamList.m_week_day!,
+            "m_week_no"           : cMeetingParamList.m_week_no!,
+            "m_end_by_date"       : cMeetingParamList.m_end_by_date!,
+            "m_end_after_days"    : cMeetingParamList.m_end_after_days!,
+            "l_id"                : cMeetingParamList.l_id!,
             "logged_in_user_id"   : strUserId,
-            "m_internal_user"     : cMeetingParamList.m_internal_user
+            "m_internal_user"     : cMeetingParamList.m_internal_user!
             ] as [String : Any]
         
         print("paramsList = \(params)")

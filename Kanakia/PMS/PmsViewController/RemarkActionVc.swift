@@ -184,18 +184,18 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
     {
        
         let AcceptLightParam : [String: Any] =
-            [ "fkpi_id" : self.fkId,
-              "fkpi_remark" : self.txtRemark.text,
-              "fkpi_status" : self.fkStatus,
+            [ "fkpi_id" : self.fkId!,
+              "fkpi_remark" : self.txtRemark.text!,
+              "fkpi_status" : self.fkStatus!,
               "fkpi_approved_by" : self.Up_id,
-              "fkpi_actionplan" : self.txtActionPlan.text
+              "fkpi_actionplan" : self.txtActionPlan.text!
         ]
     
         print("Parameter", AcceptLightParam)
         let LightsUrl = "http://kanishkagroups.com/sop/pms/index.php/API/acceptRejectHighlightLowlight"
         
         Alamofire.request(LightsUrl, method: .post, parameters: AcceptLightParam).responseJSON { (AccResp) in
-            print(AccResp)
+        
             self.txtRemark.text = ""
             self.txtActionPlan.text = ""
             self.delegate?.didSelected()
@@ -236,8 +236,6 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
         if valid == true
         {
             GetApprovedRejectLights()
-           
-            
             self.view.removeFromSuperview()
         }
         

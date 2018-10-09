@@ -10,6 +10,9 @@
 		0299E3C36D8035BF421F44D1 /* Pods_KanakiaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */; };
 		1EE54A4C3FA7E62FECDA2EDE /* Pods_Kanakia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */; };
 		580364F82146F71F00C2B8CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580364F72146F71F00C2B8CA /* MapKit.framework */; };
+		580E1AFF216B239C0054D505 /* FirebasePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E1AFE216B239C0054D505 /* FirebasePopUpVC.swift */; };
+		582F82962169335C00197CE3 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F82952169335C00197CE3 /* PopUpVC.swift */; };
+		582F829821693B2200197CE3 /* NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F829721693B2200197CE3 /* NameCell.swift */; };
 		5850076421465A970049BA54 /* NotificationRedirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850076321465A970049BA54 /* NotificationRedirect.swift */; };
 		5850076A21467A330049BA54 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850076921467A320049BA54 /* CoreLocation.framework */; };
 		58CFB3092150CDC4002C6B01 /* ReachabilityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */; };
@@ -210,6 +213,9 @@
 		4C80C8B692EF9B382C86DB5C /* Pods-KanakiaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		580364F72146F71F00C2B8CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		580E1AFE216B239C0054D505 /* FirebasePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePopUpVC.swift; sourceTree = "<group>"; };
+		582F82952169335C00197CE3 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		582F829721693B2200197CE3 /* NameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCell.swift; sourceTree = "<group>"; };
 		5850076321465A970049BA54 /* NotificationRedirect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRedirect.swift; sourceTree = "<group>"; };
 		5850076921467A320049BA54 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCheck.swift; sourceTree = "<group>"; };
@@ -505,6 +511,9 @@
 				58FE47A12147A37A00134A8D /* LocationCell.swift */,
 				58FE47A22147A37A00134A8D /* LocationCell.xib */,
 				58CFB30A215131C7002C6B01 /* LocationByDateVC.swift */,
+				582F82952169335C00197CE3 /* PopUpVC.swift */,
+				582F829721693B2200197CE3 /* NameCell.swift */,
+				580E1AFE216B239C0054D505 /* FirebasePopUpVC.swift */,
 			);
 			path = LocationFiles;
 			sourceTree = "<group>";
@@ -1451,6 +1460,7 @@
 				CE43791A20A8B34800C3B14E /* FSCalendarAppearance.m in Sources */,
 				CE43793120A8B34800C3B14E /* MKEmbedMainControllerSegue.swift in Sources */,
 				CE43791F20A8B34800C3B14E /* FSCalendarConstants.m in Sources */,
+				582F82962169335C00197CE3 /* PopUpVC.swift in Sources */,
 				CE43790D20A8B34800C3B14E /* VenueCell.swift in Sources */,
 				CE43793220A8B34800C3B14E /* MKImageView.swift in Sources */,
 				CE43790220A8B34800C3B14E /* DateHeaderView.swift in Sources */,
@@ -1460,6 +1470,7 @@
 				CE4378D620A8B34800C3B14E /* HighLowLightCell.swift in Sources */,
 				CE43792720A8B34800C3B14E /* FSCalendarWeekdayView.m in Sources */,
 				CE4378F520A8B34800C3B14E /* VisitorManagementVC.swift in Sources */,
+				580E1AFF216B239C0054D505 /* FirebasePopUpVC.swift in Sources */,
 				CE4377C320A8B2F100C3B14E /* DropDownVC.swift in Sources */,
 				CE43792E20A8B34800C3B14E /* MKCollectionViewCell.swift in Sources */,
 				CE43790E20A8B34800C3B14E /* AddController.m in Sources */,
@@ -1505,6 +1516,7 @@
 				CED81372212E88230012FBFA /* KLCPopup.m in Sources */,
 				CE43790720A8B34800C3B14E /* MyMeetingCell.swift in Sources */,
 				CE43793820A8B34800C3B14E /* MKSnackbar.swift in Sources */,
+				582F829821693B2200197CE3 /* NameCell.swift in Sources */,
 				CE43795C20A8BBEA00C3B14E /* APIManager.swift in Sources */,
 				58FE47992147A19200134A8D /* UserDeviceVC.swift in Sources */,
 				CE43796220A8BBEA00C3B14E /* StringValidation.swift in Sources */,

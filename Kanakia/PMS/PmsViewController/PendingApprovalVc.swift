@@ -87,7 +87,7 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
     func GetPendingData()
     {
         let url = "http://kanishkagroups.com/sop/pms/index.php/API/getPendingApprovals"
-        let Param : [String: Any] = ["up_id" : self.Up_id,
+        let Param : [String: Any] = ["up_id" : self.Up_id!,
                                      "type" : "ios"] 
         print(Param)
         Alamofire.request(url, method: .post, parameters: Param).responseJSON { (dataAchive) in
@@ -97,9 +97,11 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             if self.Msg.isEmpty == true
             {
                 self.toast.isShow("No any Pending Approvals")
+            }else{
+               
+                self.tblPending.reloadData()
             }
-            print("dict=",self.Msg)
-            self.tblPending.reloadData()
+          
         
         }
     }

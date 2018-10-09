@@ -1,18 +1,11 @@
-//
-//  LocationByDateVC.swift
-//  Kanakia
-//
-//  Created by Prajakta Bagade on 9/18/18.
-//  Copyright © 2018 user. All rights reserved.
-//
+
 
 import UIKit
 import GoogleMaps
 import Alamofire
 
-class LocationByDateVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class LocationByDateVC: UIViewController, UIPopoverPresentationControllerDelegate, LocationMapDelegate
 {
-  
     @IBOutlet weak var btnSelectDevice: UIButton!
     @IBOutlet weak var btnSelectUser: UIButton!
     
@@ -23,6 +16,7 @@ class LocationByDateVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var viewDate: UIView!
+   
     
     let datepicker = UIDatePicker()
     let toolBar = UIToolbar()
@@ -33,24 +27,23 @@ class LocationByDateVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var locationList = [AnyObject]()
      private var toast: JYToast!
     var TdId : String!
+    var msg : String!
+    var userId : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         popUp = KLCPopup()
-       createDatePicker()
-        
-        tblUser.register(UINib(nibName: "LocationCell", bundle: nil), forCellReuseIdentifier: "LocationCell")
-        
-        tblDevice.register(UINib(nibName: "LocationCell", bundle: nil), forCellReuseIdentifier: "LocationCell")
-        
-        tblUser.delegate  = self
-        tblUser.dataSource = self
-        tblDevice.delegate = self
-        tblDevice.dataSource = self
-        tblUser.separatorStyle = .none
-        tblDevice.separatorStyle = .none
-        fetchUserList()
+        createDatePicker()
         toast = JYToast()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let stringDate: String = formatter.string(from: Date())
+        self.txtDate.text = stringDate
+        self.DateStr = stringDate
+        mapView.isMyLocationEnabled = true
+        
+        
     }
     
     func createDatePicker()
@@ -92,137 +85,72 @@ class LocationByDateVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         createDatePicker()
     }
     
-    @IBAction func btnSelectUser_OnClick(_ sender: Any)
+    @IBAction func btnSelectUser_OnClick(_ sender: UIButton)
     {
-        viewForDevice.isHidden = true
-        viewForUser.isHidden = false
-        popUp.contentView = viewForUser
-        popUp.maskType = .dimmed
-        popUp.shouldDismissOnBackgroundTouch = true
-        popUp.shouldDismissOnContentTouch = false
-        popUp.showType = .slideInFromRight
-        popUp.dismissType = .slideOutToLeft
-        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
-        tblUser.reloadData()
+        self.userId = nil
+        self.fetchUserList(date: self.DateStr!, sender: sender)
+        btnSelectDevice.setTitle("Select Device", for: .normal)
     }
     
-    @IBAction func btnSelectDevice_OnClick(_ sender: Any)
+    @IBAction func btnSelectDevice_OnClick(_ sender: UIButton)
     {
-        viewForUser.isHidden = true
-        viewForDevice.isHidden = false
-        popUp.contentView = viewForDevice
-        popUp.maskType = .dimmed
-        popUp.shouldDismissOnBackgroundTouch = true
-        popUp.shouldDismissOnContentTouch = false
-        popUp.showType = .slideInFromRight
-        popUp.dismissType = .slideOutToLeft
-        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
-        tblDevice.reloadData()
+        
+        if btnSelectUser.titleLabel?.text != "Select User"
+        {
+            OpenPopUp(sender: sender, tag: 2)
+        }else{
+            self.toast.isShow("Please select user name")
+        }
+        
     }
+    
+    func sendData(lcUserDict : [String: String])
+    {
+        let name = lcUserDict["user_name"]
+        self.userId = lcUserDict["user_id"]
+        btnSelectUser.setTitle(name, for: .normal)
+    }
+    
+    func sendDeviceData(lcUserDict : [String: String])
+    {
+        let lcDevicename = lcUserDict["td_name"]
+        self.TdId = lcUserDict["td_id"]
+        btnSelectDevice.setTitle(lcDevicename, for: .normal)
+        fetchLocation(tdid: self.TdId)
+    }
+    
+    func OpenPopUp(sender : UIButton, tag : Int)
+    {
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpVC") as! PopUpVC
+        popController.delegate = self
+        popController.Tag = tag
+        
+        popController.getData(lcUserId: self.userId, date: DateStr!, lcUserListArr: self.userList)
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender  // button
+        popController.popoverPresentationController?.sourceRect = sender.bounds
+        popController.preferredContentSize = CGSize(width: 300, height: 0)
+        self.present(popController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle
+    {
+        return UIModalPresentationStyle.none
+    }
+    
    
-    
-// MARK : TABLEVIEW METHOSD
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        if tableView == tblUser
-        {
-            return userList.count
-        }else if tableView == tblDevice
-        {
-            return deviceList.count
-        }else{
-            return 0
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        if tableView == tblUser
-        {
-           let cell = tblUser.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
-            
-            let lcdict = userList[indexPath.row]
-            let userNm = lcdict["user_name"] as! String
-            cell.lblName.text = userNm
-            self.designCell(cView: cell.backView)
-            return cell
-        }else if tableView == tblDevice
-        {
-            let cell = tblDevice.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
-            
-            let lcdict = deviceList[indexPath.row]
-            let devicenm = lcdict["td_name"] as! String
-            cell.lblName.text = devicenm
-            self.designCell(cView: cell.backView)
-            
-            return cell
-        }else{
-            return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        if tableView == tblUser
-        {
-            let lcdict = userList[indexPath.row]
-            let usernm = lcdict["user_name"] as! String
-            let userid = lcdict["user_id"] as! String
-            btnSelectUser.setTitle(usernm as? String, for: .normal)
-            popUp.dismiss(true)
-            fetchDeviceList(userid: userid)
-            
-            
-        }else if tableView == tblDevice
-        {
-            let lcdict = deviceList[indexPath.row]
-            let devicenm = lcdict["td_name"] as! String
-            self.TdId = lcdict["td_id"] as! String
-            btnSelectDevice.setTitle(devicenm as? String, for: .normal)
-            popUp.dismiss(true)
-           
-        }
-    }
-    
-    func fetchUserList()
-    {
-        let url = "http://kanishkagroups.com/sop/liveTrack/index.php/Android/API/getDeviceUser"
-        
-        Alamofire.request(url, method: .get, parameters: nil).responseJSON { (resp) in
-            let json = resp.result.value as! NSDictionary
-            let userlist = json["user_list"] as AnyObject
-            self.userList = userlist as! [AnyObject]
-            
-        }
-        
-    }
-    
-    func fetchDeviceList(userid : String)
-    {
-        let url = "http://kanishkagroups.com/sop/liveTrack/index.php/Android/API/getDevice"
-        let param : [String : Any] = ["user_id" : userid]
-        Alamofire.request(url, method: .post, parameters: param).responseJSON { (resp) in
-       
-            let json = resp.result.value as! NSDictionary
-            let devicelist = json["device_list"] as AnyObject
-            self.deviceList = devicelist as! [AnyObject]
-            
-        }
-    }
-    
     func fetchLocation(tdid : String)
     {
          let path =  GMSMutablePath()
-        
-        if txtDate.text == ""
-        {
-            self.toast.isShow("Please enter date")
-        }else{
             
-            let url = "http://kanishkagroups.com/sop/liveTrack/index.php/Android/API/getLocation"
-            let param : [String : Any] = ["td_id" : tdid,
+            let url = "http://kanishkagroups.com/sop/liveTrack/index.php/Android/API/get_Location"
+            let param : [String : Any] = ["device_id" : tdid,
                                           "date" : self.DateStr!]
             Alamofire.request(url, method: .post, parameters: param).responseJSON { (resp) in
                 print(resp)
@@ -259,28 +187,46 @@ class LocationByDateVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.toast.isShow("location not found")
                 }
             }
-        }
-    }
-    
-    func designCell(cView : UIView)
-    {
-        cView.layer.masksToBounds = false
-        cView.layer.shadowColor = UIColor.black.cgColor
-        cView.layer.shadowOpacity = 0.7
-        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        cView.layer.shadowRadius = 1
-        cView.backgroundColor = UIColor.white
+     
     }
 
-    @IBAction func btnGetLocation_OnClick(_ sender: Any)
+    func fetchUserList(date : String, sender: UIButton)
     {
-        if TdId != nil
-        {
-            fetchLocation(tdid: self.TdId)
-        }else{
-            self.toast.isShow("something went wrong")
+        let url = "http://kanishkagroups.com/sop/liveTrack/index.php/Android/API/get_User"
+        
+        let param = ["date" : date]
+        
+        Alamofire.request(url, method: .post, parameters: param).responseJSON { (resp) in
+            
+            print(resp)
+            let json = resp.result.value as! NSDictionary
+            
+            self.msg = json["msg"] as! String
+            
+            if self.msg != "success"
+            {
+                self.dismiss(animated: true, completion: nil)
+                let alert = UIAlertController(title: "Live Tracking", message: "No any users for this date", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                    
+                    self.dismiss(animated: true, completion: nil)
+                })
+                
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                
+                self.userList.removeAll(keepingCapacity: false)
+                let userlist = json["user"] as AnyObject
+                self.userList = userlist as! [AnyObject]
+                self.OpenPopUp(sender: sender, tag: 1)
+            }
+            
+            
         }
         
     }
+    
     
 }

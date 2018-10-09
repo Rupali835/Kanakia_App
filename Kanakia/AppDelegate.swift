@@ -144,10 +144,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
     }
     
-
+   
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+        
+     
         if let result = UserDefaults.standard.value(forKey: "userdata") as? NSDictionary
         {
             
@@ -219,8 +221,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                     {
                         print("traveledDistance= \(traveledDistance)")
                         TotalDist = TotalDist + traveledDistance
-                        child?.child("latitude").setValue(LAT)
-                        child?.child("longitude").setValue(LONG)
+                        child?.child("latitude").setValue(lat)
+                        child?.child("longitude").setValue(long)
                         let currentTimeStamp = Date().toMillis()
                         child?.child("accuracy").setValue(kCLLocationAccuracyNearestTenMeters)
                         child?.child("time").setValue(currentTimeStamp)

@@ -59,24 +59,23 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
     func getAllUserMd()
     {
         let getMdUrl = "http://kanishkagroups.com/sop/pms/index.php/API/getAllUserMD"
-        let param : [String: Any] = ["up_id" : self.Up_id]
-        print("UserParam id :", param)
+        let param : [String: Any] = ["up_id" : self.Up_id!]
+        
         
         Alamofire.request(getMdUrl, method: .post, parameters: param).responseJSON { (dataAchive) in
             
             let data = dataAchive.result.value as! [String: AnyObject]
             self.Msg = data["msg"] as! [AnyObject]
             self.DataArr = self.Msg.map ({ $0 }) as NSArray
-            print(self.DataArr)
+           
             
             if self.Msg.count == 0
             {
                 self.toast.isShow("No data found")
+            }else{
+               self.tblSearch.reloadData()
             }
-            self.tblSearch.reloadData()
-            
         }
-        
     }
     
     func designCell(cView : UIView)
@@ -95,7 +94,7 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
         let green:CGFloat = CGFloat(drand48())
         let blue:CGFloat = CGFloat(drand48())
         
-        return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
+        return UIColor(red:red, green: green, blue: blue, alpha: 0.8)
     }
     
     func setupData(cId: String)
@@ -194,7 +193,7 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
             lcDict = self.Msg[indexPath.row] as! [String: AnyObject]
         }
         self.Up_id = lcDict["up_id"] as? String
-        print("User_id:", self.Up_id)
+       // print("User_id:", self.Up_id)
       
         let Fvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: "Kra_FeedbackVc") as! Kra_FeedbackVc
         Fvc.setupData(cId: self.Up_id)

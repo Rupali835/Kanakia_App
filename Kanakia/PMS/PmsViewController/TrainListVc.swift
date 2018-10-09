@@ -195,7 +195,6 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
     }
     
-   
     @IBAction func OnSegment_Click(_ sender: Any)
     {
          index = segmentView.selectedSegmentIndex
@@ -522,7 +521,7 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
     
     func addTrainurl()
     {
-        let Tpa_Status : String!
+        var Tpa_Status : String = ""
         
         if self.Up_id == self.LoginUp_id
         {
@@ -539,10 +538,10 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
             let url = "http://kanishkagroups.com/sop/pms/index.php/API/addTraining"
             let param : [String: Any] =
                 [        "up_id" : self.Up_id,
-                         "tpt_name" : txtTrain.text,
+                         "tpt_name" : txtTrain.text!,
                          "tpt_status" : Tpa_Status,
                          "tpt_added_by" : self.LoginUp_id,
-                         "tpt_type" : self.TptType
+                         "tpt_type" : self.TptType!
             ]
             
             print("Training Parameter =", param )

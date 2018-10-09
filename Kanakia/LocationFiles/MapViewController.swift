@@ -12,8 +12,10 @@ import Firebase
 import FirebaseDatabase
 import Alamofire
 
-class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class MapViewController: UIViewController, UIPopoverPresentationControllerDelegate, FirebaseMapDelegate
 {
+   
+  
    
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var tblUserDevice: UITableView!
@@ -28,8 +30,8 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var deviceNm : String!
     var ref:DatabaseReference! = nil
     var handle : DatabaseHandle!
-    var latitude : Double!
-    var longitude : Double!
+    var latitude : Double = 0.0
+    var longitude : Double = 0.0
     var popUp : KLCPopup!
     var keyArray = [String]()
     var UserNm : String!
@@ -37,37 +39,30 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     private var toast: JYToast!
     var UserArr = [AnyObject]()
     var usernmArr = [String]()
-    var userId : String!
+    var userId : String = ""
+    var strUserId : String = ""
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        
-         popUp = KLCPopup()
+        popUp = KLCPopup()
        
         toast = JYToast()
+        
+        let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
+       self.strUserId = userDict["user_id"] as! String
+        
            tblUserName.register(UINib(nibName: "LocationCell", bundle: nil), forCellReuseIdentifier: "LocationCell")
         
           tblUserDevice.register(UINib(nibName: "LocationCell", bundle: nil), forCellReuseIdentifier: "LocationCell")
         
         mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
         
-        tblUserName.delegate = self
-        tblUserName.dataSource = self
-        tblUserDevice.delegate = self
-        tblUserDevice.dataSource = self
-        tblUserName.separatorStyle = .none
-        tblUserDevice.separatorStyle = .none
-
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-           takeUserNm()
-           self.readFromDatabaseUserName()
-    }
-
+    
     func getAutoId(Userstr : String, DeviceStr : String)
     {
         self.UserNm = Userstr
@@ -75,12 +70,13 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     
-    func readFromDatabaseUserName()
+    func readFromDatabaseUserName(sender : UIButton, tag : Int)
     {
         ref = Database.database().reference()
         handle = ref.observe(.value) { [weak self] (snapshot) in
             guard let handle = self?.handle else { return }
             
+            print(snapshot)
             if snapshot.exists()
             {
                 self?.keyArray.removeAll(keepingCapacity: false)
@@ -93,28 +89,33 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                        
                         }
                 }
-                
-              
-             //   self?.ref.removeObserver(withHandle: handle)
-                  self?.tblUserName.reloadData()
+               self?.takeUserNm(sender: sender, tag: 1)
+               self?.tblUserName.reloadData()
+               self?.ref.removeObserver(withHandle: handle)
+               
+            }else
+            {
+                self?.toast.isShow("No data found")
             }
         }
     }
     
-    func takeUserNm()
+    func takeUserNm(sender : UIButton, tag : Int)
     {
         let apiUrl = "http://kanishkagroups.com/sop/android/getDetailsMms.php"
-        let param : [String: Any] = ["logged_in_user_id" : "",
-                                     "type" : ""]
+        let param : [String: Any] = ["logged_in_user_id" : self.strUserId,
+                                     "type" : "ios"]
         
         Alamofire.request(apiUrl, method: .post, parameters: param).responseJSON { (resp) in
             let json = resp.result.value as! NSDictionary
             let userA = json["user"] as AnyObject
             self.UserArr = userA as! [AnyObject]
             
-            for UserId in self.keyArray{
-              
-                print("\(UserId)")
+            self.usernmArr.removeAll(keepingCapacity: false)
+
+            for UserId in self.keyArray
+            {
+                
             for lcDict in self.UserArr
             {
                let User_Id = lcDict["user_id"] as! String
@@ -123,50 +124,18 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 {
                   print("\(lcDict["user_name"])")
                     self.usernmArr.append(lcDict["user_name"] as! String)
-                }
-                
-            }
-        }
-    }
-}
-    
-    func loadDataFromFirebaseForDevice(usernm : String)
-    {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        if UserNm != ""
-        {
-            let devicenm = Database.database().reference().child(usernm)
-            handle = devicenm.observe(.value) { [weak self] (snapshot) in
-                guard let handle = self?.handle else { return }
-                
-                if snapshot.exists()
-                {
-                    self?.deviceArr.removeAll(keepingCapacity: false)
-                    for snap in snapshot.children.allObjects
-                    {
-                        if let snap = snap as? DataSnapshot
-                        {
-                            let key = snap.key
-                            self?.deviceArr.append(key)
-                            let lat = snap.value
-                            
-                        }
-                    }
+                    self.userId = User_Id
                     
-                    self?.tblUserDevice.reloadData()
-                    self?.ref.removeObserver(withHandle: handle)
                 }
+                
             }
         }
-       
-        
+            self.OpenPopUp(sender: sender, tag: 1)
     }
-    
+  }
     
     func readFromFirebaseForMap(usernm : String, devicenm : String)
     {
-        
         mapView.clear()
         let DataRef = Database.database().reference().child(usernm).child(devicenm)
         
@@ -175,24 +144,25 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             if snapshot.exists()
             {
-                
+                self.mapView.clear()
                 let path =  GMSMutablePath()
                 
                 for snap in snapshot.children.allObjects
                 {
+                   // mapView.clear()
+                    
                     if let snap = snap as? DataSnapshot
                     {
                         if let latSome = snap.childSnapshot(forPath: "latitude").value as? Double
                         {
-                            self.latitude = latSome as? Double
+                            self.latitude = latSome
                             print(self.latitude)
                         }
                         
                         if let longSome = snap.childSnapshot(forPath: "longitude").value as? Double
                         {
-                            self.longitude = longSome as? Double
+                            self.longitude = longSome
                             print(self.longitude)
-                            
                         }
                         
                         
@@ -205,13 +175,18 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                         }
                         
                         let polyLine = GMSPolyline(path: path)
-                        polyLine.strokeWidth = 6.0
+                        polyLine.strokeWidth = 4.0
                         polyLine.geodesic = true
                         polyLine.map = self.mapView
                         polyLine.strokeColor = .red
                         
                     }
                 }
+                
+                let position = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+                let marker = GMSMarker(position: position)
+                marker.icon = GMSMarker.markerImage(with: .blue)
+                marker.map = self.mapView
                 
                 let hydeParkLocation = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
                 let camera = GMSCameraPosition.camera(withTarget: hydeParkLocation, zoom: 20)
@@ -237,114 +212,57 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
 
-    @IBAction func btnSelectUser_OnClick(_ sender: Any)
+    @IBAction func btnSelectUser_OnClick(_ sender: UIButton)
     {
-        viewUserDevice.isHidden = true
-        viewUserName.isHidden = false
-        popUp.contentView = viewUserName
-        popUp.maskType = .dimmed
-        popUp.shouldDismissOnBackgroundTouch = true
-        popUp.shouldDismissOnContentTouch = false
-        popUp.showType = .slideInFromRight
-        popUp.dismissType = .slideOutToLeft
-        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
-        
-        tblUserName.reloadData()
-        
-       
-    }
-    
-    
-    @IBAction func btnSelectDevice_OnClick(_ sender: Any)
-    {
-        viewUserName.isHidden = true
-        viewUserDevice.isHidden = false
-        popUp.contentView = viewUserDevice
-        popUp.maskType = .dimmed
-       
-        popUp.shouldDismissOnBackgroundTouch = true
-        popUp.shouldDismissOnContentTouch = false
-        popUp.showType = .slideInFromRight
-        popUp.dismissType = .slideOutToLeft
-            popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
-        tblUserDevice.reloadData()
-      
-    }
-    
-    // MARK : TABLEVIEW METHODS
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        if tableView == tblUserName
-        {
-            return usernmArr.count
-        }else{
-            return deviceArr.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        print(tableView)
-        if tableView == tblUserName
-        {
-            
-            let celll = tblUserName.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
-            self.UserNm = self.usernmArr[indexPath.row]
-            self.designCell(cView: celll.backView)
-            celll.lblName.text = self.UserNm
-            
-            return celll
-            
-        }else if tableView == tblUserDevice
-        {
-            let cell = tblUserDevice.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
-            self.deviceNm = self.deviceArr[indexPath.row] as! String
-            self.designCell(cView: cell.backView)
-            cell.lblName.text = self.deviceNm
-      
-            return cell
-        }
-        else{
-             return UITableViewCell()
-        }
-       
-     
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        if tableView == tblUserName
-        {
-            self.UserNm = usernmArr[indexPath.row]
-            userId = self.keyArray[indexPath.row]
-            btnSelectUser.setTitle(self.UserNm, for: .normal)
-            loadDataFromFirebaseForDevice(usernm: userId)
-            popUp.dismiss(true)
+        readFromDatabaseUserName(sender: sender, tag : 1)
 
-           
-        }else if tableView == tblUserDevice
+       
+    }
+    
+    
+    @IBAction func btnSelectDevice_OnClick(_ sender: UIButton)
+    {
+        OpenPopUp(sender: sender, tag: 2)
+    }
+    
+ 
+    func OpenPopUp(sender : UIButton, tag : Int)
+    {
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FirebasePopUpVC") as! FirebasePopUpVC
+        popController.delegate = self
+        popController.Tag = tag
+        
+        popController.getData(lcUserId: userId, lcUserListArr: self.usernmArr)
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender  // button
+        popController.popoverPresentationController?.sourceRect = sender.bounds
+        popController.preferredContentSize = CGSize(width: 300, height: 0)
+        self.present(popController, animated: true, completion: nil)
+        
+    }
+    
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle
+    {
+        return UIModalPresentationStyle.none
+    }
+    
+    func sendData(lcUserDict: [String])
+    {
+        for val in lcUserDict
         {
-            //let usernm = self.keyArray[indexPath.row]
-            self.deviceNm = deviceArr[indexPath.row] as! String
-            btnSelectDevice.setTitle(self.deviceNm, for: .normal)
-            popUp.dismiss(true)
-
-            self.readFromFirebaseForMap(usernm: userId, devicenm: self.deviceNm)
+           btnSelectUser.setTitle(val, for: .normal)
         }
     }
     
-    func designCell(cView : UIView)
+    func sendDataForLocation(userId: String, deviceNm: String)
     {
-        cView.layer.masksToBounds = false
-        cView.layer.shadowColor = UIColor.black.cgColor
-        cView.layer.shadowOpacity = 0.7
-        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        cView.layer.shadowRadius = 1
-        cView.backgroundColor = UIColor.white
+        btnSelectDevice.setTitle(deviceNm, for: .normal)
+        readFromFirebaseForMap(usernm: userId, devicenm: deviceNm)
     }
-    
-    
     
     
 }

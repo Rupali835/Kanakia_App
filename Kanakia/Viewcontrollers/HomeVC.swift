@@ -105,7 +105,7 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
             }
             
             
-            print("User_ id =", strUserId)
+            print("User_id =", strUserId)
             user_active = userDict["user_active"] as! String
             
             let UserDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
@@ -390,8 +390,6 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
     }
     
 }
-
-
 
 
 extension Date {

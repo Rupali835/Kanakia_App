@@ -363,14 +363,14 @@ class FeedBackForAnyVC: UIViewController, UITextViewDelegate, UITableViewDelegat
                 let Feedbackurl = "http://kanishkagroups.com/sop/pms/index.php/API/submit_any_feedback"
                 let Feedparam : [String : Any] =
                     [
-                     "up_id" : self.UserId,
-                     "tpf_name" : txtFeedbackView.text,
+                     "up_id" : self.UserId!,
+                     "tpf_name" : txtFeedbackView.text!,
                      "tpf_added_by" : self.Up_ID
                 ]
                 
                 print(Feedparam)
                 Alamofire.request(Feedbackurl, method: .post, parameters: Feedparam).responseJSON { (addResp) in
-                    print(addResp)
+                //    print(addResp)
                     self.view.endEditing(true)
                     self.toast.isShow("Your Feedback message has been sent")
                     self.txtFeedbackView.text = ""

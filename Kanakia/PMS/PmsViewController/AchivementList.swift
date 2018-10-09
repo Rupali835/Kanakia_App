@@ -324,6 +324,9 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
             cellCommonCell.lblStatus.text = "Pending"
             cellCommonCell.backView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.76, alpha:1.0)
             
+        //    cellCommonCell.backView.backgroundColor =  UIColor(red:1.00, green:0.95, blue:0.46, alpha:0.7)
+           
+            
         }
         
     }
@@ -514,7 +517,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func addAchive()
     {
-        let Tpa_Status : String!
+        var Tpa_Status : String = ""
         if self.Up_id == self.LoginUp_id
         {
            Tpa_Status = "0"
@@ -530,7 +533,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
             let addAchiveUrl = "http://kanishkagroups.com/sop/pms/index.php/API/addAchievement"
             let addParameter : [String: Any] =
                 [        "up_id" : self.Up_id,
-                         "tpa_name" : txtAchivement.text,
+                         "tpa_name" : txtAchivement.text!,
                          "tpa_status" : Tpa_Status,
                          "tpa_added_by" : self.LoginUp_id
                  ]

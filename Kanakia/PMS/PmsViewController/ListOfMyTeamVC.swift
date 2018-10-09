@@ -200,10 +200,10 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
       
         let lcId = lcEmpData["up_id"] as! String
-        let lcName = lcEmpData["user_name"] as? String
+        let lcName = lcEmpData["user_name"] as! String
         
         let Fvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: "Kra_FeedbackVc") as! Kra_FeedbackVc
-        Fvc.setEmpName(cNm: (lcName)!)
+        Fvc.setEmpName(cNm: (lcName))
         Fvc.setupData(cId: lcId)
         Fvc.Check = checkNm
         navigationController?.pushViewController(Fvc, animated: true)
