@@ -47,21 +47,17 @@ class KPI_ListVc: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         tblKpi_List.register(UINib(nibName: "With_TargetKpiCell", bundle: nil), forCellReuseIdentifier: "With_TargetKpiCell")
         
-//        let dict  = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
-//        self.Up_id = dict["up_id"] as! String
         initUi()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KPI_ListVc.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
-      
     }
 
     @objc func dismissKeyboard()
     {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     

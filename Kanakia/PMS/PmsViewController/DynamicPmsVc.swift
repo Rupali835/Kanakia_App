@@ -1,10 +1,4 @@
-//
-//  DynamicPmsVc.swift
-//  Kanakia SOP
-//
-//  Created by user on 13/04/18.
-//  Copyright © 2018 user. All rights reserved.
-//
+
 
 import UIKit
 
@@ -13,9 +7,7 @@ class DynamicPmsVc: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
-    }
+ }
 
     func setupData(cId: String)
     {

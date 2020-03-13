@@ -42,8 +42,6 @@ class LocationByDateVC: UIViewController, UIPopoverPresentationControllerDelegat
         self.txtDate.text = stringDate
         self.DateStr = stringDate
         mapView.isMyLocationEnabled = true
-        
-        
     }
     
     func createDatePicker()
@@ -128,7 +126,7 @@ class LocationByDateVC: UIViewController, UIPopoverPresentationControllerDelegat
         popController.getData(lcUserId: self.userId, date: DateStr!, lcUserListArr: self.userList)
         
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+       popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender  // button
         popController.popoverPresentationController?.sourceRect = sender.bounds
@@ -136,8 +134,6 @@ class LocationByDateVC: UIViewController, UIPopoverPresentationControllerDelegat
         self.present(popController, animated: true, completion: nil)
         
     }
-    
-    
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle
     {
@@ -199,30 +195,40 @@ class LocationByDateVC: UIViewController, UIPopoverPresentationControllerDelegat
         Alamofire.request(url, method: .post, parameters: param).responseJSON { (resp) in
             
             print(resp)
-            let json = resp.result.value as! NSDictionary
             
-            self.msg = json["msg"] as! String
-            
-            if self.msg != "success"
+            switch resp.result
             {
-                self.dismiss(animated: true, completion: nil)
-                let alert = UIAlertController(title: "Live Tracking", message: "No any users for this date", preferredStyle: .alert)
+            case .success(_):
                 
-                let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                    
+                let json = resp.result.value as! NSDictionary
+                self.msg = json["msg"] as! String
+                
+                if self.msg != "success"
+                {
                     self.dismiss(animated: true, completion: nil)
-                })
+                    let alert = UIAlertController(title: "Live Tracking", message: "No any users for this date", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                        
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    
+                    self.userList.removeAll(keepingCapacity: false)
+                    let userlist = json["user"] as AnyObject
+                    self.userList = userlist as! [AnyObject]
+                    self.OpenPopUp(sender: sender, tag: 1)
+                }
                 
-                alert.addAction(okAction)
-                self.present(alert, animated: true, completion: nil)
-            }else{
+                break
                 
-                self.userList.removeAll(keepingCapacity: false)
-                let userlist = json["user"] as AnyObject
-                self.userList = userlist as! [AnyObject]
-                self.OpenPopUp(sender: sender, tag: 1)
+            case .failure(_):
+                self.toast.isShow("Something went wrong")
+                break
             }
-            
             
         }
         

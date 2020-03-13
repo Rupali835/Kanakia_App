@@ -1,10 +1,3 @@
-//
-//  MdLoginVc.swift
-//  Kanakia SOP
-//
-//  Created by user on 13/04/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 import Alamofire
@@ -39,7 +32,7 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
          self.tblSearch.register(UINib(nibName: "teamCell", bundle: nil), forCellReuseIdentifier: "teamCell")
         getAllUserMd()
         initUi()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MdLoginVc.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         
@@ -54,7 +47,6 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
     
     func getAllUserMd()
     {
@@ -162,7 +154,7 @@ class MdLoginVc: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate,
         var lcDict: [String: AnyObject]!
         cell.contentView.layer.cornerRadius = 8
         cell.contentView.layer.masksToBounds = true
-        self.designCell(cView: cell.backView)
+     //   self.designCell(cView: cell.backView)
         
       if searchActive
       {

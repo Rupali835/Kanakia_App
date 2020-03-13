@@ -15,7 +15,6 @@ class PopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @IBOutlet weak var tblNames: UITableView!
     
-   
     var userList = [AnyObject]()
     var deviceList = [AnyObject]()
     var locationList = [AnyObject]()
@@ -123,8 +122,6 @@ class PopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             delegate?.sendDeviceData(lcUserDict: lcdict as! [String: String])
             self.dismiss(animated: true, completion: nil)
         }
-        
-       
     }
     
     func designCell(cView : UIView)

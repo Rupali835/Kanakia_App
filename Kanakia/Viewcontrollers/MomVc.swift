@@ -8,8 +8,9 @@
 
 import UIKit
 import AVFoundation
-import  Alamofire
+import Alamofire
 import Foundation
+import SVProgressHUD
 
 class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UIDocumentPickerDelegate
 {
@@ -23,7 +24,7 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
     var Selected_m_id : String!
     var momSt : String!
     var strUserId:String = ""
-    var TypeMom : String!
+    var TypeMom = String()
     
     var DBAttachmentArr = [DBAttachment]()
     
@@ -41,18 +42,12 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
         self.txtMinOfM.layer.borderColor = UIColor.purple.cgColor
         initUi()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
      
         self.DBAttachmentArr.removeAll(keepingCapacity: false)
        
     }
 
-    override func viewWillAppear(_ animated: Bool)
-    {
-        
-    }
     
     private func textFieldDidBeginEditing(_ textField: UITextField)
     {
@@ -61,48 +56,6 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
     
      private func textFieldDidEndEditing(_ textField: UITextField){
         activeField = nil
-    }
-    
-    
-    @objc func keyboardWillShow(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5","iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular" :
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 150
-                    }
-                    
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE","iPhone 7":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 60
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
     }
     
     
@@ -129,45 +82,6 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
     }
     
     
-    @objc func keyboardWillHide(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5","iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 150
-                    }
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE","iPhone 7":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 60
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
-    
    func initUi() {
         toast = JYToast()
     }
@@ -184,6 +98,7 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
         self.momSt = mM_id
         print(self.momSt)
     }
+    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
@@ -219,20 +134,22 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
             print("fileSizeStr = \(String(describing: lcAttachment.fileSizeStr))")
            
             print("Count= \(self.DBAttachmentArr.count)")
-            //if self.DBAttachmentArr.count < 3
-            //{
+            
                self.DBAttachmentArr.append(lcAttachment)
-            //}
+            
             
         }
-    
             self.toast.isShow("file attached successfully")
         
         }, cancel: nil)
 
+        
         attachmentPickerController.mediaType = .image
         attachmentPickerController.mediaType = .video
+        attachmentPickerController.mediaType = .other
+        
         attachmentPickerController.capturedVideoQulity = UIImagePickerControllerQualityType.typeHigh
+        
         attachmentPickerController.allowsMultipleSelection = true
         attachmentPickerController.allowsSelectionFromOtherApps = true
         attachmentPickerController.present(on: self)
@@ -244,6 +161,9 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
     
     func uploadWithAlamofire()
     {
+        
+        let strUrl = "http://kanishkagroups.com/sop/android/insertMomMms.php"
+
         var parameters = [String: Any]()
         
         if self.momSt == "1"
@@ -254,9 +174,9 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
                 [
                     "u_id" : self.strUserId ,
                     "doc_count" : "1",
-                    "remark" : txtRemark.text,
-                    "md_id" : md_id,
-                    "mom" : txtMinOfM.text,
+                    "remark" : txtRemark.text!,
+                    "md_id" : md_id!,
+                    "mom" : txtMinOfM.text!,
                     "type" : self.TypeMom
                ]
             
@@ -267,70 +187,133 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
             
             parameters =
                 [
-                    "u_id" : self.strUserId ,
+                    "u_id" : self.strUserId,
                     "doc_count" : "1",
-                    "remark" : txtRemark.text,
-                    "m_id" : self.Selected_m_id,
-                    "mom" : txtMinOfM.text,
+                    "remark" : self.txtRemark.text!,
+                    "m_id" : self.Selected_m_id!,
+                    "mom" : self.txtMinOfM.text!,
                     "type" : self.TypeMom
                  ]
         }
         
         print(parameters)
+      
         
         for lcAttachment in self.DBAttachmentArr
         {
-            let lcFileName: String? = lcAttachment.fileName
-           let fileName = lcAttachment.fileName?.fileName()
-            let fileExtension = lcAttachment.fileName?.fileExtension()
-            print(fileName!)
-            print(fileExtension!)
-       
-           let imageToUploadURL: URL! = Bundle.main.url(forResource: "test", withExtension: "pdf")
-        print("CorrectdToSend= \(imageToUploadURL)")
+            var MimeType = String()
             
-        let strUrl = "http://kanishkagroups.com/sop/android/insertMomMms.php"
-       
+            let lcFileName: String? = lcAttachment.fileName
+            let fileName = lcAttachment.fileName?.fileName()
+            let fileExtension = lcAttachment.fileName?.fileExtension()
+            print(fileExtension!)
+            
+           if (fileExtension == "jpg") || (fileExtension == "PNG") || (fileExtension == "jpeg") || (fileExtension == "JPEG") || (fileExtension == "GIF") || (fileExtension == "gif") || (fileExtension == "JPG") || (fileExtension == "png")
+            {
+                MimeType = "image/jpeg"
+            }
+            if fileExtension == "pdf"
+            {
+                MimeType = "pdf/text"
+            }
+            if fileExtension == "css"
+            {
+                MimeType = "text/css"
+            }
+            if (fileExtension == "htm") || (fileExtension == "html")
+            {
+                MimeType = "text/html"
+            }
+        
                 let lcURL: URL! = lcAttachment.url
                 print("URL = \(lcURL)")
+            
+            if lcURL == nil
+            {
+                self.toast.isShow("This file cannot be uploaded")
+                self.view.removeFromSuperview()
+                return
+            }
+    
+            
+            OperationQueue.main.addOperation {
+                SVProgressHUD.setDefaultMaskType(.custom)
+                SVProgressHUD.setBackgroundColor(UIColor.gray)
+                SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
+                SVProgressHUD.show()
+            }
+            
+            Alamofire.upload(
+                multipartFormData: { multipartFormData in
+                    
+                    
+                            multipartFormData.append(lcURL!, withName: "document", fileName: lcFileName!, mimeType: MimeType)
+                    
+                    for (key, val) in parameters {
+                        multipartFormData.append((val as AnyObject).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue).rawValue)!, withName: key)
+                    }
+            },
                 
-        print(parameters)
-        
-        Alamofire.upload(
-            multipartFormData: { multipartFormData in
-
-                multipartFormData.append(lcURL,
-                                         withName: "document",  /// images0/1/2
-                                         fileName: lcFileName!,
-                                         mimeType: "pdf/text")
+                usingThreshold : SessionManager.multipartFormDataEncodingMemoryThreshold,
+                to : strUrl,
+                method: .post)
+            { (result) in
                 
-                                   //      mimeType: "text/pdf")
-                for (key, val) in parameters {
-                    multipartFormData.append((val as AnyObject).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue).rawValue)!, withName: key)
-                }
-        },
-            to: strUrl,
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
+              
+                switch result {
                 case .success(let upload, _, _):
+                    
+                    upload.uploadProgress(closure: { (Progress) in
+                        print("Upload Progress: \(Progress.fractionCompleted)")
+                    })
+                    
                     upload.responseJSON { response in
-                        if let jsonResponse = response.result.value as? [String: Any] {
-                            print(jsonResponse)
-                            self.fetchFile()
-                            let resData = jsonResponse["msg"] as! String
-                            
-                            let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
-                            concurrentQueue.sync {
-                               self.toast.isShow(resData)
-                            }
+                        
+                        OperationQueue.main.addOperation {
+                            SVProgressHUD.dismiss()
                             
                         }
+                        
+                        switch response.result
+                        {
+                        case .success(_):
+                           if let jsonResponse = response.result.value as? [String: Any] {
+                                print(jsonResponse)
+                                self.fetchFile()
+                                let resData = jsonResponse["msg"] as! String
+                            
+                            if resData == "Minutes Of Meeting Updated Successfully"
+                            {
+                                self.toast.isShow("Minutes of meeting added successfully")
+                                self.view.removeFromSuperview()
+                            }
+                            
+                                let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+                                concurrentQueue.sync {
+                                    self.toast.isShow(resData)
+                                }
+                                
+                            }
+                            
+                            break
+                        
+                        case .failure(_):
+                            self.toast.isShow("Something went wrong")
+                            break
+                            
+                        }
+                        
+                      
                     }
+                    
                 case .failure(let encodingError):
                     print(encodingError)
+                    self.toast.isShow(encodingError as! String)
                 }
-        })
-    
+                
+            }
+            
+
     }
 }
    
@@ -341,7 +324,7 @@ class MomVc: UIViewController, UITextViewDelegate  //,UIDocumentMenuDelegate,UID
         
         let postData : [String: Any] =
             [
-                "m_id" : self.Selected_m_id
+                "m_id" : self.Selected_m_id!
         ]
         
         print(postData)

@@ -25,6 +25,7 @@ class FileDocumentVc: UIViewController,UIDocumentInteractionControllerDelegate,U
     var path = "http://www.kanishkagroups.com/sop/upload_mom/"
     
     var StringURL : String!
+    var toast = JYToast()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,6 @@ class FileDocumentVc: UIViewController,UIDocumentInteractionControllerDelegate,U
         self.tableView.delegate = self
         self.resRemark.layer.borderColor = UIColor.purple.cgColor
         self.resMom.layer.borderColor = UIColor.purple.cgColor
-       
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,36 +53,50 @@ class FileDocumentVc: UIViewController,UIDocumentInteractionControllerDelegate,U
         
         let postData : [String: Any] =
             [
-                "m_id" : self.Selected_m_id
+                "m_id" : self.Selected_m_id!
         ]
         
         print(postData)
        
         Alamofire.request(fileUrl, method: .post, parameters:postData).responseJSON { (resp) in
             print(resp)
-            let data = resp.result.value as! [AnyObject]
-            print(data)
             
-            let Md_id = data[0]["md_id"] as! String
-            let md_attachment = data[0]["md_attachment"] as! String
-            let md_Minutes = data[0]["md_minutes"] as! String
-            let md_remark = data[0]["md_remark"] as! String
-             UserDefaults.standard.set(Md_id, forKey: "md_id")
-            self.resMom.text = md_Minutes
-            self.resRemark.text = md_remark
-            
-            let lcAttacmentArr = self.getArrayFromJSonString(cJsonStr: md_attachment)
-            print(lcAttacmentArr)
-            self.DocumentArr.removeAll(keepingCapacity: false)
-            
-            for lcAttacment in lcAttacmentArr
+            switch resp.result
             {
-                let lcFilePath = self.path + "\(lcAttacment)"
-                print("lcFilePath=",lcFilePath)
-                self.DocumentArr.append(lcAttacment)
+            case .success(_):
+                
+                let data = resp.result.value as! [AnyObject]
+                print(data)
+                
+                let Md_id = data[0]["md_id"] as! String
+                let md_attachment = data[0]["md_attachment"] as! String
+                let md_Minutes = data[0]["md_minutes"] as! String
+                let md_remark = data[0]["md_remark"] as! String
+                UserDefaults.standard.set(Md_id, forKey: "md_id")
+                self.resMom.text = md_Minutes
+                self.resRemark.text = md_remark
+                
+                let lcAttacmentArr = self.getArrayFromJSonString(cJsonStr: md_attachment)
+                print(lcAttacmentArr)
+                self.DocumentArr.removeAll(keepingCapacity: false)
+                
+                for lcAttacment in lcAttacmentArr
+                {
+                    let lcFilePath = self.path + "\(lcAttacment)"
+                    print("lcFilePath=",lcFilePath)
+                    self.DocumentArr.append(lcAttacment)
+                }
+                
+                self.tableView.reloadData()
+                
+                break
+                
+            case .failure(_):
+                self.toast.isShow(EncodingError.self as! String)
+                break
             }
-          
-            self.tableView.reloadData()
+            
+           
         }
  }
 

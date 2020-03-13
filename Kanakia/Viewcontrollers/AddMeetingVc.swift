@@ -2,7 +2,7 @@
 
 import UIKit
 import Alamofire
-
+import SVProgressHUD
 
 class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,ModalControllerDelegate, UIGestureRecognizerDelegate
 {
@@ -57,7 +57,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
     
     var DayArr          = [Days]()
     var reidArr = [String]()
-    var drowDownView       : DropDown!
+    var drowDownView       : DropDownList!
     var upBtn              = UIButton()
     var bStatus            = Bool(false)
     var ReminderArr        = [reminder]()
@@ -382,9 +382,22 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
         self.bMeetingStatus = false
         let urlStr = "http://kanishkagroups.com/sop/android/insertMeetingMms.php"
      
+        OperationQueue.main.addOperation {
+            SVProgressHUD.setDefaultMaskType(.custom)
+            SVProgressHUD.setBackgroundColor(UIColor.gray)
+            SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
+            SVProgressHUD.show()
+        }
+        
         Alamofire.request(urlStr, method: .post, parameters: params).responseString{ response in
             print(response)
 
+            OperationQueue.main.addOperation {
+                SVProgressHUD.dismiss()
+                
+            }
+
+            
             switch response.result
             {
                case .success:
@@ -418,6 +431,7 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
                 }
 
             case .failure(_):
+                self.toast.isShow("Something went wrong")
                 print("error")
             }
         }
@@ -1364,7 +1378,6 @@ class AddMeetingVc: UIViewController,UITextFieldDelegate,SelectedStringDelegate,
         
         self.FilteredArr  = FilteredForArr.filtered(using: predicate) as NSArray
         
-       // print("names = \(FilteredArr)")
         if(nFinalLen == 0){
             result = ""
             self.tblViewHeightConst.constant = 0

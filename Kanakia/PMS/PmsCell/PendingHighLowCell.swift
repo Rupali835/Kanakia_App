@@ -24,6 +24,10 @@ class PendingHighLowCell: UITableViewCell {
         super.awakeFromNib()
           self.selectionStyle = .none
         // Initialization code
+        
+        backView.layer.cornerRadius = 5
+        backView.layer.borderWidth = 1
+        backView.layer.borderColor = UIColor.lightGray.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

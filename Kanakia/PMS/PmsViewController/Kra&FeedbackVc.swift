@@ -30,10 +30,11 @@ class Kra_FeedbackVc: UIViewController {
         
         self.mainView.backgroundColor =  UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
-        self.designCell(cView: Fvc)
-        self.designCell(cView: Svc)
-        self.designCell(cView: Tvc)
-        self.designCell(cView: forVc)
+//        self.designCell(cView: Fvc)
+//        self.designCell(cView: Svc)
+//        self.designCell(cView: Tvc)
+//        self.designCell(cView: forVc)
+        
         setupData(cId: self.Up_id)
         
         self.navigationItem.backBarButtonItem?.title = ""

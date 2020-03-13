@@ -38,7 +38,7 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         initUi()
         self.Mytbl.separatorStyle = .none
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ListOfMyTeamVC.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         
@@ -155,7 +155,7 @@ class ListOfMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.contentView.layer.cornerRadius = 8
         cell.contentView.layer.masksToBounds = true
         
-        self.designCell(cView: cell.backView)
+     //   self.designCell(cView: cell.backView)
         
         if searchActive
         {

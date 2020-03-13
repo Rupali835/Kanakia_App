@@ -35,8 +35,6 @@ class UserDeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.tblUserDevice.dataSource = self
         ref = Database.database().reference()
         self.loadDataFromFirebase()
-
-       
     }
 
     func setDevice(Arr : String)

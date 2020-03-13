@@ -9,12 +9,12 @@
 import UIKit
 import Alamofire
 
-class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate
+class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CallTrainingApi
 {
    
     @IBOutlet weak var segmentView: UISegmentedControl!
-    @IBOutlet weak var txtTrain: UITextView!
     @IBOutlet weak var tblTraining: UITableView!
+    
     var Up_id : String = ""
     var Msg = [AnyObject]()
     private var toast: JYToast!
@@ -24,7 +24,9 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
     var TptType : String!
     var DataArr = [AnyObject]()
     var tpt_Type: String!
-     var valid = Bool(true)
+    var valid = Bool(true)
+    var m_cAddLearningvc : AddLearningNeedsPopUp!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -33,9 +35,8 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
 
         self.navigationItem.backBarButtonItem?.title = ""
 
-        self.navigationItem.title = "Training Needs"
-        self.txtTrain.delegate = self
-          txtTrain.text = "Enter Training"
+        self.navigationItem.title = "Learning Needs"
+       
          index = 0
         self.TptType = "1"
         self.tblTraining.estimatedRowHeight = 80
@@ -51,7 +52,6 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         tblTraining.register(UINib(nibName: "HighLowLightCell", bundle: nil), forCellReuseIdentifier: "HighLowLightCell")
         
         self.tblTraining.separatorStyle = .none
-        getTraining()
         initUi()
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -61,19 +61,30 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
         tblTraining.addGestureRecognizer(dismissKeyboardGesture)
         
-        txtTrain.layer.cornerRadius = 5
-        txtTrain.layer.borderWidth = 1.0
-        txtTrain.layer.borderColor = UIColor.purple.cgColor
-        txtTrain.backgroundColor = UIColor.clear
         
         
     }
 
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        txtTrain.text = nil
-        txtTrain.textColor = UIColor.black
-        
+    func GetAddedTrainig()
+    {
+        getTraining()
     }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        getTraining()
+    }
+    
+    override func awakeFromNib()
+    {
+       // self.m_cAddLearningvc = self.storyboard?.instantiateViewController(withIdentifier: "AddLearningNeedsPopUp") as! AddLearningNeedsPopUp
+
+        self.m_cAddLearningvc = AppStoryboard.Pms.instance.instantiateViewController(withIdentifier: "AddLearningNeedsPopUp") as? AddLearningNeedsPopUp
+    }
+    
+ 
     @objc func keyboardWillHide(notification: NSNotification)
     {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
@@ -201,11 +212,11 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
         if index == 0
         {
-            self.TptType = "1"
+            self.TptType = "Technical Topics"
            self.GetData(nTptType:self.TptType)
             
          }else{
-            self.TptType = "2"
+            self.TptType = "Behavioural Topics"
             self.GetData(nTptType: self.TptType)
         }
         
@@ -216,14 +227,14 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
     {
          self.DataArr.removeAll(keepingCapacity: false)
         
-        for lcDict in self.Msg
-        {
-            let tptType = lcDict["tpt_type"] as! String
+        self.Msg.forEach { lcDict in
+            let tptType = lcDict["learning_topic_category_name"] as! String
             
-            if  tptType == nTptType
+            if tptType == nTptType
             {
                 self.DataArr.append(lcDict)
             }
+            
         }
         
         self.tblTraining.reloadData()
@@ -309,10 +320,19 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         cell.btnAccept.isHidden = false
         cell.btnReject.isHidden = false
         
-        cell.lblLightName.text = lcDict["tpt_name"] as? String
+        let l_name = lcDict["tpt_name"] as! String
         cell.lblAddedBy.text = (lcDict["tpt_added_by_name"] as! String)
         cell.lblDateTime.text = (lcDict["tpt_added_timestamp"] as! String)
-        cell.lblApprovedBy.text = (lcDict["tpt_approved_by_name"] as! String)
+        let ApprovedNm = (lcDict["tpt_approved_by_name"] as! String)
+        
+        if let timeName = lcDict["learning_topic_timeline_name"] as? String
+        {
+            cell.lblLightName.text = "\(l_name) (\(timeName))" as String
+        }else
+        {
+            cell.lblLightName.text = "\(l_name)"
+        }
+        
         
         cell.btnAccept.tag = indexPath.row
         cell.btnReject.tag = indexPath.row
@@ -321,21 +341,18 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         
         if (lcDict["tpt_status"] as! String) == "1"
         {
-            
             cell.btnAccept.isHidden = true
             cell.btnReject.isHidden = true
-            cell.lblPersonStatus.text = "Accepted By:"
-            cell.lblStatus.text = "Accepted"
+          
+            cell.lblStatus.text = "Accepted By:  \(ApprovedNm)"
             cell.backView.backgroundColor = UIColor(red:0.78, green:0.90, blue:0.79, alpha:1.0)
         }
         if (lcDict["tpt_status"] as! String) == "2"
         {
-            
             cell.btnAccept.isHidden = true
             cell.btnReject.isHidden = true
             
-            cell.lblPersonStatus.text = "Rejected By:"
-            cell.lblStatus.text = "Rejected"
+            cell.lblStatus.text = "Rejected By:  \(ApprovedNm)"
             cell.backView.backgroundColor = UIColor(red:1.00, green:0.80, blue:0.82, alpha:1.0)
             
         }
@@ -343,7 +360,7 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
         {
             cell.btnAccept.isHidden = false
             cell.btnReject.isHidden = false
-            cell.lblStatus.text = "Pending"
+            cell.lblStatus.text = "Status : Pending"
             cell.backView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.76, alpha:1.0)
 
         }
@@ -382,8 +399,11 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
                 cell.contentView.layer.cornerRadius = 8
                 cell.contentView.layer.masksToBounds = true
                 self.designCell(cView: cell.backView)
-                cell.lblTime.text = (lcDict["tpt_added_timestamp"] as! String)
-                cell.lblAddname.text = (lcDict["tpt_name"] as! String)
+                
+                 let Cdate = (lcDict["tpt_added_timestamp"] as! String)
+                 cell.lblTime.text = convertDateFormaterInList(cdate: Cdate)
+                
+                let l_name = (lcDict["tpt_name"] as! String)
                let addedBy = (lcDict["tpt_added_by_name"] as! String)
                 cell.lblAdedBy.text = "Added By: \(addedBy)"
                 if (lcDict["tpt_status"] as! String) == "0"
@@ -391,6 +411,16 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
                     cell.btnDelete.isHidden = false
                     cell.lblStatus.text = "Status : Pending"
                 }
+               
+                if let timeName = lcDict["learning_topic_timeline_name"] as? String
+                {
+                    cell.lblAddname.text = "\(l_name) (\(timeName))" as String
+                }else
+                {
+                    cell.lblAddname.text = "\(l_name)"
+                }
+                
+                
                 
                 cell.backView.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
                 cell.viewDelete.backgroundColor = UIColor(red:1.00, green:0.85, blue:0.73, alpha:1.0)
@@ -501,62 +531,29 @@ class TrainListVc: UIViewController, UITableViewDataSource, UITableViewDelegate,
     
     @IBAction func SendTraining_btnClick(_ sender: Any)
     {
-        view.endEditing(true)
+        self.m_cAddLearningvc.view.frame = self.view.frame
+        self.m_cAddLearningvc.m_delegate = self
+        self.view.addSubview(self.m_cAddLearningvc.view)
+        self.m_cAddLearningvc.getId(upid: self.Up_id, loginid: self.LoginUp_id)
+        self.m_cAddLearningvc.addFromQuick = false
+        self.m_cAddLearningvc.view.clipsToBounds = true
         
-        let alert = UIAlertController(title: "Alert", message: "Are you sure to send this Training?", preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            
-            self.addTrainurl()
-        }
-        let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel){
-            UIAlertAction in
-            self.txtTrain.text = ""
-        }
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
     }
     
-    func addTrainurl()
-    {
-        var Tpa_Status : String = ""
-        
-        if self.Up_id == self.LoginUp_id
-        {
-            Tpa_Status = "0"
-        }else{
-            Tpa_Status = "1"
-        }
-        
-        if txtTrain.text == ""
-        {
-            self.toast.isShow("Please enter a text")
-            self.valid = false
-        }else{
-            let url = "http://kanishkagroups.com/sop/pms/index.php/API/addTraining"
-            let param : [String: Any] =
-                [        "up_id" : self.Up_id,
-                         "tpt_name" : txtTrain.text!,
-                         "tpt_status" : Tpa_Status,
-                         "tpt_added_by" : self.LoginUp_id,
-                         "tpt_type" : self.TptType!
-            ]
-            
-            print("Training Parameter =", param )
-            Alamofire.request(url, method: .post, parameters: param).responseJSON { (addResp) in
-                print(addResp)
-                self.txtTrain.text = ""
-                self.getTraining()
-                
-            }
-        }
-        
-    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
 
+    func convertDateFormaterInList(cdate: String) -> String
+    {
+        print(cdate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: cdate)
+        dateFormatter.dateFormat = "dd-MMM-yyyy  h:mm:a"
+        return  dateFormatter.string(from: date!)
+        
+    }
  
 }

@@ -1,22 +1,15 @@
-//
-//  MapViewController.swift
-//  Kanakia
-//
-//  Created by Prajakta Bagade on 9/11/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 import GoogleMaps
 import Firebase
 import FirebaseDatabase
 import Alamofire
+import DropDown
+
 
 class MapViewController: UIViewController, UIPopoverPresentationControllerDelegate, FirebaseMapDelegate
 {
-   
-  
-   
+    @IBOutlet weak var ActivityInd: UIActivityIndicatorView!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var tblUserDevice: UITableView!
     @IBOutlet weak var tblUserName: UITableView!
@@ -41,11 +34,16 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
     var usernmArr = [String]()
     var userId : String = ""
     var strUserId : String = ""
+    var userIdArr = [String]()
 
+    let dropdownFirst = DropDown()
+    let dropdownSecond = DropDown()
+    var m_cSelectedId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
+        ActivityInd.isHidden = true
         popUp = KLCPopup()
        
         toast = JYToast()
@@ -62,7 +60,6 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
         
     }
     
-    
     func getAutoId(Userstr : String, DeviceStr : String)
     {
         self.UserNm = Userstr
@@ -72,6 +69,8 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
     
     func readFromDatabaseUserName(sender : UIButton, tag : Int)
     {
+        ActivityInd.isHidden = false
+        ActivityInd.startAnimating()
         ref = Database.database().reference()
         handle = ref.observe(.value) { [weak self] (snapshot) in
             guard let handle = self?.handle else { return }
@@ -92,12 +91,14 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
                self?.takeUserNm(sender: sender, tag: 1)
                self?.tblUserName.reloadData()
                self?.ref.removeObserver(withHandle: handle)
-               
+                self!.ActivityInd.stopAnimating()
+                self!.ActivityInd.isHidden = true
             }else
             {
                 self?.toast.isShow("No data found")
             }
         }
+       
     }
     
     func takeUserNm(sender : UIButton, tag : Int)
@@ -122,15 +123,16 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
                 
                 if UserId == User_Id
                 {
-                  print("\(lcDict["user_name"])")
                     self.usernmArr.append(lcDict["user_name"] as! String)
+                    self.userIdArr.append(lcDict["user_id"] as! String)
+                    print(self.userIdArr)
                     self.userId = User_Id
                     
                 }
                 
             }
         }
-            self.OpenPopUp(sender: sender, tag: 1)
+            self.OpenPopUp(sender: sender, tag: 1, USERID: self.userId, nSelected: self.userId)
     }
   }
     
@@ -214,33 +216,41 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
 
     @IBAction func btnSelectUser_OnClick(_ sender: UIButton)
     {
+        btnSelectDevice.setTitle("Select Device", for: .normal)
         readFromDatabaseUserName(sender: sender, tag : 1)
-
-       
     }
-    
     
     @IBAction func btnSelectDevice_OnClick(_ sender: UIButton)
     {
-        OpenPopUp(sender: sender, tag: 2)
+        if self.userId != nil && self.m_cSelectedId != nil
+        {
+            ActivityInd.isHidden = false
+            ActivityInd.startAnimating()
+             OpenPopUp(sender: sender, tag: 2, USERID: self.userId, nSelected: self.m_cSelectedId)
+        }else{
+            self.toast.isShow("First select user")
+        }
     }
     
- 
-    func OpenPopUp(sender : UIButton, tag : Int)
+    func OpenPopUp(sender : UIButton, tag : Int, USERID : String, nSelected: String)
     {
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FirebasePopUpVC") as! FirebasePopUpVC
         popController.delegate = self
         popController.Tag = tag
         
-        popController.getData(lcUserId: userId, lcUserListArr: self.usernmArr)
-        
+        popController.getData(lcUserId: USERID, lcUserListArr: self.usernmArr, lcUserIdArr: self.userIdArr, nSelectedId: nSelected)
+    
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+    
+    popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender  // button
         popController.popoverPresentationController?.sourceRect = sender.bounds
         popController.preferredContentSize = CGSize(width: 300, height: 0)
         self.present(popController, animated: true, completion: nil)
+        ActivityInd.stopAnimating()
+        ActivityInd.isHidden = true
+       
         
     }
     
@@ -250,12 +260,20 @@ class MapViewController: UIViewController, UIPopoverPresentationControllerDelega
         return UIModalPresentationStyle.none
     }
     
-    func sendData(lcUserDict: [String])
+    func sendData(lcUserDict: String, lcIdDict : String)
     {
-        for val in lcUserDict
-        {
-           btnSelectUser.setTitle(val, for: .normal)
-        }
+//        for val in lcUserDict
+//        {
+           btnSelectUser.setTitle(lcUserDict, for: .normal)
+           self.m_cSelectedId = lcIdDict
+            
+       // }
+        
+//        for Id in lcIdDict
+//        {
+//            btnSelectDevice.setTitle(Id, for: .normal)
+//            btnSelectDevice.titleLabel?.textColor = UIColor.white
+//        }
     }
     
     func sendDataForLocation(userId: String, deviceNm: String)

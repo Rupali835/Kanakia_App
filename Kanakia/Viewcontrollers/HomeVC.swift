@@ -21,9 +21,9 @@ enum ViewCtr :Int
     case PmsVc    = 3
 }
 
-class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
+class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, SearchMeetingProtocol
 {
-    
+
     @IBOutlet weak var lblVms: UIButton!
     @IBOutlet weak var imgVms: UIImageView!
     @IBOutlet weak var lblMrms: UIButton!
@@ -36,7 +36,7 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
     @IBOutlet weak var btnVms: MKButton!
     @IBOutlet weak var btnMrms: MKButton!
     @IBOutlet weak var BtnPms: UIButton!
-    
+    @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet weak var btnPreviousMap: UIButton!
     @IBOutlet weak var btnMap: UIButton!
     
@@ -57,7 +57,7 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
     var strUserName : String = ""
     var locationManager : CLLocationManager?
     var ref : DatabaseReference?
-     private var toast: JYToast!
+     var toast = JYToast()
     var userDict = NSDictionary()
   
     
@@ -65,7 +65,7 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
     {
         super.viewDidLoad()
         ref = Database.database().reference()
-        
+        self.btnUpdate.isHidden = true
         if isConnectedToNetwork()
         {
             self.navigationController?.navigationBar.isHidden = false
@@ -113,17 +113,32 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
             getUserType()
             setMapBtn()
             
-            initUi()
-            
-            
         }else{
               self.toast.isShow("No Internet Connection Available")
         }
         
     }
 
-    private func initUi() {
-        toast = JYToast()
+    @IBAction func btnSearch_onClick(_ sender: Any)
+    {
+//       let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ShowMeetingsVc") as! ShowMeetingsVc
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SearchAllMeetingsVc") as! SearchAllMeetingsVc
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func moveToback(meetingArr: [AnyObject]) {
+        let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ShowMeetingsVc") as! ShowMeetingsVc
+        vc.m_cMeetingsArr = meetingArr
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    @IBAction func btnUpdate_onClick(_ sender: Any)
+    {
+        self.toast.isShow("No Update Available")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -322,14 +337,25 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
 
         Alamofire.request(userUrl, method: .post, parameters: userParam).responseJSON { (resp) in
             print(resp)
-            let data = resp.result.value as! [String : Any]
-            let Msg = data["msg"] as! [String: Any]
-
-            UserDefaults.standard.set(Msg, forKey: "msg")
             
-            self.Up_id = Msg["up_id"] as! String
-            self.upType = Msg["up_type"] as! String
+            switch resp.result
+            {
+            case .success(_):
+                let data = resp.result.value as! [String : Any]
+                let Msg = data["msg"] as! [String: Any]
+                
+                UserDefaults.standard.set(Msg, forKey: "msg")
+                
+                self.Up_id = Msg["up_id"] as! String
+                self.upType = Msg["up_type"] as! String
+                
+                break
+            case .failure(_):
+              
+                break
+            }
             
+          
 
         }
 
@@ -342,20 +368,32 @@ class HomeVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
         Alamofire.request(url, method: .post, parameters: param).responseJSON { (resp) in
             print(resp)
             
-            let json = resp.result.value as! NSDictionary
-            let userTrackAccess = json["user_liveTrack_access"] as! String
-            
-            UserDefaults.standard.set(userTrackAccess, forKey: "userTrackAccess")
-            
-            if userTrackAccess == "1"
+            switch resp.result
             {
-                self.btnMap.isHidden = false
-                self.btnPreviousMap.isHidden = false
+            case .success(_):
                 
-            }else{
-                self.btnMap.isHidden = true
-                self.btnPreviousMap.isHidden = true
+                let json = resp.result.value as! NSDictionary
+                let userTrackAccess = json["user_liveTrack_access"] as! String
+                
+                UserDefaults.standard.set(userTrackAccess, forKey: "userTrackAccess")
+                
+                if userTrackAccess == "1"
+                {
+                    self.btnMap.isHidden = false
+                    self.btnPreviousMap.isHidden = false
+                    
+                }else{
+                    self.btnMap.isHidden = true
+                    self.btnPreviousMap.isHidden = true
+                }
+
+                break
+                
+            case .failure(_):
+                self.toast.isShow("Something went wrong")
+                break
             }
+            
         }
     }
     

@@ -13,7 +13,6 @@ import Alamofire
 class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate
 {
    
-  
     @IBOutlet weak var txtAchivement: UITextView!
     @IBOutlet weak var lblAchivement: UILabel!
     @IBOutlet weak var myTbl: UITableView!
@@ -55,14 +54,11 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         getAchivement()
         initUi()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         
         myTbl.addGestureRecognizer(dismissKeyboardGesture)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-     
+    
         txtAchivement.layer.cornerRadius = 5
         txtAchivement.layer.borderWidth = 1.0
         txtAchivement.layer.borderColor = UIColor.purple.cgColor
@@ -71,18 +67,16 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
-       
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         getAchivement()
     }
-    func textViewDidBeginEditing(_ textView: UITextView) {
-      
-            txtAchivement.text = nil
-            txtAchivement.textColor = UIColor.black
     
+    func textViewDidBeginEditing(_ textView: UITextView)
+    {
+       txtAchivement.text = nil
+       txtAchivement.textColor = UIColor.black
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -95,63 +89,6 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.endEditing(true)
         
     }
-    @objc func keyboardWillShow(notification: NSNotification)
-    {
-        self.txtAchivement.text = ""
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 150
-                    }
-                    
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    self.view.frame.origin.y -= 100
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE", "iPhone 6S","iPhone 7","iPhone 8" :
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 250
-                    }
-                    break
-                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
-                   if self.view.frame.origin.y == 0
-                   {
-                        self.view.frame.origin.y -= 280
-                    }
-                    break
-                    
-                case "iPhone X":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
-    
     
     func textViewDidChange(_ textView: UITextView)
     {
@@ -174,65 +111,6 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         return true
     }
     
-    
-    @objc func keyboardWillHide(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 150
-                    }
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 100
-                    }
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8" :
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 250
-                    }
-                    break
-                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 280
-                    }
-                    break
-                   
-                case "iPhone X":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
     private func initUi() {
         toast = JYToast()
     }
@@ -289,7 +167,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         cellCommonCell.lblLightName.text = lcDict["tpa_name"] as? String
         cellCommonCell.lblAddedBy.text = (lcDict["tpa_added_by_name"] as! String)
         cellCommonCell.lblDateTime.text = (lcDict["tpa_added_timestamp"] as! String)
-        cellCommonCell.lblApprovedBy.text = (lcDict["tpa_approved_by_name"] as! String)
+        let A_name = (lcDict["tpa_approved_by_name"] as! String)
         
         cellCommonCell.btnAccept.tag = indexPath.row
         cellCommonCell.btnReject.tag = indexPath.row
@@ -301,9 +179,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             cellCommonCell.btnAccept.isHidden = true
             cellCommonCell.btnReject.isHidden = true
-            
-            cellCommonCell.lblPersonStatus.text = "Accepted By:"
-            cellCommonCell.lblStatus.text = "Accepted"
+            cellCommonCell.lblStatus.text = "Accepted By: \(A_name)"
             cellCommonCell.backView.backgroundColor = UIColor(red:0.78, green:0.90, blue:0.79, alpha:1.0)
         }
         if (lcDict["tpa_status"] as! String) == "2"
@@ -311,9 +187,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             cellCommonCell.btnAccept.isHidden = true
             cellCommonCell.btnReject.isHidden = true
-            
-            cellCommonCell.lblPersonStatus.text = "Rejected By:"
-            cellCommonCell.lblStatus.text = "Rejected"
+            cellCommonCell.lblStatus.text = "Rejected By: \(A_name)"
             cellCommonCell.backView.backgroundColor = UIColor(red:1.00, green:0.80, blue:0.82, alpha:1.0)
             
         }
@@ -321,7 +195,7 @@ class AchivementList: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             cellCommonCell.btnAccept.isHidden = false
             cellCommonCell.btnReject.isHidden = false
-            cellCommonCell.lblStatus.text = "Pending"
+            cellCommonCell.lblStatus.text = "Status : Pending"
             cellCommonCell.backView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.76, alpha:1.0)
             
         //    cellCommonCell.backView.backgroundColor =  UIColor(red:1.00, green:0.95, blue:0.46, alpha:0.7)

@@ -20,7 +20,6 @@ class ReminderCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     public static var nib: UINib{
@@ -34,7 +33,6 @@ class ReminderCell: UITableViewCell {
     func SetReminderData(cReminder : reminder)
     {
         self.lblReminder.text = cReminder.re_name
-        
     }
     
     @IBAction func onUnselected_Click(_ sender: Any) {

@@ -1,10 +1,3 @@
-//
-//  ButtonCell.swift
-//  Kanakia SOP
-//
-//  Created by user on 06/04/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 

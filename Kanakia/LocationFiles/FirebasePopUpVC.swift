@@ -4,7 +4,7 @@ import Firebase
 import FirebaseDatabase
 
 protocol FirebaseMapDelegate {
-    func sendData(lcUserDict : [String])
+    func sendData(lcUserDict : String, lcIdDict : String)
     func sendDataForLocation(userId : String, deviceNm : String)
 }
 
@@ -18,13 +18,21 @@ class FirebasePopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var deviceList = [AnyObject]()
     var devicenm : String!
     var userList = [String]()
+    var userIdList = [String]()
     var userId : String?
     var Tag : Int!
     var delegate : FirebaseMapDelegate?
+    var storeduserId : String = ""
+    var selectedid: String!
+    
+    let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+      
+        
         tblnamesFromFB.delegate = self
         tblnamesFromFB.dataSource = self
         
@@ -32,30 +40,44 @@ class FirebasePopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         if Tag == 2
         {
-            self.loadDataFromFirebaseForDevice(usernm: self.userId!)
+            self.loadDataFromFirebaseForDevice(userid: self.selectedid!)
+
+
         }else{
             Tag = 1
             let popUpHgt = self.userList.count * 70
             self.preferredContentSize = CGSize(width: 320, height: popUpHgt)
             tblnamesFromFB.reloadData()
         }
+    
         
+        myActivityIndicator.center = view.center
+        myActivityIndicator.hidesWhenStopped = false
+        
+        view.addSubview(myActivityIndicator)
         
     }
+    
+    
 
-    func getData(lcUserId: String?, lcUserListArr: [String])
+    func getData(lcUserId: String?, lcUserListArr: [String], lcUserIdArr: [String],nSelectedId: String)
     {
        self.userId = lcUserId
        self.userList = lcUserListArr
+       self.userIdList = lcUserIdArr
+       self.selectedid = nSelectedId
     }
     
-    func loadDataFromFirebaseForDevice(usernm : String)
+    func loadDataFromFirebaseForDevice(userid : String)
     {
+        myActivityIndicator.startAnimating()
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        if self.userId != ""
+        if userid != ""
         {
-            let devicenm = Database.database().reference().child(self.userId!)
+            print(userid)
+            let devicenm = Database.database().reference().child(userid)
             handle = devicenm.observe(.value) { [weak self] (snapshot) in
                 guard let handle = self?.handle else { return }
                 
@@ -77,10 +99,12 @@ class FirebasePopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 //    self?.ref.removeObserver(withHandle: handle)
                 }
                 
+                self!.myActivityIndicator.stopAnimating()
                 let popUpHgt = (self?.deviceList.count)! * 70
                 self?.preferredContentSize = CGSize(width: 320, height: popUpHgt)
                 
             }
+            
         }
     }
     
@@ -101,9 +125,9 @@ class FirebasePopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     {
         let cell = tblnamesFromFB.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
         
-        if Tag == 1{
-           
-            let lcdict = userList[indexPath.row]
+        if Tag == 1
+        {
+           let lcdict = userList[indexPath.row]
             print(lcdict)
             let name = lcdict as! String
             cell.lblName.text = name
@@ -111,7 +135,7 @@ class FirebasePopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
         }else{
             self.devicenm = self.deviceList[indexPath.row] as! String
-       //     self.designCell(cView: cell.backView)
+       
             cell.lblName.text = self.devicenm
             return cell
         }
@@ -123,13 +147,17 @@ class FirebasePopUpVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     {
         if Tag == 1
         {
+            let Dict = userIdList[indexPath.row]
+            print(Dict)
             let lcdict = userList[indexPath.row]
-            delegate?.sendData(lcUserDict: [lcdict])
+            print(lcdict)
+            delegate?.sendData(lcUserDict: lcdict, lcIdDict: Dict)
+           
             self.dismiss(animated: true, completion: nil)
         }else{
             
             let lcdict = deviceList[indexPath.row]
-            delegate?.sendDataForLocation(userId: self.userId!, deviceNm: lcdict as! String)
+            delegate?.sendDataForLocation(userId: self.selectedid!, deviceNm: lcdict as! String)
             self.dismiss(animated: true, completion: nil)
 
         }

@@ -1,12 +1,4 @@
 
-//
-//  AppDelegate.swift
-//  MMSApp
-//
-//  Created by user on 02/02/18.
-//  Copyright © 2018 user. All rights reserved.
-//
-
 import UIKit
 import CoreData
 import Firebase
@@ -15,6 +7,7 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import FirebaseDatabase
 import GoogleMaps
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,MessagingDelegate, CLLocationManagerDelegate
@@ -24,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     var FCMToken: String = ""
     var NotificationCnt = Int(0)
     var categoryIdentifier : String = ""
-     var ref : DatabaseReference?
+    var ref : DatabaseReference?
     let googleApiKey = "AIzaSyAaRUNibWQZtpnRWBMhZatfj43X7VuL7kQ"
     let cHome : HomeVC! = nil
     var locationManager : CLLocationManager?
@@ -38,10 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     var PreviousLat : Double = 0
     var PreviousLong : Double = 0
     var distToatl : Double = 10
-   
+ //   var date = NSDate()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        IQKeyboardManager.shared().isEnabled = true
+
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
         
@@ -97,6 +92,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         let date = Date().addingTimeInterval(10)
         let timer = Timer(fireAt: date, interval: 1, target: self, selector: #selector(startTimer), userInfo: nil, repeats: false)
         RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+
+        print(appVersion)
+        
+
+       
         return true
     }
     
@@ -133,7 +135,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         self.setupLocationManager()
     }
     
-    func setupLocationManager(){
+    func setupLocationManager()
+    {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         self.locationManager?.requestAlwaysAuthorization()
@@ -141,16 +144,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         locationManager?.startUpdatingLocation()
         locationManager?.activityType = .fitness
         locationManager?.startMonitoringSignificantLocationChanges()
-        
     }
-    
-   
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+        let Tdate = Date()
+        let calendar = Calendar.current
+        var hour = calendar.component(.hour, from: Tdate)
+        var minutes = calendar.component(.minute, from: Tdate)
         
-     
-        if let result = UserDefaults.standard.value(forKey: "userdata") as? NSDictionary
+    if (9...19).contains(hour)
+    {
+         if let result = UserDefaults.standard.value(forKey: "userdata") as? NSDictionary
         {
             
             if result != nil
@@ -165,84 +170,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                     let str = dNamem + " : " + dUdid!
                     let aString = str
                     let child = userRef?.child(aString).childByAutoId()
-               
-                
-                if distanceStatus == true
-                {
-                    distanceStatus = false
                     
-                    let lastLocation: CLLocation = locations[locations.count - 1]
-                    
-                    let clat = String(format: "%.6f", lastLocation.coordinate.latitude)
-                    let clong = String(format: "%.6f", lastLocation.coordinate.longitude)
-                    
-                    let lat = Double(clat)!
-                    PreviousLat = lat
-                    
-                    let long = Double(clong)!
-                    PreviousLong = long
-                 
-                    child?.child("latitude").setValue(PreviousLat)
-                    child?.child("longitude").setValue(PreviousLong)
-                    traveledDistance = 0
-                    TotalDist = 0
-                    
-                
-                    let currentTimeStamp = Date().toMillis()
-                    child?.child("accuracy").setValue(kCLLocationAccuracyNearestTenMeters)
-                    child?.child("time").setValue(currentTimeStamp)
-                    child?.child("distance").setValue(traveledDistance)
-                    child?.child("totalDistance").setValue(TotalDist)
-                    
-                    print("called first location")
-                    kUserDefaults.set(PreviousLat, forKey: "latitude")
-                    kUserDefaults.set(PreviousLong, forKey: "longitude")
-               
-                }else if  let Location: CLLocation = locations[locations.count - 1]
-                {
-                    
-                    let LAT = String(format: "%.6f", Location.coordinate.latitude)
-                    let LONG = String(format: "%.6f", Location.coordinate.longitude)
-                    
-                    let lat = Double(LAT)
-                    let long = Double(LONG)
-                  
-                    let latval = kUserDefaults.value(forKey: "latitude") as? Double
-                    
-                    let longVal = kUserDefaults.value(forKey: "longitude") as? Double
-                    
-                    startLocation = CLLocation(latitude: latval!, longitude: longVal!)
-                    
-                    lastLocation = CLLocation(latitude: lat!, longitude: long!)
-                    
-                    traveledDistance = startLocation.distance(from: lastLocation)
-                    
-                    if traveledDistance > distToatl
+                    if distanceStatus == true
                     {
-                        print("traveledDistance= \(traveledDistance)")
-                        TotalDist = TotalDist + traveledDistance
-                        child?.child("latitude").setValue(lat)
-                        child?.child("longitude").setValue(long)
+                        distanceStatus = false
+                        
+                        let lastLocation: CLLocation = locations[locations.count - 1]
+                        
+                        let clat = String(format: "%.6f", lastLocation.coordinate.latitude)
+                        let clong = String(format: "%.6f", lastLocation.coordinate.longitude)
+                        
+                        let lat = Double(clat)!
+                        PreviousLat = lat
+                        
+                        let long = Double(clong)!
+                        PreviousLong = long
+                        
+                        child?.child("latitude").setValue(PreviousLat)
+                        child?.child("longitude").setValue(PreviousLong)
+                        traveledDistance = 0
+                        TotalDist = 0
+                        
+                        
                         let currentTimeStamp = Date().toMillis()
-                        child?.child("accuracy").setValue(kCLLocationAccuracyNearestTenMeters)
+                        child?.child("accuracy").setValue(kCLLocationAccuracyBestForNavigation)
                         child?.child("time").setValue(currentTimeStamp)
                         child?.child("distance").setValue(traveledDistance)
                         child?.child("totalDistance").setValue(TotalDist)
-                    
-                      
-                        kUserDefaults.set(lat, forKey: "latitude")
-                        kUserDefaults.set(long, forKey: "longitude")
                         
-                        print("called next location")
+                        print("called first location")
+                        kUserDefaults.set(PreviousLat, forKey: "latitude")
+                        kUserDefaults.set(PreviousLong, forKey: "longitude")
+                        
+                    }else if  let Location: CLLocation = locations[locations.count - 1]
+                    {
+                        
+                        let LAT = String(format: "%.6f", Location.coordinate.latitude)
+                        let LONG = String(format: "%.6f", Location.coordinate.longitude)
+                        
+                        let lat = Double(LAT)
+                        let long = Double(LONG)
+                        
+                        let latval = kUserDefaults.value(forKey: "latitude") as? Double
+                        
+                        let longVal = kUserDefaults.value(forKey: "longitude") as? Double
+                        
+                        startLocation = CLLocation(latitude: latval!, longitude: longVal!)
+                        
+                        lastLocation = CLLocation(latitude: lat!, longitude: long!)
+                        
+                        traveledDistance = startLocation.distance(from: lastLocation)
+                        
+                        if traveledDistance > distToatl
+                        {
+                            print("traveledDistance= \(traveledDistance)")
+                            TotalDist = TotalDist + traveledDistance
+                            child?.child("latitude").setValue(lat)
+                            child?.child("longitude").setValue(long)
+                            let currentTimeStamp = Date().toMillis()
+                            child?.child("accuracy").setValue(kCLLocationAccuracyNearestTenMeters)
+                            child?.child("time").setValue(currentTimeStamp)
+                            child?.child("distance").setValue(traveledDistance)
+                            child?.child("totalDistance").setValue(TotalDist)
+                            
+                            
+                            kUserDefaults.set(lat, forKey: "latitude")
+                            kUserDefaults.set(long, forKey: "longitude")
+                            
+                            print("called next location")
+                        }
+                        
                     }
                     
-                }
-              
                 }else{
                     return
                 }
             }
         }
+    }
+        
+        
+        
+        
     }
     
     // Below Mehtod will print error if not able to update location.
@@ -470,8 +479,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         completionHandler()
     }
 
-
-    
     func application(received remoteMessage: MessagingRemoteMessage)
     {
         print(remoteMessage.appData)

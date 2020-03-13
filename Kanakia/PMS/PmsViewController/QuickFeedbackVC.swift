@@ -13,31 +13,20 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 {
 
     @IBOutlet weak var lblPendingCount: UILabel!
-    @IBOutlet weak var btnBehaviour: UIButton!
-    
-    @IBOutlet weak var btnTechnical: UIButton!
-    @IBOutlet weak var checkBehavebtn: UIButton!
-    @IBOutlet weak var checkTechBtn: UIButton!
     @IBOutlet weak var PendingView: UIView!
     @IBOutlet weak var TeamView: UIView!
     @IBOutlet weak var TrainingView: UIView!
-    @IBOutlet weak var txtTraining: UITextView!
     @IBOutlet weak var txtFeedback: UITextView!
-  
     @IBOutlet weak var tblSearch: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var btnFeedback: UIButton!
     @IBOutlet weak var btnPendingApp: UIButton!
     @IBOutlet weak var btnTeamReview: UIButton!
-    @IBOutlet weak var lblTraining: UILabel!
     @IBOutlet weak var lblFeedback: UILabel!
     @IBOutlet weak var lblAchive: UILabel!
-    @IBOutlet weak var btnAchive: UIButton!
     @IBOutlet weak var btnKra: UIButton!
     
     var strUserNm : String = ""
-    var cAddTraining : AddTrainingMdVc!
     var searchActive = Bool(false)
     var filtered = NSArray()
     var DataArr = NSArray()
@@ -47,15 +36,15 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var Msg = [AnyObject]()
     var UserId : String!
     var valid = Bool(true)
-     private var toast: JYToast!
+    private var toast: JYToast!
     var Check = Bool(true)
     var Tpt_Type : String!
     var cFeedback : FeedBackForAnyVC!
+    var m_cAddLearningNeedvc : AddLearningNeedsPopUp!
     
     func HiddenControl(bStatus: Bool)
     {
         self.txtFeedback.isHidden   = bStatus
-        self.txtTraining.isHidden = bStatus
         self.btnFeedback.isHidden   = bStatus
         self.btnPendingApp.isHidden = bStatus
         self.lblAchive.isHidden = bStatus
@@ -63,8 +52,8 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.btnTeamReview.isHidden = bStatus
         self.btnPendingApp.isHidden = bStatus
         self.btnFeedback.isHidden = bStatus
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
@@ -74,18 +63,15 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
-        self.txtTraining.delegate = self
         self.txtFeedback.delegate = self
         self.txtFeedback.text = "Enter a Quick feedback here"
-        self.txtTraining.text = "Enter a Training here"
         self.txtFeedback.textColor = UIColor.gray
-        self.txtTraining.textColor = UIColor.gray
         tblSearch.delegate = self
         tblSearch.dataSource = self
         searchBar.delegate = self
         self.tblSearch.isHidden = true
-       tblSearch.separatorStyle = .none
-       print("Valid", valid)
+        tblSearch.separatorStyle = .none
+        print("Valid", valid)
         self.tblSearch.register(UINib(nibName: "teamCell", bundle: nil), forCellReuseIdentifier: "teamCell")
 
         getPendingCount()
@@ -93,16 +79,17 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         txtFeedback.layer.borderWidth = 1.0
         txtFeedback.layer.borderColor = UIColor.purple.cgColor
         
-        txtTraining.layer.cornerRadius = 5
-        txtTraining.layer.borderWidth = 1.0
-        txtTraining.layer.borderColor = UIColor.purple.cgColor
+    
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(QuickFeedbackVC.dismissKeyboard))
         
-      let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+//        self.dropShadow(cView: TrainingView)
+//        self.dropShadow(cView: PendingView)
+//        self.dropShadow(cView: TeamView)
         
-        self.dropShadow(cView: TrainingView)
-        self.dropShadow(cView: PendingView)
-        self.dropShadow(cView: TeamView)
+  //      setView(view: self.TrainingView)
+        setView(view: self.TeamView)
+        setView(view: self.PendingView)
         
         view.addGestureRecognizer(tap)
         
@@ -111,16 +98,18 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
 
-   
+    func setView(view : UIView)
+    {
+      view.layer.cornerRadius = 10
+      view.layer.borderWidth = 1
+      view.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         if textView == txtFeedback{
             txtFeedback.text = nil
             txtFeedback.textColor = UIColor.black
-        }
-        else{
-            txtTraining.text = nil
-            txtTraining.textColor = UIColor.black
         }
        
     }
@@ -134,8 +123,10 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func awakeFromNib()
     {
-        self.cAddTraining = self.storyboard?.instantiateViewController(withIdentifier: "AddTrainingMdVc") as! AddTrainingMdVc
-        self.cFeedback = self.storyboard?.instantiateViewController(withIdentifier: "FeedBackForAnyVC") as! FeedBackForAnyVC
+
+        self.cFeedback = (self.storyboard?.instantiateViewController(withIdentifier: "FeedBackForAnyVC") as! FeedBackForAnyVC)
+        
+        self.m_cAddLearningNeedvc = (self.storyboard?.instantiateViewController(withIdentifier: "AddLearningNeedsPopUp") as! AddLearningNeedsPopUp)
     }
     
     func setupData(cId: String, cUpType: String)
@@ -163,16 +154,7 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cView.layer.shadowRadius = 4
     }
     
-    func dropShadow(cView : UIView) {
-    
-        cView.layer.shadowOpacity = 0.7
-        cView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cView.layer.shadowRadius = 4.0
-        cView.layer.shadowColor = UIColor.gray.cgColor
-        cView.backgroundColor = UIColor.white
-
-    }
-    
+   
     func getRandomColor() -> UIColor{
         //Generate between 0 to 1
         let red:CGFloat = CGFloat(drand48())
@@ -337,9 +319,9 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         if searchActive
         {
-            lcDict = self.filtered[indexPath.row] as! [String: AnyObject]
+            lcDict = (self.filtered[indexPath.row] as! [String: AnyObject])
         }else{
-            lcDict = self.Msg[indexPath.row] as! [String: AnyObject]
+            lcDict = (self.Msg[indexPath.row] as! [String: AnyObject])
         }
         cell.lblEmpName.text = lcDict["user_name"] as? String
         let lcUserName = lcDict["user_name"] as! String
@@ -452,7 +434,7 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
       guard let indexPath = self.tblSearch.indexPath(for: cell) else { return }
         print("SelectedIndex=", indexPath.row)
         
-        lcDict = self.filtered[indexPath.row] as! [String: AnyObject]
+        lcDict = (self.filtered[indexPath.row] as! [String: AnyObject])
         self.searchBar.text = lcDict["user_name"] as? String
         
         self.UserId = lcDict["up_id"] as? String
@@ -461,22 +443,9 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
     
-    @IBAction func btnTechnical_Click(_ sender: Any)
-    {
-        self.Tpt_Type = "1"
-        self.btnTechnical.isSelected = true
-        checkTechBtn.setImage(UIImage(named:"radiobutton_selected"), for: .normal)
-        checkBehavebtn.setImage(UIImage(named:"radiobuttom_unselected"), for: .normal)
-    }
+  
     
-    
-    @IBAction func btnBehav_Click(_ sender: Any)
-    {
-        self.Tpt_Type = "2"
-        self.btnBehaviour.isSelected = true
-        checkBehavebtn.setImage(UIImage(named:"radiobutton_selected"), for: .normal)
-        checkTechBtn.setImage(UIImage(named:"radiobuttom_unselected"), for: .normal)
-    }
+  
     
     @IBAction func SendTraining_Click(_ sender: Any)
     {
@@ -490,56 +459,14 @@ class QuickFeedbackVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-            if txtTraining.text == ""
-            {
-                self.toast.isShow("Please enter a text")
-                self.valid = false
-                self.view.endEditing(true)
-                return
-            }
-            
-            if (self.btnBehaviour.isSelected == false) && (self.btnTechnical.isSelected == false)
-            {
-                self.toast.isShow("Please select type of Training i.e. Technical or behavioural")
-                self.valid = false
-                self.view.endEditing(true)
-                return
-            }
-            if self.valid == true
-            {
-                
-                let Tpa_Status : String!
-                if self.Up_id != self.UserId
-                {
-                    Tpa_Status = "1"
-                }else
-                {
-                    Tpa_Status = "0"
-                }
-                
-       //         if self.valid == true
-      //          {
-                    let url = "http://kanishkagroups.com/sop/pms/index.php/API/addTraining"
-                    let param : [String: Any] =
-                        [        "up_id" : self.UserId,
-                                 "tpt_name" : txtTraining.text,
-                                 "tpt_status" : Tpa_Status,
-                                 "tpt_added_by" : self.Up_id,
-                                 "tpt_type" : self.Tpt_Type
-                    ]
-                    
-                    print("Param =", param)
-                    Alamofire.request(url, method: .post, parameters: param).responseJSON { (addResp) in
-                        print(addResp)
-                        self.txtTraining.text = ""
-                 
-                        self.view.endEditing(true)
-                        self.toast.isShow("Your Training message has been sent")
-                        
-                        
-                    }
-    
-            }
+        if self.valid == true
+        {
+            self.m_cAddLearningNeedvc.view.frame = self.view.frame
+            self.m_cAddLearningNeedvc.getId(upid: self.UserId, loginid: self.Up_id)
+            self.m_cAddLearningNeedvc.addFromQuick = true
+            self.view.addSubview(self.m_cAddLearningNeedvc.view)
+            self.m_cAddLearningNeedvc.view.clipsToBounds = true
+        }
  
     }
     

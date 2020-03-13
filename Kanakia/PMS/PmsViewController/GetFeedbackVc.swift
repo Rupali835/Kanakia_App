@@ -58,12 +58,10 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
        
         getFeedback()
         initUi()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+  
+//      let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         
-      let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        
-        tblFeedback.addGestureRecognizer(dismissKeyboardGesture)
+     //   tblFeedback.addGestureRecognizer(dismissKeyboardGesture)
         
         txtFeedback.layer.cornerRadius = 5
         txtFeedback.layer.borderWidth = 1.0
@@ -76,139 +74,28 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        txtFeedback.text = nil
-        txtFeedback.textColor = UIColor.black
+        
+        if txtFeedback.text == "Enter Feedback"
+        {
+            txtFeedback.text = nil
+            txtFeedback.textColor = UIColor.black
+        }
         
     }
     
-    @objc func keyboardWillHide(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 150
-                    }
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 100
-                    }
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8" :
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 250
-                    }
-                    break
-                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 280
-                    }
-                    break
-                    
-                case "iPhone X":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
+//    @objc func hideKeyboard()
+//    {
+//        self.view.endEditing(true)
+//
+//    }
     
-    @objc func hideKeyboard()
-    {
-        self.view.endEditing(true)
-        
-    }
     
-    @objc func keyboardWillShow(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 150
-                    }
-                    
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    self.view.frame.origin.y -= 100
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8" :
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 250
-                    }
-                    break
-                    
-                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 280
-                    }
-                    break
-                    
-                case "iPhone X":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        textField.resignFirstResponder()
-        return true
-    }
-    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+//    {
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//
 
     func designCell(cView : UIView)
     {
@@ -261,7 +148,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     {
         cell.contentView.layer.cornerRadius = 8
         cell.contentView.layer.masksToBounds = true
-        self.designCell(cView: cell.backView)
+   //     self.designCell(cView: cell.backView)
         cell.backView.backgroundColor = UIColor(red:0.55, green:0.87, blue:1.00, alpha:1.0)
         
         cell.lblRplyStr.text = (lcDict["tpf_reply"] as! String)
@@ -284,7 +171,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     {
         cell.contentView.layer.cornerRadius = 8
         cell.contentView.layer.masksToBounds = true
-        self.designCell(cView: cell.backView)
+   //     self.designCell(cView: cell.backView)
         
         cell.btnAccept.isHidden = false
         cell.btnReject.isHidden = false
@@ -293,7 +180,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.lblAddedBy.text = (lcDict["tpf_added_by_name"] as! String)
         cell.lblDateTime.text = (lcDict["tpf_added_timestamp"] as! String)
       
-        cell.lblApprovedBy.text = (lcDict["tpf_approved_by_name"] as! String)
+        let Aname = (lcDict["tpf_approved_by_name"] as! String)
         
         cell.btnAccept.tag = indexPath.row
         cell.btnReject.tag = indexPath.row
@@ -305,9 +192,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
             cell.btnAccept.isHidden = true
             cell.btnReject.isHidden = true
-            
-            cell.lblPersonStatus.text = "Accepted By:"
-            cell.lblStatus.text = "Accepted"
+            cell.lblStatus.text = "Accepted By: \(Aname)"
             cell.backView.backgroundColor = UIColor(red:0.78, green:0.90, blue:0.79, alpha:1.0)
 
         }
@@ -316,9 +201,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
             cell.btnAccept.isHidden = true
             cell.btnReject.isHidden = true
-            
-            cell.lblPersonStatus.text = "Rejected By:"
-            cell.lblStatus.text = "Rejected"
+            cell.lblStatus.text = "Rejected By: \(Aname)"
             cell.backView.backgroundColor = UIColor(red:1.00, green:0.80, blue:0.82, alpha:1.0)
             
         }
@@ -326,7 +209,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
         {
             cell.btnAccept.isHidden = false
             cell.btnReject.isHidden = false
-            cell.lblStatus.text = "Pending"
+            cell.lblStatus.text = "Status : Pending"
             cell.backView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.76, alpha:1.0)
             
 
@@ -375,7 +258,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 cell.btnDelete.isHidden = true
                 cell.contentView.layer.cornerRadius = 8
                 cell.contentView.layer.masksToBounds = true
-                self.designCell(cView: cell.backView)
+    //            self.designCell(cView: cell.backView)
                 cell.lblTime.text = (lcDict["tpf_added_timestamp"] as! String)
                 cell.lblAddname.text = lcDict["tpf_name"] as! String
                 let AddedBy = (lcDict["tpf_added_by_name"] as! String)
@@ -475,7 +358,6 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     @objc func Reject_Click(sender:UIButton)
     {
-        
         let alert = UIAlertController(title: "Alert", message: "Are you sure to reject this?", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
@@ -496,8 +378,6 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
        
     }
 
-   
-    
     func GetApprovedRejectFeedback(nIndex: Int, nStatus: Int)
     {
         let lcDict = self.Msg[nIndex]
@@ -507,7 +387,7 @@ class GetFeedbackVc: UIViewController, UITableViewDelegate, UITableViewDataSourc
               "tpf_id" : lcDict["tpf_id"] as! String,
               "tpf_approved_by" : self.LoginUp_id
             //  "tpf_approved_by" :lcDict["tpf_approved_by"] as! String
-        ]
+           ]
         
         let StringURl = "http://kanishkagroups.com/sop/pms/index.php/API/approvedRejectFeedback"
         

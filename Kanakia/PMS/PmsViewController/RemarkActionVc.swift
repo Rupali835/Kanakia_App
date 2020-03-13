@@ -38,11 +38,11 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
         let dict  = UserDefaults.standard.value(forKey: "msg") as! NSDictionary
         self.Up_id = dict["up_id"] as! String
         initUi()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RemarkActionVc.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         
@@ -50,57 +50,7 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
 
     @objc func dismissKeyboard()
     {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 150
-                    }
-                    
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    self.view.frame.origin.y -= 100
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 60
-                    }
-                    
-                case "iPhone 6S":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y -= 80
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -109,58 +59,6 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
         return true
     }
     
-    
-    @objc func keyboardWillHide(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 150
-                    }
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 100
-                    }
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 60
-                    }
-                
-                case "iPhone 6S":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 80
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
     private func initUi() {
         toast = JYToast()
     }
@@ -168,7 +66,6 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -196,10 +93,19 @@ class RemarkActionVc: UIViewController, UITextFieldDelegate, UITextViewDelegate{
         
         Alamofire.request(LightsUrl, method: .post, parameters: AcceptLightParam).responseJSON { (AccResp) in
         
-            self.txtRemark.text = ""
-            self.txtActionPlan.text = ""
-            self.delegate?.didSelected()
-            
+            switch AccResp.result
+            {
+            case .success(_):
+                self.txtRemark.text = ""
+                self.txtActionPlan.text = ""
+                self.delegate?.didSelected()
+                break
+                
+            case .failure(_):
+                self.toast.isShow("Something went wrong")
+                break
+            }
+          
         }
     }
 

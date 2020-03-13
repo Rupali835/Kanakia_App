@@ -1,13 +1,13 @@
- //
+//
 //  RescduleMeetingVC.swift
 //  Kanakia SOP
-//
 //  Created by user on 17/02/18.
 //  Copyright © 2018 user. All rights reserved.
 //
 
 import UIKit
 import Alamofire
+import SVProgressHUD
 
 
 @objc class RescduleMeetingVC: UIViewController, UITextFieldDelegate,UITextViewDelegate,SelectedStringDelegate, UITableViewDataSource, UITableViewDelegate,ModalControllerDelegate, UIGestureRecognizerDelegate
@@ -16,9 +16,7 @@ import Alamofire
     {
         
     }
-    
    
-    
     @IBOutlet weak var btnAllDayOutlet: UIButton!
     @IBOutlet weak var ArrGroups: MKButton!
     @IBOutlet weak var ArrMeetType: MKButton!
@@ -279,16 +277,24 @@ import Alamofire
         let UrlStr  = "http://www.kanishkagroups.com/sop/android/getSingleMeetingMms.php"
         
         Alamofire.request(UrlStr, method: .post, parameters: parameteres).responseJSON { (resp) in
-            
-           // print(resp)
-           self.singleMeeting = (resp.result.value as? [AnyObject])!
-          print("Result \(self.singleMeeting)")
-            //self.tblMeeting.reloadData()
-            for (index,_) in self.singleMeeting.enumerated()
+        
+            switch resp.result
             {
-                self.setupData(nIndex: index)
+            case .success(_):
+                self.singleMeeting = (resp.result.value as? [AnyObject])!
+                print("Result \(self.singleMeeting)")
+                //self.tblMeeting.reloadData()
+                for (index,_) in self.singleMeeting.enumerated()
+                {
+                    self.setupData(nIndex: index)
+                }
+                break
+            
+            case .failure(_):
+                self.toast.isShow("Something went wrong")
+                break
             }
-           
+            
         }
     }
 
@@ -367,8 +373,21 @@ import Alamofire
         print("Reshedule parametre : \(parms)")
         self.bMeetingStatus = false
         let ResheduleUrl = "http://www.kanishkagroups.com/sop/android/editMeetMms.php"
+        
+        OperationQueue.main.addOperation {
+            SVProgressHUD.setDefaultMaskType(.custom)
+            SVProgressHUD.setBackgroundColor(UIColor.gray)
+            SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
+            SVProgressHUD.show()
+        }
+        
         Alamofire.request(ResheduleUrl, method: .post, parameters: parms).responseJSON { (Resp) in
             print(Resp)
+            
+            OperationQueue.main.addOperation {
+                SVProgressHUD.dismiss()
+            }
+            
             switch Resp.result
             {
             case .success:
@@ -391,6 +410,7 @@ import Alamofire
                 }
                 
             case .failure(let error):
+                self.toast.isShow("Something went wrong")
                 print(error)
             }
 
@@ -405,10 +425,20 @@ import Alamofire
         Alamofire.request(strUrl, method: .post, parameters: pr).responseJSON { (Resp) in
             print(Resp)
             
-            let json = Resp.result.value as! NSDictionary
-            let msg = json["msg"] as! String
-            self.toast.isShow(msg)
-            self.navigationController?.popViewController(animated: true)
+            switch Resp.result
+            {
+            case .success(_):
+                let json = Resp.result.value as! NSDictionary
+                let msg = json["msg"] as! String
+                self.toast.isShow(msg)
+                self.navigationController?.popViewController(animated: true)
+                break
+            
+            case .failure(_):
+                self.toast.isShow("Something went wrong")
+                break
+            }
+           
 
         }
     }
@@ -1533,8 +1563,6 @@ import Alamofire
         return 46.0
     }
     
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
@@ -1578,7 +1606,6 @@ import Alamofire
             
             Re_MeetingParam.m_internal_user = self.getArrofJSonString(cidArr: lcUserArr)
         }
-        
         
         self.tblHeightConstraint.constant = 0
         
@@ -1664,11 +1691,8 @@ import Alamofire
             self.view.addSubview(self.cFileDocumentVc.view)
             self.cFileDocumentVc.view.clipsToBounds = true
         }
-       
-        
     }
     
-  
     @IBAction func onRoomtxt_Click(_ sender: Any)
     {
         

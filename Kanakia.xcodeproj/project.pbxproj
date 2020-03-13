@@ -7,22 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0299E3C36D8035BF421F44D1 /* Pods_KanakiaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */; };
-		1EE54A4C3FA7E62FECDA2EDE /* Pods_Kanakia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */; };
 		580364F82146F71F00C2B8CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580364F72146F71F00C2B8CA /* MapKit.framework */; };
 		580E1AFF216B239C0054D505 /* FirebasePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580E1AFE216B239C0054D505 /* FirebasePopUpVC.swift */; };
+		5819CF9A2264A2E9003372C6 /* ShowMeetingsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5819CF992264A2E9003372C6 /* ShowMeetingsVc.swift */; };
+		5819CF9C2264A47B003372C6 /* SearchAllMeetingsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5819CF9B2264A47B003372C6 /* SearchAllMeetingsVc.swift */; };
 		582F82962169335C00197CE3 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F82952169335C00197CE3 /* PopUpVC.swift */; };
 		582F829821693B2200197CE3 /* NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F829721693B2200197CE3 /* NameCell.swift */; };
 		5850076421465A970049BA54 /* NotificationRedirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850076321465A970049BA54 /* NotificationRedirect.swift */; };
 		5850076A21467A330049BA54 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850076921467A320049BA54 /* CoreLocation.framework */; };
+		58B88FDF221ACC6B0059287D /* learningNeedsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B88FDE221ACC6B0059287D /* learningNeedsListCell.swift */; };
 		58CFB3092150CDC4002C6B01 /* ReachabilityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */; };
 		58CFB30B215131C7002C6B01 /* LocationByDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFB30A215131C7002C6B01 /* LocationByDateVC.swift */; };
+		58DBF846216C999700A2732E /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DBF845216C999700A2732E /* GoogleToolboxForMac.framework */; };
+		58E7B0642265D11800962253 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E7B0632265D11800962253 /* Utilities.swift */; };
+		58F290F42211646800CD1E2B /* AddLearningNeedsPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F290F32211646800CD1E2B /* AddLearningNeedsPopUp.swift */; };
+		58F457312265A61000FB5094 /* ShowMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F4572F2265A60F00FB5094 /* ShowMeetingCell.swift */; };
+		58F457322265A61000FB5094 /* ShowMeetingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58F457302265A60F00FB5094 /* ShowMeetingCell.xib */; };
+		58F63CFD2216E12300798381 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F63CFC2216E12300798381 /* Alamofire.framework */; };
+		58F63CFF2216E17200798381 /* DropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F63CFE2216E17200798381 /* DropDown.framework */; };
+		58F63D012216E19800798381 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F63D002216E19800798381 /* FirebaseCore.framework */; };
+		58F63D032216E1B200798381 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F63D022216E1B200798381 /* FirebaseDatabase.framework */; };
+		58F63D052216E1F500798381 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F63D042216E1F500798381 /* FirebaseMessaging.framework */; };
 		58FE47972147A17600134A8D /* UserNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47962147A17600134A8D /* UserNameVC.swift */; };
 		58FE47992147A19200134A8D /* UserDeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47982147A19200134A8D /* UserDeviceVC.swift */; };
 		58FE479B2147A1D800134A8D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE479A2147A1D800134A8D /* MapViewController.swift */; };
 		58FE47A32147A37A00134A8D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE47A12147A37A00134A8D /* LocationCell.swift */; };
 		58FE47A42147A37A00134A8D /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58FE47A22147A37A00134A8D /* LocationCell.xib */; };
-		8C58F575E0A69FB1BB9EE8DC /* Pods_KanakiaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */; };
+		A41A8A9F5C9F3B7C691358D3 /* Pods_KanakiaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413B3C3645FCA1A38E0B45B0 /* Pods_KanakiaTests.framework */; };
+		A9D4AFEEECE1FD93B587D562 /* Pods_Kanakia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BF99D839DE359698C28941 /* Pods_Kanakia.framework */; };
+		C6A131092AA11DF68E40A350 /* Pods_KanakiaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F202BEE23102A4CBC5B22B /* Pods_KanakiaUITests.framework */; };
 		CE14C63E20ACA45100AFF955 /* ActoinRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */; };
 		CE14C63F20ACA45100AFF955 /* ActoinRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */; };
 		CE1AF9AF2103A50800A57B15 /* FeedBackForAnyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1AF9AE2103A50800A57B15 /* FeedBackForAnyVC.swift */; };
@@ -73,7 +86,6 @@
 		CE4378E420A8B34800C3B14E /* Without_TargetKpiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43781120A8B34500C3B14E /* Without_TargetKpiCell.swift */; };
 		CE4378E520A8B34800C3B14E /* Without_TargetKpiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE43781220A8B34500C3B14E /* Without_TargetKpiCell.xib */; };
 		CE4378E620A8B34800C3B14E /* AchivementList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43781420A8B34500C3B14E /* AchivementList.swift */; };
-		CE4378E720A8B34800C3B14E /* AddTrainingMdVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43781520A8B34500C3B14E /* AddTrainingMdVc.swift */; };
 		CE4378E820A8B34800C3B14E /* DynamicPmsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43781620A8B34500C3B14E /* DynamicPmsVc.swift */; };
 		CE4378E920A8B34800C3B14E /* GetFeedbackVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43781720A8B34500C3B14E /* GetFeedbackVc.swift */; };
 		CE4378EA20A8B34800C3B14E /* HighLowlightsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43781820A8B34500C3B14E /* HighLowlightsVc.swift */; };
@@ -96,7 +108,7 @@
 		CE4378FB20A8B34800C3B14E /* DataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE43783020A8B34600C3B14E /* DataCell.xib */; };
 		CE4378FC20A8B34800C3B14E /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43783120A8B34600C3B14E /* DayCell.swift */; };
 		CE4378FD20A8B34800C3B14E /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE43783220A8B34600C3B14E /* DayCell.xib */; };
-		CE4378FE20A8B34800C3B14E /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43783320A8B34600C3B14E /* DropDown.swift */; };
+		CE4378FE20A8B34800C3B14E /* DropDownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43783320A8B34600C3B14E /* DropDownList.swift */; };
 		CE4378FF20A8B34800C3B14E /* DropDown.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE43783420A8B34600C3B14E /* DropDown.xib */; };
 		CE43790020A8B34800C3B14E /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43783520A8B34600C3B14E /* ReminderCell.swift */; };
 		CE43790120A8B34800C3B14E /* ReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE43783620A8B34600C3B14E /* ReminderCell.xib */; };
@@ -138,7 +150,6 @@
 		CE43792520A8B34800C3B14E /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43787420A8B34700C3B14E /* FSCalendarStickyHeader.m */; };
 		CE43792620A8B34800C3B14E /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43787620A8B34700C3B14E /* FSCalendarTransitionCoordinator.m */; };
 		CE43792720A8B34800C3B14E /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43787820A8B34700C3B14E /* FSCalendarWeekdayView.m */; };
-		CE43792820A8B34800C3B14E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE43787920A8B34700C3B14E /* Info.plist */; };
 		CE43792920A8B34800C3B14E /* JYToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43787A20A8B34700C3B14E /* JYToast.swift */; };
 		CE43792A20A8B34800C3B14E /* KBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43787D20A8B34700C3B14E /* KBImageView.m */; };
 		CE43792B20A8B34800C3B14E /* MKActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43787F20A8B34700C3B14E /* MKActivityIndicator.swift */; };
@@ -208,27 +219,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		365BD0AED90A4F9204AAFA7D /* Pods-Kanakia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanakia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia.debug.xcconfig"; sourceTree = "<group>"; };
-		3E142D56DC8E2097C8056E26 /* Pods-KanakiaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.release.xcconfig"; sourceTree = "<group>"; };
-		4C80C8B692EF9B382C86DB5C /* Pods-KanakiaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.release.xcconfig"; sourceTree = "<group>"; };
-		55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06843ABC366439D10CA32AB2 /* Pods-Kanakia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanakia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia.debug.xcconfig"; sourceTree = "<group>"; };
+		11F5407E9ABB4DE035E2AB82 /* Pods-KanakiaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.release.xcconfig"; sourceTree = "<group>"; };
+		33A2E4A4D0D0C383EAEF8B29 /* Pods-KanakiaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		413B3C3645FCA1A38E0B45B0 /* Pods_KanakiaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		580364F72146F71F00C2B8CA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		580E1AFE216B239C0054D505 /* FirebasePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePopUpVC.swift; sourceTree = "<group>"; };
+		5819CF992264A2E9003372C6 /* ShowMeetingsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMeetingsVc.swift; sourceTree = "<group>"; };
+		5819CF9B2264A47B003372C6 /* SearchAllMeetingsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAllMeetingsVc.swift; sourceTree = "<group>"; };
 		582F82952169335C00197CE3 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		582F829721693B2200197CE3 /* NameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCell.swift; sourceTree = "<group>"; };
 		5850076321465A970049BA54 /* NotificationRedirect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRedirect.swift; sourceTree = "<group>"; };
 		5850076921467A320049BA54 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		58B88FDE221ACC6B0059287D /* learningNeedsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learningNeedsListCell.swift; sourceTree = "<group>"; };
 		58CFB3082150CDC4002C6B01 /* ReachabilityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCheck.swift; sourceTree = "<group>"; };
 		58CFB30A215131C7002C6B01 /* LocationByDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationByDateVC.swift; sourceTree = "<group>"; };
+		58DBF845216C999700A2732E /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58E7B0632265D11800962253 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		58F290F32211646800CD1E2B /* AddLearningNeedsPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningNeedsPopUp.swift; sourceTree = "<group>"; };
+		58F4572F2265A60F00FB5094 /* ShowMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMeetingCell.swift; sourceTree = "<group>"; };
+		58F457302265A60F00FB5094 /* ShowMeetingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowMeetingCell.xib; sourceTree = "<group>"; };
+		58F63CFC2216E12300798381 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F63CFE2216E17200798381 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F63D002216E19800798381 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F63D022216E1B200798381 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F63D042216E1F500798381 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FE47962147A17600134A8D /* UserNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameVC.swift; sourceTree = "<group>"; };
 		58FE47982147A19200134A8D /* UserDeviceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeviceVC.swift; sourceTree = "<group>"; };
 		58FE479A2147A1D800134A8D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		58FE47A12147A37A00134A8D /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		58FE47A22147A37A00134A8D /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
-		638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kanakia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A57E86AD84CCD9F8F390B758 /* Pods-Kanakia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanakia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia.release.xcconfig"; sourceTree = "<group>"; };
-		BA75E25370F603525A7B86AC /* Pods-KanakiaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		80F202BEE23102A4CBC5B22B /* Pods_KanakiaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanakiaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81447922B3FFE10F06925095 /* Pods-KanakiaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		902CE374F3D5B165399289DC /* Pods-Kanakia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanakia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia.release.xcconfig"; sourceTree = "<group>"; };
+		A5BF99D839DE359698C28941 /* Pods_Kanakia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kanakia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActoinRemarkCell.xib; sourceTree = "<group>"; };
 		CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActoinRemarkCell.swift; sourceTree = "<group>"; };
 		CE1AF9AE2103A50800A57B15 /* FeedBackForAnyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackForAnyVC.swift; sourceTree = "<group>"; };
@@ -287,7 +311,6 @@
 		CE43781120A8B34500C3B14E /* Without_TargetKpiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Without_TargetKpiCell.swift; sourceTree = "<group>"; };
 		CE43781220A8B34500C3B14E /* Without_TargetKpiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Without_TargetKpiCell.xib; sourceTree = "<group>"; };
 		CE43781420A8B34500C3B14E /* AchivementList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchivementList.swift; sourceTree = "<group>"; };
-		CE43781520A8B34500C3B14E /* AddTrainingMdVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTrainingMdVc.swift; sourceTree = "<group>"; };
 		CE43781620A8B34500C3B14E /* DynamicPmsVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicPmsVc.swift; sourceTree = "<group>"; };
 		CE43781720A8B34500C3B14E /* GetFeedbackVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedbackVc.swift; sourceTree = "<group>"; };
 		CE43781820A8B34500C3B14E /* HighLowlightsVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighLowlightsVc.swift; sourceTree = "<group>"; };
@@ -310,7 +333,7 @@
 		CE43783020A8B34600C3B14E /* DataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataCell.xib; sourceTree = "<group>"; };
 		CE43783120A8B34600C3B14E /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		CE43783220A8B34600C3B14E /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
-		CE43783320A8B34600C3B14E /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
+		CE43783320A8B34600C3B14E /* DropDownList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownList.swift; sourceTree = "<group>"; };
 		CE43783420A8B34600C3B14E /* DropDown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDown.xib; sourceTree = "<group>"; };
 		CE43783520A8B34600C3B14E /* ReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		CE43783620A8B34600C3B14E /* ReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderCell.xib; sourceTree = "<group>"; };
@@ -457,7 +480,7 @@
 		CED81371212E88230012FBFA /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		CED81373212EA0410012FBFA /* FeedbackRplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRplyCell.swift; sourceTree = "<group>"; };
 		CED81374212EA0410012FBFA /* FeedbackRplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackRplyCell.xib; sourceTree = "<group>"; };
-		D25BF72F95C3022EEB0CA529 /* Pods-KanakiaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D9BABB3B16F0A2F3393600EA /* Pods-KanakiaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanakiaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,9 +488,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58F63D052216E1F500798381 /* FirebaseMessaging.framework in Frameworks */,
+				58F63D032216E1B200798381 /* FirebaseDatabase.framework in Frameworks */,
+				58F63D012216E19800798381 /* FirebaseCore.framework in Frameworks */,
+				58F63CFF2216E17200798381 /* DropDown.framework in Frameworks */,
+				58F63CFD2216E12300798381 /* Alamofire.framework in Frameworks */,
+				58DBF846216C999700A2732E /* GoogleToolboxForMac.framework in Frameworks */,
 				5850076A21467A330049BA54 /* CoreLocation.framework in Frameworks */,
 				580364F82146F71F00C2B8CA /* MapKit.framework in Frameworks */,
-				1EE54A4C3FA7E62FECDA2EDE /* Pods_Kanakia.framework in Frameworks */,
+				A9D4AFEEECE1FD93B587D562 /* Pods_Kanakia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +504,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C58F575E0A69FB1BB9EE8DC /* Pods_KanakiaTests.framework in Frameworks */,
+				A41A8A9F5C9F3B7C691358D3 /* Pods_KanakiaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +512,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0299E3C36D8035BF421F44D1 /* Pods_KanakiaUITests.framework in Frameworks */,
+				C6A131092AA11DF68E40A350 /* Pods_KanakiaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,13 +522,40 @@
 		125DE621FC2671C651E64041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58F63D042216E1F500798381 /* FirebaseMessaging.framework */,
+				58F63D022216E1B200798381 /* FirebaseDatabase.framework */,
+				58F63D002216E19800798381 /* FirebaseCore.framework */,
+				58F63CFE2216E17200798381 /* DropDown.framework */,
+				58F63CFC2216E12300798381 /* Alamofire.framework */,
+				58DBF845216C999700A2732E /* GoogleToolboxForMac.framework */,
 				580364F72146F71F00C2B8CA /* MapKit.framework */,
 				5850076921467A320049BA54 /* CoreLocation.framework */,
-				A484754F11A3D0DFAF2E9651 /* Pods_Kanakia.framework */,
-				638C22D6345CE4979132B1C7 /* Pods_KanakiaTests.framework */,
-				55784D4E477ADFDE0CD169A7 /* Pods_KanakiaUITests.framework */,
+				A5BF99D839DE359698C28941 /* Pods_Kanakia.framework */,
+				413B3C3645FCA1A38E0B45B0 /* Pods_KanakiaTests.framework */,
+				80F202BEE23102A4CBC5B22B /* Pods_KanakiaUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3FED175F1C462EB7F06CBA53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				06843ABC366439D10CA32AB2 /* Pods-Kanakia.debug.xcconfig */,
+				902CE374F3D5B165399289DC /* Pods-Kanakia.release.xcconfig */,
+				81447922B3FFE10F06925095 /* Pods-KanakiaTests.debug.xcconfig */,
+				11F5407E9ABB4DE035E2AB82 /* Pods-KanakiaTests.release.xcconfig */,
+				33A2E4A4D0D0C383EAEF8B29 /* Pods-KanakiaUITests.debug.xcconfig */,
+				D9BABB3B16F0A2F3393600EA /* Pods-KanakiaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		58E7B0622265D10500962253 /* Utilitize */ = {
+			isa = PBXGroup;
+			children = (
+				58E7B0632265D11800962253 /* Utilities.swift */,
+			);
+			path = Utilitize;
 			sourceTree = "<group>";
 		};
 		58FE47952147A15400134A8D /* LocationFiles */ = {
@@ -525,8 +581,8 @@
 				CE43778C20A8B06300C3B14E /* KanakiaTests */,
 				CE43779720A8B06400C3B14E /* KanakiaUITests */,
 				CE43777320A8B06300C3B14E /* Products */,
-				FBB150665DDC6551A6D18D3D /* Pods */,
 				125DE621FC2671C651E64041 /* Frameworks */,
+				3FED175F1C462EB7F06CBA53 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -543,6 +599,7 @@
 		CE43777420A8B06300C3B14E /* Kanakia */ = {
 			isa = PBXGroup;
 			children = (
+				58E7B0622265D10500962253 /* Utilitize */,
 				58FE47952147A15400134A8D /* LocationFiles */,
 				CE43794E20A8BBE900C3B14E /* Models */,
 				CE43783720A8B34600C3B14E /* CellClass */,
@@ -604,6 +661,8 @@
 				CE4377BE20A8B2F000C3B14E /* RescduleMeetingVC.swift */,
 				CE4377BF20A8B2F000C3B14E /* test.pdf */,
 				5850076321465A970049BA54 /* NotificationRedirect.swift */,
+				5819CF992264A2E9003372C6 /* ShowMeetingsVc.swift */,
+				5819CF9B2264A47B003372C6 /* SearchAllMeetingsVc.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -623,6 +682,7 @@
 			isa = PBXGroup;
 			children = (
 				CE14C63D20ACA45100AFF955 /* ActoinRemarkCell.swift */,
+				58B88FDE221ACC6B0059287D /* learningNeedsListCell.swift */,
 				CE14C63C20ACA45100AFF955 /* ActoinRemarkCell.xib */,
 				CE4377FE20A8B34500C3B14E /* ButtonCell.swift */,
 				CE4377FF20A8B34500C3B14E /* ButtonCell.xib */,
@@ -655,7 +715,6 @@
 			isa = PBXGroup;
 			children = (
 				CE43781420A8B34500C3B14E /* AchivementList.swift */,
-				CE43781520A8B34500C3B14E /* AddTrainingMdVc.swift */,
 				CE43781620A8B34500C3B14E /* DynamicPmsVc.swift */,
 				CE43781720A8B34500C3B14E /* GetFeedbackVc.swift */,
 				CE43781820A8B34500C3B14E /* HighLowlightsVc.swift */,
@@ -671,6 +730,7 @@
 				CE43782220A8B34500C3B14E /* UserTypeVC.swift */,
 				CE6DCE3C20E0C74300B51536 /* ManagerLoginFirstVc.swift */,
 				CE1AF9AE2103A50800A57B15 /* FeedBackForAnyVC.swift */,
+				58F290F32211646800CD1E2B /* AddLearningNeedsPopUp.swift */,
 			);
 			path = PmsViewController;
 			sourceTree = "<group>";
@@ -734,10 +794,12 @@
 				CE43783020A8B34600C3B14E /* DataCell.xib */,
 				CE43783120A8B34600C3B14E /* DayCell.swift */,
 				CE43783220A8B34600C3B14E /* DayCell.xib */,
-				CE43783320A8B34600C3B14E /* DropDown.swift */,
+				CE43783320A8B34600C3B14E /* DropDownList.swift */,
 				CE43783420A8B34600C3B14E /* DropDown.xib */,
 				CE43783520A8B34600C3B14E /* ReminderCell.swift */,
 				CE43783620A8B34600C3B14E /* ReminderCell.xib */,
+				58F4572F2265A60F00FB5094 /* ShowMeetingCell.swift */,
+				58F457302265A60F00FB5094 /* ShowMeetingCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -1027,19 +1089,6 @@
 			path = KLCPopup;
 			sourceTree = "<group>";
 		};
-		FBB150665DDC6551A6D18D3D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				365BD0AED90A4F9204AAFA7D /* Pods-Kanakia.debug.xcconfig */,
-				A57E86AD84CCD9F8F390B758 /* Pods-Kanakia.release.xcconfig */,
-				BA75E25370F603525A7B86AC /* Pods-KanakiaTests.debug.xcconfig */,
-				3E142D56DC8E2097C8056E26 /* Pods-KanakiaTests.release.xcconfig */,
-				D25BF72F95C3022EEB0CA529 /* Pods-KanakiaUITests.debug.xcconfig */,
-				4C80C8B692EF9B382C86DB5C /* Pods-KanakiaUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1047,12 +1096,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE43779D20A8B06400C3B14E /* Build configuration list for PBXNativeTarget "Kanakia" */;
 			buildPhases = (
-				6A71A572774E880D65E4D177 /* [CP] Check Pods Manifest.lock */,
+				70C8D552E8F535B295D0F4E3 /* [CP] Check Pods Manifest.lock */,
 				CE43776E20A8B06300C3B14E /* Sources */,
 				CE43776F20A8B06300C3B14E /* Frameworks */,
 				CE43777020A8B06300C3B14E /* Resources */,
-				CD05C269C70C4C033485EDDC /* [CP] Embed Pods Frameworks */,
-				5CDB7128B2DC16A445E1C18A /* [CP] Copy Pods Resources */,
+				C6867010A5E5003E5A5B60A4 /* [CP] Embed Pods Frameworks */,
+				F5F0A3DED17FB18897E7195F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1067,12 +1116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE4377A020A8B06400C3B14E /* Build configuration list for PBXNativeTarget "KanakiaTests" */;
 			buildPhases = (
-				47DF02D8BED0E318D981ADBC /* [CP] Check Pods Manifest.lock */,
+				FBF4A3BB2D6077976F9B8AD8 /* [CP] Check Pods Manifest.lock */,
 				CE43778520A8B06300C3B14E /* Sources */,
 				CE43778620A8B06300C3B14E /* Frameworks */,
 				CE43778720A8B06300C3B14E /* Resources */,
-				9D4B9206B71E01CD620AA27C /* [CP] Embed Pods Frameworks */,
-				F69594B902821930E17CD433 /* [CP] Copy Pods Resources */,
+				9D7A8ADF91FEE2482E4E4ACD /* [CP] Embed Pods Frameworks */,
+				89CD821652F2336F67C776E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1088,12 +1137,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE4377A320A8B06400C3B14E /* Build configuration list for PBXNativeTarget "KanakiaUITests" */;
 			buildPhases = (
-				EF9F92A1EA47FE7B88E83E59 /* [CP] Check Pods Manifest.lock */,
+				414E93B6BE22271D377485F0 /* [CP] Check Pods Manifest.lock */,
 				CE43779020A8B06400C3B14E /* Sources */,
 				CE43779120A8B06400C3B14E /* Frameworks */,
 				CE43779220A8B06400C3B14E /* Resources */,
-				D6ADC2412127FF4A477590A4 /* [CP] Embed Pods Frameworks */,
-				69FFEA17907DA9108CAA6AC9 /* [CP] Copy Pods Resources */,
+				84A14B95A4E099ECB91661C7 /* [CP] Embed Pods Frameworks */,
+				217F22864BD09BA3D64BCC7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1188,6 +1237,7 @@
 				CE4378E120A8B34800C3B14E /* teamCell.xib in Resources */,
 				58FE47A42147A37A00134A8D /* LocationCell.xib in Resources */,
 				CE4378FB20A8B34800C3B14E /* DataCell.xib in Resources */,
+				58F457322265A61000FB5094 /* ShowMeetingCell.xib in Resources */,
 				CE43790820A8B34800C3B14E /* MyMeetingCell.xib in Resources */,
 				CE4378DF20A8B34800C3B14E /* PendingKpiCell.xib in Resources */,
 				CE43790320A8B34800C3B14E /* DateHeaderView.xib in Resources */,
@@ -1208,7 +1258,6 @@
 				CE43790B20A8B34800C3B14E /* ResponceCell.xib in Resources */,
 				CE4378D920A8B34800C3B14E /* KraCell.xib in Resources */,
 				CE4377CF20A8B2F100C3B14E /* test.pdf in Resources */,
-				CE43792820A8B34800C3B14E /* Info.plist in Resources */,
 				CED81376212EA0410012FBFA /* FeedbackRplyCell.xib in Resources */,
 				CE43794720A8B34800C3B14E /* DBAssetItemsViewController.xib in Resources */,
 				CE4377C720A8B2F100C3B14E /* ksplLogo.png in Resources */,
@@ -1240,43 +1289,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		47DF02D8BED0E318D981ADBC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KanakiaTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5CDB7128B2DC16A445E1C18A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69FFEA17907DA9108CAA6AC9 /* [CP] Copy Pods Resources */ = {
+		217F22864BD09BA3D64BCC7D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1294,103 +1307,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6A71A572774E880D65E4D177 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kanakia-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9D4B9206B71E01CD620AA27C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD05C269C70C4C033485EDDC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D6ADC2412127FF4A477590A4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF9F92A1EA47FE7B88E83E59 /* [CP] Check Pods Manifest.lock */ = {
+		414E93B6BE22271D377485F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1408,7 +1325,57 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F69594B902821930E17CD433 /* [CP] Copy Pods Resources */ = {
+		70C8D552E8F535B295D0F4E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kanakia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84A14B95A4E099ECB91661C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaUITests/Pods-KanakiaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89CD821652F2336F67C776E6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1426,6 +1393,106 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9D7A8ADF91FEE2482E4E4ACD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanakiaTests/Pods-KanakiaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6867010A5E5003E5A5B60A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5F0A3DED17FB18897E7195F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kanakia/Pods-Kanakia-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBF4A3BB2D6077976F9B8AD8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KanakiaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1440,6 +1507,7 @@
 				CE43793E20A8B34800C3B14E /* UIImage+DBAssetIcons.m in Sources */,
 				CE4378EF20A8B34800C3B14E /* MdLoginVc.swift in Sources */,
 				58FE47A32147A37A00134A8D /* LocationCell.swift in Sources */,
+				58F290F42211646800CD1E2B /* AddLearningNeedsPopUp.swift in Sources */,
 				CE43792D20A8B34800C3B14E /* MKCardView.swift in Sources */,
 				CE43791520A8B34800C3B14E /* Storyboards.swift in Sources */,
 				CE4378F220A8B34800C3B14E /* RemarkActionVc.swift in Sources */,
@@ -1500,10 +1568,12 @@
 				CE4377C120A8B2F100C3B14E /* CalendarConfigViewController.swift in Sources */,
 				CE4378F920A8B34800C3B14E /* UIView+Shadow.swift in Sources */,
 				CE43792420A8B34800C3B14E /* FSCalendarScopeHandle.m in Sources */,
+				58F457312265A61000FB5094 /* ShowMeetingCell.swift in Sources */,
 				CE4378EC20A8B34800C3B14E /* Kra&FeedbackVc.swift in Sources */,
 				CE43794620A8B34800C3B14E /* DBAssetItemsViewController.m in Sources */,
+				5819CF9A2264A2E9003372C6 /* ShowMeetingsVc.swift in Sources */,
 				CE43794920A8B34800C3B14E /* DBAttachmentAlertController.m in Sources */,
-				CE4378FE20A8B34800C3B14E /* DropDown.swift in Sources */,
+				CE4378FE20A8B34800C3B14E /* DropDownList.swift in Sources */,
 				CE43793020A8B34800C3B14E /* MKEmbedDrawerControllerSegue.swift in Sources */,
 				CE4378CF20A8B34800C3B14E /* ApiFile.swift in Sources */,
 				CE4377C220A8B2F100C3B14E /* ChangePasswordVc.swift in Sources */,
@@ -1511,6 +1581,7 @@
 				CE43793C20A8B34800C3B14E /* NSBundle+DBLibrary.m in Sources */,
 				CE43793420A8B34800C3B14E /* MKLayer.swift in Sources */,
 				CE43791120A8B34800C3B14E /* CollectionCell.m in Sources */,
+				5819CF9C2264A47B003372C6 /* SearchAllMeetingsVc.swift in Sources */,
 				CE4377C920A8B2F100C3B14E /* LunarFormatter.swift in Sources */,
 				CE43791920A8B34800C3B14E /* FSCalendar.m in Sources */,
 				CED81372212E88230012FBFA /* KLCPopup.m in Sources */,
@@ -1530,8 +1601,8 @@
 				CE43794D20A8B34800C3B14E /* DBAttachment.m in Sources */,
 				CE4377CE20A8B2F100C3B14E /* RescduleMeetingVC.swift in Sources */,
 				CE43791220A8B34800C3B14E /* MyBookingsCell.m in Sources */,
-				CE4378E720A8B34800C3B14E /* AddTrainingMdVc.swift in Sources */,
 				58FE47972147A17600134A8D /* UserNameVC.swift in Sources */,
+				58B88FDF221ACC6B0059287D /* learningNeedsListCell.swift in Sources */,
 				CE43792920A8B34800C3B14E /* JYToast.swift in Sources */,
 				CE43794120A8B34800C3B14E /* DBThumbnailPhotoCell.m in Sources */,
 				CE4378F720A8B34800C3B14E /* VisitorMgmtCell.swift in Sources */,
@@ -1552,6 +1623,7 @@
 				CE4377C820A8B2F100C3B14E /* LoginViewController.swift in Sources */,
 				CE43794420A8B34800C3B14E /* DBAssetGroupsViewController.m in Sources */,
 				CE4378E820A8B34800C3B14E /* DynamicPmsVc.swift in Sources */,
+				58E7B0642265D11800962253 /* Utilities.swift in Sources */,
 				CE4378D820A8B34800C3B14E /* KraCell.swift in Sources */,
 				CE6DCE3D20E0C74300B51536 /* ManagerLoginFirstVc.swift in Sources */,
 				CE4378E020A8B34800C3B14E /* teamCell.swift in Sources */,
@@ -1763,7 +1835,7 @@
 		};
 		CE43779E20A8B06400C3B14E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 365BD0AED90A4F9204AAFA7D /* Pods-Kanakia.debug.xcconfig */;
+			baseConfigurationReference = 06843ABC366439D10CA32AB2 /* Pods-Kanakia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1773,9 +1845,11 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
+				PRODUCT_MODULE_NAME = kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f8a0abf3-7f09-431e-93d3-280892059ec0";
 				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
@@ -1788,7 +1862,7 @@
 		};
 		CE43779F20A8B06400C3B14E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A57E86AD84CCD9F8F390B758 /* Pods-Kanakia.release.xcconfig */;
+			baseConfigurationReference = 902CE374F3D5B165399289DC /* Pods-Kanakia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1798,9 +1872,11 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = Kanakia/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.kworld;
+				PRODUCT_MODULE_NAME = kworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f8a0abf3-7f09-431e-93d3-280892059ec0";
 				PROVISIONING_PROFILE_SPECIFIER = kanakiaApp;
@@ -1812,7 +1888,7 @@
 		};
 		CE4377A120A8B06400C3B14E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA75E25370F603525A7B86AC /* Pods-KanakiaTests.debug.xcconfig */;
+			baseConfigurationReference = 81447922B3FFE10F06925095 /* Pods-KanakiaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1830,7 +1906,7 @@
 		};
 		CE4377A220A8B06400C3B14E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E142D56DC8E2097C8056E26 /* Pods-KanakiaTests.release.xcconfig */;
+			baseConfigurationReference = 11F5407E9ABB4DE035E2AB82 /* Pods-KanakiaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1848,7 +1924,7 @@
 		};
 		CE4377A420A8B06400C3B14E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D25BF72F95C3022EEB0CA529 /* Pods-KanakiaUITests.debug.xcconfig */;
+			baseConfigurationReference = 33A2E4A4D0D0C383EAEF8B29 /* Pods-KanakiaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1865,7 +1941,7 @@
 		};
 		CE4377A520A8B06400C3B14E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C80C8B692EF9B382C86DB5C /* Pods-KanakiaUITests.release.xcconfig */;
+			baseConfigurationReference = D9BABB3B16F0A2F3393600EA /* Pods-KanakiaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,10 +1,3 @@
-//
-//  PendingApprovalVc.swift
-//  Kanakia SOP
-//
-//  Created by user on 09/04/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 import Alamofire
@@ -120,17 +113,17 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
         let cell = tblPending.dequeueReusableCell(withIdentifier: "PendingAchiveCell", for: indexPath) as! PendingAchiveCell
         cell.contentView.layer.cornerRadius = 8
         cell.contentView.layer.masksToBounds = true
-        self.designCell(cView: cell.backView)
-        cell.lblChangeNm.text = "Other Achievements"
+ //       self.designCell(cView: cell.backView)
+        cell.lblChangeNm.text = "  Other Achievements"
         cell.lblEmpName.text = (lcDict["app_for_user_name"] as! String)
         cell.lblMainInfo.text = (lcDict["app_name"] as! String)
-        cell.lblDateTime.text = (lcDict["timestamp"] as! String)
+        cell.lblDateTime.text = (lcDict["timestamp"] as! String) + " "
         cell.TrainType.text = ""
         
         
             if type == "2"
             {
-                cell.lblChangeNm.text = "Training Needs"
+                cell.lblChangeNm.text = " Training Needs"
                 TrainType = (lcDict["tpt_type"] as! String)
                 if TrainType == "1"
                 {
@@ -144,13 +137,13 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             }
             if type == "5"
             {
-                cell.lblChangeNm.text = "Feedback"
+                cell.lblChangeNm.text = "  Feedback"
                 cell.TrainType.text = ""
             }
             
             if type == "7"
             {
-                cell.lblChangeNm.text = "KRA Acceptance"
+                cell.lblChangeNm.text = "  KRA Acceptance"
                 cell.TrainType.text = ""
                 cell.btnReject.isHidden = true
             }
@@ -169,16 +162,16 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             
             cell.contentView.layer.cornerRadius = 8
             cell.contentView.layer.masksToBounds = true
-            self.designCell(cView: cell.backView)
+   //         self.designCell(cView: cell.backView)
             cell.KraNm.text = (lcDict["k_name"] as! String)
             cell.KpiNm.text = (lcDict["kpi_name"] as! String)
             cell.lblLightNm.text = (lcDict["app_name"] as! String)
             cell.lblEmpNm.text = (lcDict["app_for_user_name"] as! String)
-            cell.lblDate.text = (lcDict["timestamp"] as! String)
+            cell.lblDate.text = (lcDict["timestamp"] as! String) + " "
             if type == "6"
             {
-                cell.lblChangeNm.text = "LowLights"
-                cell.NameLight.text = "LowLights:"
+                cell.lblChangeNm.text = " LowLights"
+                cell.NameLight.text = " LowLights:"
                 cell.NameLight.font = UIFont.boldSystemFont(ofSize: 15.0)
             }
             
@@ -194,11 +187,11 @@ class PendingApprovalVc: UIViewController, UITableViewDelegate,UITableViewDataSo
             
             cell.contentView.layer.cornerRadius = 8
             cell.contentView.layer.masksToBounds = true
-            self.designCell(cView: cell.backView)
+ //           self.designCell(cView: cell.backView)
             cell.lblEmpNm.text = (lcDict["app_for_user_name"] as! String)
             cell.lblKpiNm.text = (lcDict["kpi_name"] as! String)
             cell.lblKraNm.text = (lcDict["k_name"] as! String)
-            cell.lblDate.text = (lcDict["timestamp"] as! String)
+            cell.lblDate.text = (lcDict["timestamp"] as! String) + " "
             cell.lblAchievedData.text = (lcDict["app_name"] as! String)
      
             cell.btnAccept.tag = indexPath.row

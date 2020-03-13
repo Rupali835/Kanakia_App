@@ -21,7 +21,6 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     var Kflag : String = ""
      private var toast: JYToast!
     var Msg = [AnyObject]()
- //   var Lowdata = [AnyObject]()
     var cRemarkVc : RemarkActionVc!
     var fkid : String!
      var LoginUp_id : String = ""
@@ -59,13 +58,12 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
         initUi()
        getDataFromAPI(getHighLowLights: "getHighlights")
      
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
      
+
         txtLights.layer.cornerRadius = 5
         txtLights.layer.borderWidth = 1.0
         txtLights.layer.borderColor = UIColor.purple.cgColor
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddTrainingMdVc.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HighLowlightsVc.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -83,120 +81,6 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
         view.endEditing(true)
     }
     
-    
-    @objc func keyboardWillHide(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 150
-                    }
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 100
-                    }
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                    case "iPhone 5S","iPhone SE","iPhone 6S","iPhone 7","iPhone 8":
-                    if self.view.frame.origin.y != 0
-                    {
-                    self.view.frame.origin.y += 250
-                    }
-                    break
-                    case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
-                    if self.view.frame.origin.y != 0
-                    {
-                    self.view.frame.origin.y += 280
-                    }
-                    break
-                    
-                case "iPhone X":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 150
-                    }
-                    
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    self.view.frame.origin.y -= 100
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE", "iPhone 6S","iPhone 7","iPhone 8":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 250
-                    }
-                    break
-                case "iPhone 6 Plus","iPhone 7 Plus","iPhone 8 Plus":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 280
-                    }
-                    break
-                    
-                case "iPhone X":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-            }
-        }
-    }
     
     @objc func hideKeyboard()
     {
@@ -431,7 +315,6 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
              
                 return cell
                 
-                
             }
             
         }
@@ -476,7 +359,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     {
         view.endEditing(true)
         
-        let alert = UIAlertController(title: "Alert", message: "Are you sure to send this Highlight or Lowlight?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: "Alert", message: "Are you sure to accept this Highlight or Lowlight?", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
             UIAlertAction in
@@ -511,7 +394,7 @@ class HighLowlightsVc: UIViewController, UITableViewDelegate, UITableViewDataSou
     {
         view.endEditing(true)
         
-        let alert = UIAlertController(title: "Alert", message: "Are you sure to send this Highlight or Lowlight?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: "Alert", message: "Are you sure to reject this Highlight or Lowlight?", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
             UIAlertAction in

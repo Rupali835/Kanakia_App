@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
 {
     
     
+    @IBOutlet weak var lblVersion: UILabel!
     @IBOutlet weak var btnEye: UIButton!
     @IBOutlet weak var txtLoginName: MKTextField!
     @IBOutlet weak var txtPasssword: MKTextField!
@@ -41,8 +42,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        
+        print(appVersion)
+        
+        lblVersion.text = "Copyright © 2018 Kanishka Software Private Limited. All Rights Reserved. Version \(appVersion)"
+        lblVersion.font = UIFont.systemFont(ofSize: 14.0)
+        lblVersion.textColor = UIColor.white
+        
     }
-    
 
     private func initUi() {
         toast = JYToast()
@@ -182,10 +190,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         let FcmToken = appDelegate.FCMToken
         
         let params:[String:String] = [
-            "emp_id": strUserName!,
-            "password": strPassword!,
-            "fcm_token": FcmToken,
-             "type" : "ios"
+            "emp_id"    : strUserName!,
+            "password"  : strPassword!,
+            "fcm_token" : FcmToken,
+            "type"      : "ios"
        ]
         
         print(params)
@@ -194,8 +202,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate,KBImageViewDele
         
 //     if self.Token == "NF"
 //        {
-//            appDel.application(<#T##application: UIApplication##UIApplication#>, didRegisterForRemoteNotificationsWithDeviceToken: <#T##Data#>)
-//
+         //   appDel.application(<#T##application: UIApplication##UIApplication#>, didRegisterForRemoteNotificationsWithDeviceToken: <#T##Data#>)
+
 //        }
         Alamofire.request(url, method: .post, parameters: params).responseJSON { (resp) in
             print(resp)

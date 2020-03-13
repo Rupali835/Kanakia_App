@@ -10,9 +10,7 @@ import UIKit
 
 class CommonCell: UITableViewCell {
 
-    
     @IBOutlet weak var backView: UIView!
-    
     @IBOutlet weak var LblmainInfo: UILabel!
     @IBOutlet weak var lblAddedByName: UILabel!
     @IBOutlet weak var btnApproved: UIButton!

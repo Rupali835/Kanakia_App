@@ -99,11 +99,6 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
       
         let userDict = UserDefaults.standard.value(forKey: "userdata") as! NSDictionary
         strUserId = userDict["user_id"] as! String
-       
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
     
@@ -112,115 +107,10 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
         toast = JYToast()
     }
     
-    @objc func keyboardWillShow(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                 case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 150
-                    }
-                    
-                    break
-                 case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                     self.view.frame.origin.y -= 100
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 60
-                    }
-                    break
-                    
-                case "iPhone 6 Plus":
-                    if self.view.frame.origin.y == 0
-                    {
-                        self.view.frame.origin.y -= 300
-                    }
-                    break
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
-    }
-    
-    
-    @objc func keyboardWillHide(notification: NSNotification)
-    {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil
-        {
-            let model = UIDevice.current.model
-            print("\(UIDevice().type.rawValue)")
-            
-            if model == "iPad"
-            {
-                switch UIDevice().type.rawValue
-                {
-                case "simulator/sandbox","iPad 5":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 150
-                    }
-                    break
-                case "iPad Air 2","iPad Air 1","iPad Pro 9.7\" cellular":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 100
-                    }
-                    break
-              
-                default:
-                    print("No Match")
-                }
-                
-            }else{
-                
-                switch UIDevice().type.rawValue
-                {
-                case "iPhone 5S","iPhone SE":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 60
-                    }
-                    break
-                    
-                case "iPhone 6 Plus":
-                    if self.view.frame.origin.y != 0
-                    {
-                        self.view.frame.origin.y += 300
-                    }
-                    break
-                    
-                default:
-                    print("No Match")
-                }
-                
-            }
-        }
     }
     
     func rrfetchAPI()
@@ -260,17 +150,15 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
 
     func SetUpAPI()
     {
-       
-        let modal = ModalController.sharedInstance
+       let modal = ModalController.sharedInstance
         modal.delegate = self
         APIManager().GetMMS()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
 
     @IBAction func AddMeetingBtnClick(_ sender: Any)
     {
@@ -367,7 +255,7 @@ class MeetingRoomVc: UIViewController,ModalControllerDelegate, UITextFieldDelega
         lcrooms.r_Name = "Other"
         lcrooms.r_id = "0"
         lcrooms.r_tv_flag = ""
-       meetingRoomsArr.insert(lcrooms, at: 0)
+        meetingRoomsArr.insert(lcrooms, at: 0)
         print("Count = ", meetingRoomsArr.count)
         
         for (index,value) in meetingRoomsArr.enumerated()
