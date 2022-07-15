@@ -108,7 +108,6 @@ class MyMeetingsVc: UIViewController, UITableViewDelegate, UITableViewDataSource
                 self?.tblMeeting?.endUpdates()
             }
             
-            
            self.tblMeeting.reloadData()
         
       }
